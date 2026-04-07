@@ -1,0 +1,179 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+radio.h File Reference}
+\hypertarget{app__radio_8h}{}\label{app__radio_8h}\index{QMI8658/QMI8658/main/app\_radio.h@{QMI8658/QMI8658/main/app\_radio.h}}
+
+
+Interfaz del módulo de comunicación inalámbrica ESP-\/\+NOW para envío de datos del sensor IMU QMI8658.  
+
+
+{\ttfamily \+\#include "{}qmi8658.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__radio_8h_adda9479017d20caef45648f89c9bec0f}{app\+\_\+radio\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo de comunicación ESP-\/\+NOW. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__radio_8h_a6b1aea7bd46cf736248936145ee0fe55}{app\+\_\+radio\+\_\+send\+\_\+if\+\_\+changed}} (const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}imu)
+\begin{DoxyCompactList}\small\item\em Envía datos del sensor IMU solo si se detectan cambios significativos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz del módulo de comunicación inalámbrica ESP-\/\+NOW para envío de datos del sensor IMU QMI8658. 
+
+Este archivo define las funciones públicas para inicializar el sistema de radio y enviar datos del sensor IMU únicamente cuando se detectan cambios significativos.
+
+El módulo está diseñado para trabajar sobre el framework ESP-\/\+IDF utilizando ESP-\/\+NOW, optimizando el uso del canal inalámbrico al evitar transmisiones redundantes.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Las funciones pueden depender del estado previo de inicialización del sistema Wi\+Fi.
+\item No son thread-\/safe si se usan desde múltiples tareas sin mecanismos de sincronización.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__radio_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__radio_8h_adda9479017d20caef45648f89c9bec0f}\index{app\_radio.h@{app\_radio.h}!app\_radio\_init@{app\_radio\_init}}
+\index{app\_radio\_init@{app\_radio\_init}!app\_radio.h@{app\_radio.h}}
+\doxysubsubsection{\texorpdfstring{app\_radio\_init()}{app\_radio\_init()}}
+{\footnotesize\ttfamily \label{app__radio_8h_adda9479017d20caef45648f89c9bec0f} 
+esp\+\_\+err\+\_\+t app\+\_\+radio\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo de comunicación ESP-\/\+NOW. 
+
+Configura la pila de red, inicializa Wi\+Fi en modo estación (STA), y establece la comunicación ESP-\/\+NOW con el dispositivo peer previamente definido.
+
+Esta función debe ser llamada antes de intentar enviar datos.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser bloqueante debido a la inicialización del sistema Wi\+Fi.
+\item Debe ejecutarse en un contexto donde la inicialización del sistema esté permitida.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error durante la configuración del sistema.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Inicializa el módulo de comunicación ESP-\/\+NOW.
+
+Esta función realiza:\+
+\begin{DoxyItemize}
+\item Inicialización de NVS (almacenamiento no volátil).
+\item Configuración de la pila de red (esp\+\_\+netif).
+\item Inicialización de Wi\+Fi en modo estación (STA).
+\item Configuración del canal Wi\+Fi.
+\item Inicialización del protocolo ESP-\/\+NOW.
+\item Registro del peer receptor.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función potencialmente bloqueante debido a inicialización del Wi\+Fi.
+\item Debe ser llamada antes de cualquier envío de datos.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t en caso de error interno. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+Información del peer ESP-\/\+NOW.
+
+\texorpdfstring{$<$}{<} Estructura de configuración del peer
+
+\texorpdfstring{$<$}{<} Dirección MAC del peer
+
+\texorpdfstring{$<$}{<} Canal Wi\+Fi utilizado
+
+\texorpdfstring{$<$}{<} Interfaz Wi\+Fi
+
+\texorpdfstring{$<$}{<} Encriptación deshabilitada\Hypertarget{app__radio_8h_a6b1aea7bd46cf736248936145ee0fe55}\index{app\_radio.h@{app\_radio.h}!app\_radio\_send\_if\_changed@{app\_radio\_send\_if\_changed}}
+\index{app\_radio\_send\_if\_changed@{app\_radio\_send\_if\_changed}!app\_radio.h@{app\_radio.h}}
+\doxysubsubsection{\texorpdfstring{app\_radio\_send\_if\_changed()}{app\_radio\_send\_if\_changed()}}
+{\footnotesize\ttfamily \label{app__radio_8h_a6b1aea7bd46cf736248936145ee0fe55} 
+esp\+\_\+err\+\_\+t app\+\_\+radio\+\_\+send\+\_\+if\+\_\+changed (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{imu}{}\end{DoxyParamCaption})}
+
+
+
+Envía datos del sensor IMU solo si se detectan cambios significativos. 
+
+Evalúa las diferencias entre la medición actual y la última enviada. Si el cambio supera un umbral definido, se construye y transmite un paquete mediante ESP-\/\+NOW.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item No bloqueante en el envío (usa esp\+\_\+now\+\_\+send internamente).
+\item No es thread-\/safe si se accede concurrentemente sin protección.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura que contiene los datos actuales del sensor IMU.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Si no hay cambios o el envío fue exitoso.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Si el puntero imu es NULL.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error en la transmisión ESP-\/\+NOW.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Envía datos del sensor IMU solo si se detectan cambios significativos.
+
+Esta función evalúa si los datos del sensor han cambiado respecto a la última medición enviada. Si el cambio supera el umbral definido:\+
+\begin{DoxyItemize}
+\item Construye un paquete ESP-\/\+NOW.
+\item Incluye identificador del nodo, número de secuencia y timestamp.
+\item Formatea los datos en texto.
+\item Envía el paquete al peer configurado.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser llamada desde tareas Free\+RTOS.
+\item No es thread-\/safe si se accede concurrentemente sin protección.
+\item Internamente utiliza esp\+\_\+now\+\_\+send, que es no bloqueante.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura con datos del sensor IMU.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Si no hubo cambios o envío exitoso.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Si el puntero imu es NULL.
+\item Otros códigos esp\+\_\+err\+\_\+t provenientes de esp\+\_\+now\+\_\+send. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+Paquete de datos a enviar vía ESP-\/\+NOW.
+
+\texorpdfstring{$<$}{<} Estructura del paquete
+
+\texorpdfstring{$<$}{<} ID del nodo emisor
+
+\texorpdfstring{$<$}{<} Número de secuencia incremental
+
+\texorpdfstring{$<$}{<} Timestamp en milisegundos

@@ -1,0 +1,21 @@
+\doxysection{app\+\_\+radio\+\_\+packet.\+h}
+\hypertarget{app__radio__packet_8h_source}{}\label{app__radio__packet_8h_source}\index{QMI8658/QMI8658/main/app\_radio\_packet.h@{QMI8658/QMI8658/main/app\_radio\_packet.h}}
+\doxymbox{\hyperlink{app__radio__packet_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ APP\_LOG\_TEXT\_MAX\ 128}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_attribute\_\_((packed))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ uint8\_t\ node\_id;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ uint32\_t\ seq;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ uint32\_t\ timestamp\_ms;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{char}\ text[APP\_LOG\_TEXT\_MAX];\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \}\ \doxymbox{\hyperlink{structespnow__log__packet__t}{espnow\_log\_packet\_t}};}
+
+\end{DoxyCode}

@@ -1,0 +1,58 @@
+\doxysection{qmi8658.\+h}
+\hypertarget{qmi8658_8h_source}{}\label{qmi8658_8h_source}\index{QMI8658/QMI8658/components/qmi8658/qmi8658.h@{QMI8658/QMI8658/components/qmi8658/qmi8658.h}}
+\doxymbox{\hyperlink{qmi8658_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ QMI8658\_I2C\_ADDR\_HIGH\ 0x6B}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ QMI8658\_I2C\_ADDR\_LOW\ \ 0x6A}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_WHO\_AM\_I\ 0x00}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_REVISION\ 0x01}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_CTRL1\ \ \ \ 0x02}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_CTRL2\ \ \ \ 0x03}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_CTRL3\ \ \ \ 0x04}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_CTRL7\ \ \ \ 0x08}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_TEMP\_L\ \ \ 0x33}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_AX\_L\ \ \ \ \ 0x35}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ QMI8658\_REG\_GX\_L\ \ \ \ \ 0x3B}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ QMI8658\_WHO\_AM\_I\_VAL\ 0x05}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_a954b6dad1265bb5c5c0cf37a4ceaf053}{acc\_x}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_a21a8b94618c22ac01f1f1fef6fcf0d17}{acc\_y}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_a51ea102ab6e1fb16891ae22d15823c11}{acc\_z}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_ad36805d9041a97698e80a977187c7071}{gyr\_x}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_a8e1f5c9c6c6a799a11584e4f0e2e08f0}{gyr\_y}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_a85e5c133b7501d3c12336179d66af8f4}{gyr\_z}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structqmi8658__data__t_aa02b4ab574824077fe0ec4d7bb787d8e}{temperature}};\ \ }
+\DoxyCodeLine{00069\ \}\ \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\_data\_t}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00085\ esp\_err\_t\ \doxymbox{\hyperlink{qmi8658_8h_a7961277f24fdb2a8f8e04381e84e21a7}{qmi8658\_init}}(i2c\_master\_bus\_handle\_t\ bus);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00100\ esp\_err\_t\ \doxymbox{\hyperlink{qmi8658_8h_a899cd8e92d535c217256ecb0f83b47b3}{qmi8658\_read}}(\doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\_data\_t}}\ *out);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00117\ esp\_err\_t\ \doxymbox{\hyperlink{qmi8658_8h_a1d4088d4edf6e59c151c32b26417c5a6}{qmi8658\_calibrate\_gyro}}(uint16\_t\ samples,\ uint32\_t\ \doxymbox{\hyperlink{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}{delay\_ms}});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ uint8\_t\ \doxymbox{\hyperlink{qmi8658_8h_aac5bd14f5bacc9c0792e74f5fb2026a6}{qmi8658\_get\_i2c\_addr}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00140\ esp\_err\_t\ \doxymbox{\hyperlink{qmi8658_8h_a4284d95972b7af76eff7f3a7971c6821}{qmi8658\_enable\_interrupt}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00152\ esp\_err\_t\ \doxymbox{\hyperlink{qmi8658_8h_a66872062e400ebddcd26e831722e8369}{qmi8658\_data\_ready}}(\textcolor{keywordtype}{bool}\ *ready);}
+
+\end{DoxyCode}

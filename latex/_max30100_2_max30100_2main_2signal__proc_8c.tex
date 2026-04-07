@@ -1,0 +1,101 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+signal\+\_\+proc.c File Reference}
+\hypertarget{_max30100_2_max30100_2main_2signal__proc_8c}{}\label{_max30100_2_max30100_2main_2signal__proc_8c}\index{Max30100/Max30100/main/signal\_proc.c@{Max30100/Max30100/main/signal\_proc.c}}
+
+
+Procesamiento de señal para cálculo de BPM y estimación de Sp\+O2.  
+
+
+{\ttfamily \+\#include "{}signal\+\_\+proc.\+h"{}}\newline
+{\ttfamily \+\#include $<$math.\+h$>$}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \+\#include "{}app\+\_\+config.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8c_ae3ab0ea086e2c54ed11b091ee500601a}{signal\+\_\+proc\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo de procesamiento de señal. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8c_adb155b087f65d7cc6473adcce9a41332}{signal\+\_\+proc\+\_\+update}} (uint16\+\_\+t red, uint16\+\_\+t ir)
+\begin{DoxyCompactList}\small\item\em Actualiza el procesamiento con una nueva muestra. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{structsignal__result__t}{signal\+\_\+result\+\_\+t}} \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8c_a9b806fd25e798b8544721207168b125c}{signal\+\_\+proc\+\_\+get\+\_\+result}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene el resultado actual del procesamiento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Procesamiento de señal para cálculo de BPM y estimación de Sp\+O2. 
+
+Este archivo implementa el procesamiento de señales provenientes del sensor MAX30100, incluyendo:\+
+\begin{DoxyItemize}
+\item Detección de presencia de dedo
+\item Cálculo de frecuencia cardíaca (BPM)
+\item Estimación de saturación de oxígeno (Sp\+O2)
+\end{DoxyItemize}
+
+Utiliza buffers circulares para almacenar muestras y aplicar cálculos estadísticos como promedio y RMS para separar componentes AC/\+\+DC.
+
+\begin{DoxyNote}{Note}
+Varias funciones son bloqueantes a nivel computacional (procesamiento). 
+
+No es thread-\/safe; se recomienda acceso desde una única tarea o con protección.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2signal__proc_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2signal__proc_8c_a9b806fd25e798b8544721207168b125c}\index{signal\_proc.c@{signal\_proc.c}!signal\_proc\_get\_result@{signal\_proc\_get\_result}}
+\index{signal\_proc\_get\_result@{signal\_proc\_get\_result}!signal\_proc.c@{signal\_proc.c}}
+\doxysubsubsection{\texorpdfstring{signal\_proc\_get\_result()}{signal\_proc\_get\_result()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2signal__proc_8c_a9b806fd25e798b8544721207168b125c} 
+\doxymbox{\hyperlink{structsignal__result__t}{signal\+\_\+result\+\_\+t}} signal\+\_\+proc\+\_\+get\+\_\+result (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el resultado actual del procesamiento. 
+
+Obtiene el resultado actual del procesamiento de señal.
+
+\begin{DoxyReturn}{Returns}
+Estructura con BPM, Sp\+O2 y estado de detección de dedo.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función no bloqueante. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2signal__proc_8c_ae3ab0ea086e2c54ed11b091ee500601a}\index{signal\_proc.c@{signal\_proc.c}!signal\_proc\_init@{signal\_proc\_init}}
+\index{signal\_proc\_init@{signal\_proc\_init}!signal\_proc.c@{signal\_proc.c}}
+\doxysubsubsection{\texorpdfstring{signal\_proc\_init()}{signal\_proc\_init()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2signal__proc_8c_ae3ab0ea086e2c54ed11b091ee500601a} 
+void signal\+\_\+proc\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo de procesamiento de señal. 
+
+Limpia todos los buffers y variables internas. \Hypertarget{_max30100_2_max30100_2main_2signal__proc_8c_adb155b087f65d7cc6473adcce9a41332}\index{signal\_proc.c@{signal\_proc.c}!signal\_proc\_update@{signal\_proc\_update}}
+\index{signal\_proc\_update@{signal\_proc\_update}!signal\_proc.c@{signal\_proc.c}}
+\doxysubsubsection{\texorpdfstring{signal\_proc\_update()}{signal\_proc\_update()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2signal__proc_8c_adb155b087f65d7cc6473adcce9a41332} 
+void signal\+\_\+proc\+\_\+update (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{red}{, }\item[{uint16\+\_\+t}]{ir}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el procesamiento con una nueva muestra. 
+
+Actualiza el procesamiento con una nueva muestra del sensor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em red} & Valor RED. \\
+\hline
+{\em ir} & Valor IR.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Función no bloqueante, pero con carga computacional. 
+\end{DoxyNote}

@@ -1,0 +1,70 @@
+\doxysection{max30100\+\_\+config\+\_\+t Struct Reference}
+\hypertarget{structmax30100__config__t}{}\label{structmax30100__config__t}\index{max30100\_config\_t@{max30100\_config\_t}}
+
+
+Estructura de configuración para el sensor MAX30100.  
+
+
+
+
+{\ttfamily \+\#include $<$max30100.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+i2c\+\_\+port\+\_\+num\+\_\+t \doxymbox{\hyperlink{structmax30100__config__t_a52e5ff767473b7969dcc4b896078f682}{i2c\+\_\+port}}
+\item 
+int \doxymbox{\hyperlink{structmax30100__config__t_ab620535bae36151d637657a7f1424e26}{sda\+\_\+gpio}}
+\item 
+int \doxymbox{\hyperlink{structmax30100__config__t_a516131263b6506b8fc4490a168e98e1d}{scl\+\_\+gpio}}
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{structmax30100__config__t_a5ac2d0de486ef43f3360dfa1b02d2ed7}{i2c\+\_\+freq\+\_\+hz}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{structmax30100__config__t_ae8648a54066cd9f59c0a26eebbf4c1f7}{device\+\_\+addr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estructura de configuración para el sensor MAX30100. 
+
+Contiene los parámetros necesarios para inicializar la comunicación I2C con el sensor. 
+
+\label{doc-variable-members}
+\Hypertarget{structmax30100__config__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmax30100__config__t_ae8648a54066cd9f59c0a26eebbf4c1f7}\index{max30100\_config\_t@{max30100\_config\_t}!device\_addr@{device\_addr}}
+\index{device\_addr@{device\_addr}!max30100\_config\_t@{max30100\_config\_t}}
+\doxysubsubsection{\texorpdfstring{device\_addr}{device\_addr}}
+{\footnotesize\ttfamily \label{structmax30100__config__t_ae8648a54066cd9f59c0a26eebbf4c1f7} 
+uint8\+\_\+t max30100\+\_\+config\+\_\+t::\+device\+\_\+addr}
+
+Dirección I2C del dispositivo MAX30100. \Hypertarget{structmax30100__config__t_a5ac2d0de486ef43f3360dfa1b02d2ed7}\index{max30100\_config\_t@{max30100\_config\_t}!i2c\_freq\_hz@{i2c\_freq\_hz}}
+\index{i2c\_freq\_hz@{i2c\_freq\_hz}!max30100\_config\_t@{max30100\_config\_t}}
+\doxysubsubsection{\texorpdfstring{i2c\_freq\_hz}{i2c\_freq\_hz}}
+{\footnotesize\ttfamily \label{structmax30100__config__t_a5ac2d0de486ef43f3360dfa1b02d2ed7} 
+uint32\+\_\+t max30100\+\_\+config\+\_\+t::\+i2c\+\_\+freq\+\_\+hz}
+
+Frecuencia del bus I2C en Hz. \Hypertarget{structmax30100__config__t_a52e5ff767473b7969dcc4b896078f682}\index{max30100\_config\_t@{max30100\_config\_t}!i2c\_port@{i2c\_port}}
+\index{i2c\_port@{i2c\_port}!max30100\_config\_t@{max30100\_config\_t}}
+\doxysubsubsection{\texorpdfstring{i2c\_port}{i2c\_port}}
+{\footnotesize\ttfamily \label{structmax30100__config__t_a52e5ff767473b7969dcc4b896078f682} 
+i2c\+\_\+port\+\_\+num\+\_\+t max30100\+\_\+config\+\_\+t::\+i2c\+\_\+port}
+
+Puerto I2C a utilizar (por ejemplo, I2\+C\+\_\+\+NUM\+\_\+0). \Hypertarget{structmax30100__config__t_a516131263b6506b8fc4490a168e98e1d}\index{max30100\_config\_t@{max30100\_config\_t}!scl\_gpio@{scl\_gpio}}
+\index{scl\_gpio@{scl\_gpio}!max30100\_config\_t@{max30100\_config\_t}}
+\doxysubsubsection{\texorpdfstring{scl\_gpio}{scl\_gpio}}
+{\footnotesize\ttfamily \label{structmax30100__config__t_a516131263b6506b8fc4490a168e98e1d} 
+int max30100\+\_\+config\+\_\+t::\+scl\+\_\+gpio}
+
+GPIO asignado a la línea SCL. \Hypertarget{structmax30100__config__t_ab620535bae36151d637657a7f1424e26}\index{max30100\_config\_t@{max30100\_config\_t}!sda\_gpio@{sda\_gpio}}
+\index{sda\_gpio@{sda\_gpio}!max30100\_config\_t@{max30100\_config\_t}}
+\doxysubsubsection{\texorpdfstring{sda\_gpio}{sda\_gpio}}
+{\footnotesize\ttfamily \label{structmax30100__config__t_ab620535bae36151d637657a7f1424e26} 
+int max30100\+\_\+config\+\_\+t::\+sda\+\_\+gpio}
+
+GPIO asignado a la línea SDA. 
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Max30100/\+\+Max30100/\+main/\+\doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h}{max30100.\+h}}\item 
+MPU6050/\+\+MPU6050/\+main/\+max30100.\+h\end{DoxyCompactItemize}

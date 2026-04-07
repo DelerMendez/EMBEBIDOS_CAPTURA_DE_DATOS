@@ -1,0 +1,31 @@
+\doxysection{signal\+\_\+proc.\+h}
+\hypertarget{_max30100_2_max30100_2main_2signal__proc_8h_source}{}\label{_max30100_2_max30100_2main_2signal__proc_8h_source}\index{Max30100/Max30100/main/signal\_proc.h@{Max30100/Max30100/main/signal\_proc.h}}
+\doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structsignal__result__t_a5501c89f895d5cfcfd5f84024bced212}{bpm}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structsignal__result__t_a3dee19d15ebb67660ead888ef398abb0}{spo2}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{structsignal__result__t_a21e64574fbdbb43f040282d3d2a50d24}{finger\_present}};\ \ }
+\DoxyCodeLine{00040\ \}\ \doxymbox{\hyperlink{structsignal__result__t}{signal\_result\_t}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_ae3ab0ea086e2c54ed11b091ee500601a}{signal\_proc\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_adb155b087f65d7cc6473adcce9a41332}{signal\_proc\_update}}(uint16\_t\ red,\ uint16\_t\ ir);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00075\ \doxymbox{\hyperlink{structsignal__result__t}{signal\_result\_t}}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_a9b806fd25e798b8544721207168b125c}{signal\_proc\_get\_result}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

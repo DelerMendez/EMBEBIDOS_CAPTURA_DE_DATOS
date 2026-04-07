@@ -1,0 +1,48 @@
+\doxysection{gc9a01.\+h}
+\hypertarget{gc9a01_8h_source}{}\label{gc9a01_8h_source}\index{QMI8658/QMI8658/components/gc9a01/gc9a01.h@{QMI8658/QMI8658/components/gc9a01/gc9a01.h}}
+\doxymbox{\hyperlink{gc9a01_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Nadyrshin\ Ruslan\ -\/\ [YouTube-\/channel:\ https://www.youtube.com/channel/UChButpZaL5kUUl\_zTyIDFkQ]}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Liyanboy74}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ \_GC9A01\_H}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_GC9A01\_H}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ GC9A01\_Width\ \ \ \ CONFIG\_GC9A01\_Width}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ GC9A01\_Height\ \ \ CONFIG\_GC9A01\_Height}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ uint16\_t\ \doxymbox{\hyperlink{gc9a01_8h_abc2d49bee07b0552fbfdc71910873f0e}{GC9A01\_GetWidth}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ uint16\_t\ \doxymbox{\hyperlink{gc9a01_8h_af4e922ae1adc74ebb2d16e5a0c6631c7}{GC9A01\_GetHeight}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_ad4890001ce815bbaf740efc0860b752b}{GC9A01\_Init}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#if\ (CONFIG\_GC9A01\_BUFFER\_MODE\_PSRAM)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ GC9A01\_Free(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a13381d8ea34e16d8bed2569dcf11da23}{GC9A01\_SleepMode}}(uint8\_t\ Mode);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a17680948d150f19a553f436dad6fbdbe}{GC9A01\_DisplayPower}}(uint8\_t\ On);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_ade5bc4d106c35283160d693cf258c2f4}{GC9A01\_DrawPixel}}(int16\_t\ x,\ int16\_t\ y,\ uint16\_t\ color);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a64f68cf80c19097d40a6c30683b9669b}{GC9A01\_FillRect}}(int16\_t\ x,\ int16\_t\ y,\ int16\_t\ w,\ int16\_t\ h,\ uint16\_t\ color);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a8380587e7a59219f1a5fd00c29957c5d}{GC9A01\_Update}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a026b57b744f84adc2fa2fa94fe0c7b41}{GC9A01\_SetBL}}(uint8\_t\ Value);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00152\ uint16\_t\ \doxymbox{\hyperlink{gc9a01_8h_a58afc5532575cf40f07f82759b86d8f2}{GC9A01\_GetPixel}}(int16\_t\ x,\ int16\_t\ y);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00166\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a2368ad46ebbd641f86f58a2f6a02b693}{GC9A01\_Screen\_Shot}}(uint16\_t\ x,uint16\_t\ y,uint16\_t\ width\ ,uint16\_t\ height,uint16\_t\ *\ Buffer);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00180\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{gc9a01_8h_a2d185ef6a1c0e2dafd8aea76164daf6f}{GC9A01\_Screen\_Load}}(uint16\_t\ x,uint16\_t\ y,uint16\_t\ width\ ,uint16\_t\ height,uint16\_t\ *\ Buffer);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,54 @@
+\doxysection{signal\+\_\+result\+\_\+t Struct Reference}
+\hypertarget{structsignal__result__t}{}\label{structsignal__result__t}\index{signal\_result\_t@{signal\_result\_t}}
+
+
+Estructura que contiene los resultados del procesamiento de señal.  
+
+
+
+
+{\ttfamily \+\#include $<$signal\+\_\+proc.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{structsignal__result__t_a5501c89f895d5cfcfd5f84024bced212}{bpm}}
+\item 
+float \doxymbox{\hyperlink{structsignal__result__t_a3dee19d15ebb67660ead888ef398abb0}{spo2}}
+\item 
+bool \doxymbox{\hyperlink{structsignal__result__t_a21e64574fbdbb43f040282d3d2a50d24}{finger\+\_\+present}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estructura que contiene los resultados del procesamiento de señal. 
+
+Incluye los valores calculados de frecuencia cardíaca, saturación de oxígeno y estado de detección del dedo. 
+
+\label{doc-variable-members}
+\Hypertarget{structsignal__result__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsignal__result__t_a5501c89f895d5cfcfd5f84024bced212}\index{signal\_result\_t@{signal\_result\_t}!bpm@{bpm}}
+\index{bpm@{bpm}!signal\_result\_t@{signal\_result\_t}}
+\doxysubsubsection{\texorpdfstring{bpm}{bpm}}
+{\footnotesize\ttfamily \label{structsignal__result__t_a5501c89f895d5cfcfd5f84024bced212} 
+int signal\+\_\+result\+\_\+t::\+bpm}
+
+Frecuencia cardíaca en latidos por minuto. \Hypertarget{structsignal__result__t_a21e64574fbdbb43f040282d3d2a50d24}\index{signal\_result\_t@{signal\_result\_t}!finger\_present@{finger\_present}}
+\index{finger\_present@{finger\_present}!signal\_result\_t@{signal\_result\_t}}
+\doxysubsubsection{\texorpdfstring{finger\_present}{finger\_present}}
+{\footnotesize\ttfamily \label{structsignal__result__t_a21e64574fbdbb43f040282d3d2a50d24} 
+bool signal\+\_\+result\+\_\+t::\+finger\+\_\+present}
+
+Indica si el dedo está correctamente colocado en el sensor. \Hypertarget{structsignal__result__t_a3dee19d15ebb67660ead888ef398abb0}\index{signal\_result\_t@{signal\_result\_t}!spo2@{spo2}}
+\index{spo2@{spo2}!signal\_result\_t@{signal\_result\_t}}
+\doxysubsubsection{\texorpdfstring{spo2}{spo2}}
+{\footnotesize\ttfamily \label{structsignal__result__t_a3dee19d15ebb67660ead888ef398abb0} 
+float signal\+\_\+result\+\_\+t::\+spo2}
+
+Saturación de oxígeno estimada (\%). Valor negativo indica dato inválido. 
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Max30100/\+\+Max30100/\+main/\+\doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h}{signal\+\_\+proc.\+h}}\item 
+MPU6050/\+\+MPU6050/\+main/\+signal\+\_\+proc.\+h\end{DoxyCompactItemize}

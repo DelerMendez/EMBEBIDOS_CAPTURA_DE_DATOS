@@ -1,0 +1,118 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+espnow\+\_\+tx.c File Reference}
+\hypertarget{_max30100_2_max30100_2main_2espnow__tx_8c}{}\label{_max30100_2_max30100_2main_2espnow__tx_8c}\index{Max30100/Max30100/main/espnow\_tx.c@{Max30100/Max30100/main/espnow\_tx.c}}
+
+
+Implementación de la transmisión de datos mediante ESP-\/\+NOW.  
+
+
+{\ttfamily \+\#include "{}espnow\+\_\+tx.\+h"{}}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+now.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+wifi.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+event.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+netif.\+h"{}}\newline
+{\ttfamily \+\#include "{}nvs\+\_\+flash.\+h"{}}\newline
+{\ttfamily \+\#include "{}app\+\_\+config.\+h"{}}\newline
+{\ttfamily \+\#include "{}data\+\_\+model.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2espnow__tx_8c_a032441e1086220604c93a093ca925095}{espnow\+\_\+tx\+\_\+init}} (const uint8\+\_\+t receiver\+\_\+mac\+[6]\+)
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo de transmisión ESP-\/\+NOW. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2espnow__tx_8c_a4c5e63fb8762ee2e0e1182d7c1fefadc}{espnow\+\_\+tx\+\_\+send\+\_\+text}} (uint8\+\_\+t node\+\_\+id, uint32\+\_\+t seq, uint32\+\_\+t timestamp\+\_\+ms, const char \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Envía un paquete de texto mediante ESP-\/\+NOW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación de la transmisión de datos mediante ESP-\/\+NOW. 
+
+Este archivo implementa la inicialización y el envío de paquetes de datos utilizando el protocolo ESP-\/\+NOW en dispositivos ESP32 bajo el framework ESP-\/\+IDF.
+
+Incluye la configuración del Wi\+Fi en modo estación, inicialización de ESP-\/\+NOW, registro de callbacks y envío de estructuras de datos tipo log.
+
+El sistema está diseñado para transmitir mensajes entre nodos de forma eficiente, sin necesidad de conexión a una red Wi\+Fi tradicional.
+
+\begin{DoxyNote}{Note}
+Las funciones de inicialización pueden ser bloqueantes debido al uso de ESP\+\_\+\+ERROR\+\_\+\+CHECK, que detiene la ejecución en caso de error.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8c_a032441e1086220604c93a093ca925095}\index{espnow\_tx.c@{espnow\_tx.c}!espnow\_tx\_init@{espnow\_tx\_init}}
+\index{espnow\_tx\_init@{espnow\_tx\_init}!espnow\_tx.c@{espnow\_tx.c}}
+\doxysubsubsection{\texorpdfstring{espnow\_tx\_init()}{espnow\_tx\_init()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2espnow__tx_8c_a032441e1086220604c93a093ca925095} 
+esp\+\_\+err\+\_\+t espnow\+\_\+tx\+\_\+init (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{receiver\+\_\+mac}{\+[6]\+}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo de transmisión ESP-\/\+NOW. 
+
+Esta función configura la memoria NVS, inicializa el Wi\+Fi, arranca el protocolo ESP-\/\+NOW y registra el peer (receptor) al cual se enviarán los datos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em receiver\+\_\+mac} & Dirección MAC del dispositivo receptor (6 bytes).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero a la MAC es NULL.
+\item Otros errores internos si falla alguna etapa (detenidos por ESP\+\_\+\+ERROR\+\_\+\+CHECK).
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es bloqueante durante la inicialización. 
+
+No es thread-\/safe y debe ser llamada una sola vez al inicio del sistema. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8c_a4c5e63fb8762ee2e0e1182d7c1fefadc}\index{espnow\_tx.c@{espnow\_tx.c}!espnow\_tx\_send\_text@{espnow\_tx\_send\_text}}
+\index{espnow\_tx\_send\_text@{espnow\_tx\_send\_text}!espnow\_tx.c@{espnow\_tx.c}}
+\doxysubsubsection{\texorpdfstring{espnow\_tx\_send\_text()}{espnow\_tx\_send\_text()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2espnow__tx_8c_a4c5e63fb8762ee2e0e1182d7c1fefadc} 
+esp\+\_\+err\+\_\+t espnow\+\_\+tx\+\_\+send\+\_\+text (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{node\+\_\+id}{, }\item[{uint32\+\_\+t}]{seq}{, }\item[{uint32\+\_\+t}]{timestamp\+\_\+ms}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Envía un paquete de texto mediante ESP-\/\+NOW. 
+
+Envía un mensaje de texto mediante ESP-\/\+NOW.
+
+Construye un paquete de tipo \doxylink{structespnow__log__packet__t}{espnow\+\_\+log\+\_\+packet\+\_\+t} con la información proporcionada y lo envía al receptor previamente configurado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+id} & Identificador del nodo emisor. \\
+\hline
+{\em seq} & Número de secuencia del paquete. \\
+\hline
+{\em timestamp\+\_\+ms} & Marca de tiempo en milisegundos. \\
+\hline
+{\em text} & Cadena de texto a enviar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Envío iniciado correctamente.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero de texto es NULL.
+\item Otros códigos de error retornados por esp\+\_\+now\+\_\+send().
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es no bloqueante; el resultado final del envío se obtiene a través del callback send\+\_\+cb(). 
+
+Thread-\/safe dependiendo de la implementación interna de ESP-\/\+NOW, pero se recomienda sincronización externa si se usa en múltiples tareas. 
+\end{DoxyNote}

@@ -1,0 +1,259 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+max30100.c File Reference}
+\hypertarget{_max30100_2_max30100_2main_2max30100_8c}{}\label{_max30100_2_max30100_2main_2max30100_8c}\index{Max30100/Max30100/main/max30100.c@{Max30100/Max30100/main/max30100.c}}
+
+
+Implementación del driver para el sensor MAX30100 usando I2C en ESP-\/\+IDF.  
+
+
+{\ttfamily \+\#include "{}max30100.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+check.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a4c5c1b52ef4d960cba4eca99d406947a}\label{_max30100_2_max30100_2main_2max30100_8c_a4c5c1b52ef4d960cba4eca99d406947a} 
+\+\#define {\bfseries REG\+\_\+\+INT\+\_\+\+ENABLE}~0x01
+\begin{DoxyCompactList}\small\item\em Registro de habilitación de interrupciones. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_aba8c69cb46224fb35783f5b60e75b115}\label{_max30100_2_max30100_2main_2max30100_8c_aba8c69cb46224fb35783f5b60e75b115} 
+\+\#define {\bfseries REG\+\_\+\+FIFO\+\_\+\+WR\+\_\+\+PTR}~0x02
+\begin{DoxyCompactList}\small\item\em Puntero de escritura FIFO. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_af9c8026aa9a22fad4c22ee6b10613707}\label{_max30100_2_max30100_2main_2max30100_8c_af9c8026aa9a22fad4c22ee6b10613707} 
+\+\#define {\bfseries REG\+\_\+\+OVF\+\_\+\+COUNTER}~0x03
+\begin{DoxyCompactList}\small\item\em Contador de overflow FIFO. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a3b9d75d4ac3cb579e8b46dea27f4303f}\label{_max30100_2_max30100_2main_2max30100_8c_a3b9d75d4ac3cb579e8b46dea27f4303f} 
+\+\#define {\bfseries REG\+\_\+\+FIFO\+\_\+\+RD\+\_\+\+PTR}~0x04
+\begin{DoxyCompactList}\small\item\em Puntero de lectura FIFO. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a05bf6ede83fa400eac4dd65788d996fd}\label{_max30100_2_max30100_2main_2max30100_8c_a05bf6ede83fa400eac4dd65788d996fd} 
+\+\#define {\bfseries REG\+\_\+\+FIFO\+\_\+\+DATA}~0x05
+\begin{DoxyCompactList}\small\item\em Registro de datos FIFO. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_accdea52b28f1bd3f4cd63d05ab12887f}\label{_max30100_2_max30100_2main_2max30100_8c_accdea52b28f1bd3f4cd63d05ab12887f} 
+\+\#define {\bfseries REG\+\_\+\+MODE\+\_\+\+CONFIG}~0x06
+\begin{DoxyCompactList}\small\item\em Configuración de modo. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a38546015e987a72b8c9eb13228237dd0}\label{_max30100_2_max30100_2main_2max30100_8c_a38546015e987a72b8c9eb13228237dd0} 
+\+\#define {\bfseries REG\+\_\+\+SPO2\+\_\+\+CONFIG}~0x07
+\begin{DoxyCompactList}\small\item\em Configuración Sp\+O2. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_afec23d793f9d7b0e20a737bb44479caa}\label{_max30100_2_max30100_2main_2max30100_8c_afec23d793f9d7b0e20a737bb44479caa} 
+\+\#define {\bfseries REG\+\_\+\+LED\+\_\+\+CONFIG}~0x09
+\begin{DoxyCompactList}\small\item\em Configuración de LEDs. \end{DoxyCompactList}\item 
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a46083d1b6d3e1d5f89b0f1598dc6d163}\label{_max30100_2_max30100_2main_2max30100_8c_a46083d1b6d3e1d5f89b0f1598dc6d163} 
+\+\#define {\bfseries REG\+\_\+\+PART\+\_\+\+ID}~0x\+FF
+\begin{DoxyCompactList}\small\item\em Identificador de dispositivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_ad806b4596feccbc7a3d13a3390cde339}{max30100\+\_\+init}} (const \doxymbox{\hyperlink{structmax30100__config__t}{max30100\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}cfg)
+\begin{DoxyCompactList}\small\item\em Inicializa el sensor MAX30100. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_ad178f38f195dc6bb870bb580e16c343c}{max30100\+\_\+read\+\_\+part\+\_\+id}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}part\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Lee el identificador del dispositivo (PART ID). \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_ada85191beb66c3a7e0e2884093b0f8bc}{max30100\+\_\+reset\+\_\+fifo}} (void)
+\begin{DoxyCompactList}\small\item\em Reinicia los punteros y contadores del FIFO. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_a1e3318eb3513a9bd61d355d7faf6acf1}{max30100\+\_\+configure\+\_\+default}} (void)
+\begin{DoxyCompactList}\small\item\em Configura el sensor con parámetros por defecto. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_af40c71580c810dc13ac52ca8b7d6c978}{max30100\+\_\+fifo\+\_\+status}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}wr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}rd, uint8\+\_\+t \texorpdfstring{$\ast$}{*}ovf)
+\begin{DoxyCompactList}\small\item\em Obtiene el estado del FIFO del sensor. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_ad3b196e4029ce5ee95065f3023b1171d}{max30100\+\_\+read\+\_\+sample}} (\doxymbox{\hyperlink{structmax30100__sample__t}{max30100\+\_\+sample\+\_\+t}} \texorpdfstring{$\ast$}{*}sample)
+\begin{DoxyCompactList}\small\item\em Lee una muestra del FIFO del sensor. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8c_ac8aee1a3032c7b100e632d754873d7c5}{max30100\+\_\+reconfigure\+\_\+if\+\_\+needed}} (void)
+\begin{DoxyCompactList}\small\item\em Verifica y reconfigura el sensor si pierde configuración. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del driver para el sensor MAX30100 usando I2C en ESP-\/\+IDF. 
+
+Este archivo contiene las funciones necesarias para inicializar, configurar y leer datos del sensor MAX30100, el cual permite medir frecuencia cardíaca y niveles de oxígeno en sangre (Sp\+O2).
+
+La comunicación se realiza mediante el bus I2C utilizando el driver maestro de ESP-\/\+IDF. Se incluyen funciones para lectura/\+escritura de registros, configuración del sensor y adquisición de muestras desde el FIFO interno.
+
+\begin{DoxyNote}{Note}
+Varias funciones usan retardos (v\+Task\+Delay), por lo que son bloqueantes. 
+
+No todas las funciones son thread-\/safe; se recomienda acceso sincronizado si se utilizan desde múltiples tareas.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_a1e3318eb3513a9bd61d355d7faf6acf1}\index{max30100.c@{max30100.c}!max30100\_configure\_default@{max30100\_configure\_default}}
+\index{max30100\_configure\_default@{max30100\_configure\_default}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_configure\_default()}{max30100\_configure\_default()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_a1e3318eb3513a9bd61d355d7faf6acf1} 
+esp\+\_\+err\+\_\+t max30100\+\_\+configure\+\_\+default (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Configura el sensor con parámetros por defecto. 
+
+Realiza un reset, deshabilita interrupciones, configura Sp\+O2 y LEDs, y activa el modo de medición.
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Configuración exitosa.
+\item Código de error en caso de fallo.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante (usa v\+Task\+Delay). 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_af40c71580c810dc13ac52ca8b7d6c978}\index{max30100.c@{max30100.c}!max30100\_fifo\_status@{max30100\_fifo\_status}}
+\index{max30100\_fifo\_status@{max30100\_fifo\_status}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_fifo\_status()}{max30100\_fifo\_status()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_af40c71580c810dc13ac52ca8b7d6c978} 
+esp\+\_\+err\+\_\+t max30100\+\_\+fifo\+\_\+status (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{wr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rd}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{ovf}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el estado del FIFO del sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wr} & Puntero para almacenar el valor del puntero de escritura. \\
+\hline
+{\em rd} & Puntero para almacenar el valor del puntero de lectura. \\
+\hline
+{\em ovf} & Puntero para almacenar el contador de overflow.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item Código de error en caso de fallo. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_ad806b4596feccbc7a3d13a3390cde339}\index{max30100.c@{max30100.c}!max30100\_init@{max30100\_init}}
+\index{max30100\_init@{max30100\_init}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_init()}{max30100\_init()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_ad806b4596feccbc7a3d13a3390cde339} 
+esp\+\_\+err\+\_\+t max30100\+\_\+init (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structmax30100__config__t}{max30100\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfg}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el sensor MAX30100. 
+
+Configura el bus I2C, registra el dispositivo y verifica su presencia leyendo el PART ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Puntero a la estructura de configuración del sensor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Configuración inválida.
+\item Otros errores en caso de fallo en I2C.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_ad178f38f195dc6bb870bb580e16c343c}\index{max30100.c@{max30100.c}!max30100\_read\_part\_id@{max30100\_read\_part\_id}}
+\index{max30100\_read\_part\_id@{max30100\_read\_part\_id}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_read\_part\_id()}{max30100\_read\_part\_id()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_ad178f38f195dc6bb870bb580e16c343c} 
+esp\+\_\+err\+\_\+t max30100\+\_\+read\+\_\+part\+\_\+id (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{part\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Lee el identificador del dispositivo (PART ID). 
+
+Lee el identificador del sensor (PART ID).
+
+
+\begin{DoxyParams}{Parameters}
+{\em part\+\_\+id} & Puntero donde se almacenará el ID leído.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Puntero nulo.
+\item Otros errores de comunicación I2C. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_ad3b196e4029ce5ee95065f3023b1171d}\index{max30100.c@{max30100.c}!max30100\_read\_sample@{max30100\_read\_sample}}
+\index{max30100\_read\_sample@{max30100\_read\_sample}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_read\_sample()}{max30100\_read\_sample()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_ad3b196e4029ce5ee95065f3023b1171d} 
+esp\+\_\+err\+\_\+t max30100\+\_\+read\+\_\+sample (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structmax30100__sample__t}{max30100\+\_\+sample\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sample}{}\end{DoxyParamCaption})}
+
+
+
+Lee una muestra del FIFO del sensor. 
+
+Lee una muestra del sensor desde el FIFO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample} & Puntero a la estructura donde se almacenará la muestra.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Puntero nulo.
+\item Otros errores de comunicación.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_ac8aee1a3032c7b100e632d754873d7c5}\index{max30100.c@{max30100.c}!max30100\_reconfigure\_if\_needed@{max30100\_reconfigure\_if\_needed}}
+\index{max30100\_reconfigure\_if\_needed@{max30100\_reconfigure\_if\_needed}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_reconfigure\_if\_needed()}{max30100\_reconfigure\_if\_needed()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_ac8aee1a3032c7b100e632d754873d7c5} 
+esp\+\_\+err\+\_\+t max30100\+\_\+reconfigure\+\_\+if\+\_\+needed (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica y reconfigura el sensor si pierde configuración. 
+
+Verifica y reconfigura el sensor si es necesario.
+
+Lee los registros clave y, si detecta valores inválidos (todos en cero), reaplica la configuración por defecto.
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Sensor en estado válido o reconfigurado correctamente.
+\item Código de error en caso de fallo.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2max30100_8c_ada85191beb66c3a7e0e2884093b0f8bc}\index{max30100.c@{max30100.c}!max30100\_reset\_fifo@{max30100\_reset\_fifo}}
+\index{max30100\_reset\_fifo@{max30100\_reset\_fifo}!max30100.c@{max30100.c}}
+\doxysubsubsection{\texorpdfstring{max30100\_reset\_fifo()}{max30100\_reset\_fifo()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2max30100_8c_ada85191beb66c3a7e0e2884093b0f8bc} 
+esp\+\_\+err\+\_\+t max30100\+\_\+reset\+\_\+fifo (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Reinicia los punteros y contadores del FIFO. 
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Operación exitosa.
+\item Código de error en caso de fallo.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+\end{DoxyNote}

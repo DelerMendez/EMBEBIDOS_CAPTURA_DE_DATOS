@@ -1,0 +1,49 @@
+\doxysection{lcd\+\_\+init\+\_\+cmd\+\_\+t Struct Reference}
+\hypertarget{structlcd__init__cmd__t}{}\label{structlcd__init__cmd__t}\index{lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}}
+
+
+Estructura que representa una entrada en la tabla de inicialización del LCD.  
+
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{structlcd__init__cmd__t_a437e854b335136af371663bffe3d540e}{cmd}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{structlcd__init__cmd__t_aa4ca438881bb5add92ccbeb8c5d5355d}{data}} \+[16]\+
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{structlcd__init__cmd__t_ad99d2d05493fbbc2f29852d662aef3f6}{databytes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estructura que representa una entrada en la tabla de inicialización del LCD. 
+
+Cada entrada contiene un comando SPI y sus datos asociados, utilizados durante la secuencia de inicialización del controlador GC9\+A01. 
+
+\label{doc-variable-members}
+\Hypertarget{structlcd__init__cmd__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structlcd__init__cmd__t_a437e854b335136af371663bffe3d540e}\index{lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}!cmd@{cmd}}
+\index{cmd@{cmd}!lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}}
+\doxysubsubsection{\texorpdfstring{cmd}{cmd}}
+{\footnotesize\ttfamily \label{structlcd__init__cmd__t_a437e854b335136af371663bffe3d540e} 
+uint8\+\_\+t lcd\+\_\+init\+\_\+cmd\+\_\+t::\+cmd}
+
+Código del comando a enviar al controlador LCD \Hypertarget{structlcd__init__cmd__t_aa4ca438881bb5add92ccbeb8c5d5355d}\index{lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}!data@{data}}
+\index{data@{data}!lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{structlcd__init__cmd__t_aa4ca438881bb5add92ccbeb8c5d5355d} 
+uint8\+\_\+t lcd\+\_\+init\+\_\+cmd\+\_\+t::\+data\+[16]\+}
+
+Bytes de datos asociados al comando (máximo 16) \Hypertarget{structlcd__init__cmd__t_ad99d2d05493fbbc2f29852d662aef3f6}\index{lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}!databytes@{databytes}}
+\index{databytes@{databytes}!lcd\_init\_cmd\_t@{lcd\_init\_cmd\_t}}
+\doxysubsubsection{\texorpdfstring{databytes}{databytes}}
+{\footnotesize\ttfamily \label{structlcd__init__cmd__t_ad99d2d05493fbbc2f29852d662aef3f6} 
+uint8\+\_\+t lcd\+\_\+init\+\_\+cmd\+\_\+t::\+databytes}
+
+Número de bytes de datos válidos; bit 7 activo indica delay posterior; 0x\+FF indica fin de la tabla 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+QMI8658/\+\+QMI8658/\+components/\+gc9a01/\+\doxymbox{\hyperlink{gc9a01_8c}{gc9a01.\+c}}\end{DoxyCompactItemize}

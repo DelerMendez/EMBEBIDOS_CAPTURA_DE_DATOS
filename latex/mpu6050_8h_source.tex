@@ -1,0 +1,49 @@
+\doxysection{mpu6050.\+h}
+\hypertarget{mpu6050_8h_source}{}\label{mpu6050_8h_source}\index{MPU6050/MPU6050/components/mpu6050/mpu6050.h@{MPU6050/MPU6050/components/mpu6050/mpu6050.h}}
+\doxymbox{\hyperlink{mpu6050_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ MPU6050\_I2C\_ADDR\_LOW\ \ \ 0x68\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ MPU6050\_I2C\_ADDR\_HIGH\ \ 0x69\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_SMPLRT\_DIV\ \ \ 0x19\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_CONFIG\ \ \ \ \ \ \ 0x1A\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_GYRO\_CONFIG\ \ 0x1B\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_ACCEL\_CONFIG\ 0x1C\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_ACCEL\_XOUT\_H\ 0x3B\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_PWR\_MGMT\_1\ \ \ 0x6B\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ MPU6050\_REG\_WHO\_AM\_I\ \ \ \ \ 0x75\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a28f2e0ab0194163e64bb3d4e863e1183}{acc\_x\_g}};\ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a6d27bce1df8cb717fd23972b5aebbc75}{acc\_y\_g}};\ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a33f385c85cbf9476ee68ba2f8332fa2d}{acc\_z\_g}};\ \ \ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a0e9b8568ec55dc6b45aad81b70dd87a6}{gyro\_x\_dps}};\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a052d751d0b93b63cab9758e15f1e96cf}{gyro\_y\_dps}};\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_a0441dfbf75c8c30df69a7cfb5f933ee3}{gyro\_z\_dps}};\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{structmpu6050__data__t_ac1e9afeffad3bfe2fd9cae35b356bc53}{temp\_c}};\ \ \ \ \ }
+\DoxyCodeLine{00050\ \}\ \doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\_data\_t}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00068\ esp\_err\_t\ \doxymbox{\hyperlink{mpu6050_8h_a4dfbaeee0cfc99d152dc33789c85754a}{mpu6050\_init}}(i2c\_master\_bus\_handle\_t\ bus);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00086\ esp\_err\_t\ \doxymbox{\hyperlink{mpu6050_8h_a84ca3710315d078a8b44c4ce5f9a392e}{mpu6050\_read}}(\doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\_data\_t}}\ *out);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00096\ uint8\_t\ \doxymbox{\hyperlink{mpu6050_8h_a8f83667183c925d899896af9c34b205f}{mpu6050\_get\_i2c\_addr}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

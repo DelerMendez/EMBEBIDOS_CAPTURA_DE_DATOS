@@ -1,0 +1,122 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+config.h File Reference}
+\hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h}{}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h}\index{QMI8658/QMI8658/main/app\_config.h@{QMI8658/QMI8658/main/app\_config.h}}
+
+
+Configuración global del sistema para la aplicación basada en ESP-\/\+IDF.  
+
+
+{\ttfamily \+\#include "{}driver/\+gpio.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+i2c\+\_\+master.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a5b5dffa7b7ce7e46c36d26a2b4916ad8}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a5b5dffa7b7ce7e46c36d26a2b4916ad8} 
+\+\#define {\bfseries APP\+\_\+\+I2\+C\+\_\+\+PORT}~I2\+C\+\_\+\+NUM\+\_\+0
+\begin{DoxyCompactList}\small\item\em Puerto I2C utilizado por la aplicación. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a875033ab1efd162f29f18dda274e9235}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a875033ab1efd162f29f18dda274e9235} 
+\+\#define {\bfseries APP\+\_\+\+I2\+C\+\_\+\+SDA\+\_\+\+PIN}~GPIO\+\_\+\+NUM\+\_\+6
+\begin{DoxyCompactList}\small\item\em Pin GPIO para SDA. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_acb2c9306e2c7d6ebbbe62e7247d2e6b5}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_acb2c9306e2c7d6ebbbe62e7247d2e6b5} 
+\+\#define {\bfseries APP\+\_\+\+I2\+C\+\_\+\+SCL\+\_\+\+PIN}~GPIO\+\_\+\+NUM\+\_\+7
+\begin{DoxyCompactList}\small\item\em Pin GPIO para SCL. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_aa7ad297455b055142d85b72cb13562cb}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_aa7ad297455b055142d85b72cb13562cb} 
+\+\#define {\bfseries APP\+\_\+\+I2\+C\+\_\+\+FREQ\+\_\+\+HZ}~400000
+\begin{DoxyCompactList}\small\item\em Frecuencia del bus I2C en Hz. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a2bee3d6631c255919111859b8dbf2473}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a2bee3d6631c255919111859b8dbf2473} 
+\+\#define {\bfseries APP\+\_\+\+GYRO\+\_\+\+CAL\+\_\+\+SAMPLES}~200
+\begin{DoxyCompactList}\small\item\em Número de muestras para calibración del giroscopio. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a644593a73f8f1417d6c430e2e85d0370}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a644593a73f8f1417d6c430e2e85d0370} 
+\+\#define {\bfseries APP\+\_\+\+GYRO\+\_\+\+CAL\+\_\+\+DELAY\+\_\+\+MS}~10
+\begin{DoxyCompactList}\small\item\em Retardo entre muestras durante calibración (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a8aca141afa0eef1fa09de6f03a2206eb}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a8aca141afa0eef1fa09de6f03a2206eb} 
+\+\#define {\bfseries APP\+\_\+\+IMU\+\_\+\+QUEUE\+\_\+\+LEN}~1
+\begin{DoxyCompactList}\small\item\em Longitud de la cola para datos del IMU. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_af3c6394ed82dcfdad99a18e305fcc555}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_af3c6394ed82dcfdad99a18e305fcc555} 
+\+\#define {\bfseries APP\+\_\+\+SENSOR\+\_\+\+TASK\+\_\+\+STACK}~4096
+\begin{DoxyCompactList}\small\item\em Tamaño de stack para la tarea del sensor. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_acecddf38191ecbbcfc55aed02f5c9eb5}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_acecddf38191ecbbcfc55aed02f5c9eb5} 
+\+\#define {\bfseries APP\+\_\+\+DISPLAY\+\_\+\+TASK\+\_\+\+STACK}~4096
+\begin{DoxyCompactList}\small\item\em Tamaño de stack para la tarea de display. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a32deacd58e87e01cde08fc10a850f4cb}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a32deacd58e87e01cde08fc10a850f4cb} 
+\+\#define {\bfseries APP\+\_\+\+SENSOR\+\_\+\+TASK\+\_\+\+PRIO}~5
+\begin{DoxyCompactList}\small\item\em Prioridad de la tarea del sensor. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a544e8ce1bfcc337394027624a76720db}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a544e8ce1bfcc337394027624a76720db} 
+\+\#define {\bfseries APP\+\_\+\+DISPLAY\+\_\+\+TASK\+\_\+\+PRIO}~4
+\begin{DoxyCompactList}\small\item\em Prioridad de la tarea del display. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a1dfb9582434c76e4d5a8090ea15d7a13}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a1dfb9582434c76e4d5a8090ea15d7a13} 
+\+\#define {\bfseries APP\+\_\+\+COLOR\+\_\+\+RED}~0x\+F800
+\begin{DoxyCompactList}\small\item\em Color rojo en formato RGB565. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a6db7205b2213bef706b8782da19713d9}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a6db7205b2213bef706b8782da19713d9} 
+\+\#define {\bfseries APP\+\_\+\+COLOR\+\_\+\+GREEN}~0x07\+E0
+\begin{DoxyCompactList}\small\item\em Color verde en formato RGB565. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ab0676f926d2d765836dfba5373e57986}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ab0676f926d2d765836dfba5373e57986} 
+\+\#define {\bfseries APP\+\_\+\+COLOR\+\_\+\+WHITE}~0x\+FFFF
+\begin{DoxyCompactList}\small\item\em Color blanco en formato RGB565. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a71e29f31ef43da46953b4cf53674822e}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a71e29f31ef43da46953b4cf53674822e} 
+\+\#define {\bfseries APP\+\_\+\+CPU\+\_\+\+FREQ\+\_\+\+MAX\+\_\+\+MHZ}~240
+\begin{DoxyCompactList}\small\item\em Frecuencia máxima de CPU en MHz. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a8d5fd9483fd9716fbb332e7187770a5d}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a8d5fd9483fd9716fbb332e7187770a5d} 
+\+\#define {\bfseries APP\+\_\+\+CPU\+\_\+\+FREQ\+\_\+\+MIN\+\_\+\+MHZ}~40
+\begin{DoxyCompactList}\small\item\em Frecuencia mínima de CPU en MHz. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ad47610e0293f39a3ecdbb32d43a352bc}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ad47610e0293f39a3ecdbb32d43a352bc} 
+\+\#define {\bfseries APP\+\_\+\+IDLE\+\_\+\+SAMPLE\+\_\+\+PERIOD\+\_\+\+MS}~200
+\begin{DoxyCompactList}\small\item\em Periodo de muestreo en modo inactivo (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a0fa1ffb1ad2602776a7b2fde7380d6de}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a0fa1ffb1ad2602776a7b2fde7380d6de} 
+\+\#define {\bfseries APP\+\_\+\+BURST\+\_\+\+SAMPLE\+\_\+\+PERIOD\+\_\+\+MS}~20
+\begin{DoxyCompactList}\small\item\em Periodo de muestreo en modo ráfaga (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a2a5df6f7f20252a06401e0c5d58614e9}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a2a5df6f7f20252a06401e0c5d58614e9} 
+\+\#define {\bfseries APP\+\_\+\+BURST\+\_\+\+DURATION\+\_\+\+MS}~1000
+\begin{DoxyCompactList}\small\item\em Duración de la ráfaga tras evento brusco (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a0ade8e02cde4eca5903e620a5756cffd}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a0ade8e02cde4eca5903e620a5756cffd} 
+\+\#define {\bfseries APP\+\_\+\+SAMPLE\+\_\+\+PERIOD\+\_\+\+MS}~50
+\begin{DoxyCompactList}\small\item\em Periodo de muestreo normal (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ae6064f6c971eff9a2cd8c186b2e6edf0}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_ae6064f6c971eff9a2cd8c186b2e6edf0} 
+\+\#define {\bfseries APP\+\_\+\+ABRUPT\+\_\+\+ACC\+\_\+\+THRESHOLD}~6.\+0f
+\begin{DoxyCompactList}\small\item\em Umbral de aceleración para detectar evento brusco (m/\+s\texorpdfstring{$^\wedge$}{\string^}2). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a4e5c3ae4d3324cff8b6891e9fb26ab86}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a4e5c3ae4d3324cff8b6891e9fb26ab86} 
+\+\#define {\bfseries APP\+\_\+\+ABRUPT\+\_\+\+GYR\+\_\+\+THRESHOLD}~150.\+0f
+\begin{DoxyCompactList}\small\item\em Umbral de giroscopio para detectar evento brusco (°/\+s). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_aa034d702159d1b0acecb65cd66494636}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_aa034d702159d1b0acecb65cd66494636} 
+\+\#define {\bfseries APP\+\_\+\+ESPNOW\+\_\+\+THRESHOLD}~2.\+0f
+\begin{DoxyCompactList}\small\item\em Umbral para envío mediante ESP-\/\+NOW. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a5e97ef603110cf3462d24f13fac01e38}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a5e97ef603110cf3462d24f13fac01e38} 
+\+\#define {\bfseries APP\+\_\+\+EVENT\+\_\+\+THRESHOLD}~70.\+0f
+\begin{DoxyCompactList}\small\item\em Umbral general de evento. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a48b5665e8963997ed83e75fa512a6493}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a48b5665e8963997ed83e75fa512a6493} 
+\+\#define {\bfseries APP\+\_\+\+STILL\+\_\+\+ACC\+\_\+\+THRESHOLD}~0.\+15f
+\begin{DoxyCompactList}\small\item\em Umbral de aceleración para estado quieto. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_af3d4a5aa838ded1a8016363e8e217cef}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_af3d4a5aa838ded1a8016363e8e217cef} 
+\+\#define {\bfseries APP\+\_\+\+STILL\+\_\+\+GYR\+\_\+\+THRESHOLD}~2.\+0f
+\begin{DoxyCompactList}\small\item\em Umbral de giroscopio para estado quieto. \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a057a857a99184cfc1e71bb203a9a8ff5}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a057a857a99184cfc1e71bb203a9a8ff5} 
+\+\#define {\bfseries APP\+\_\+\+STILL\+\_\+\+INTERVAL\+\_\+\+MS}~(5 \texorpdfstring{$\ast$}{*} 60 \texorpdfstring{$\ast$}{*} 1000)
+\begin{DoxyCompactList}\small\item\em Intervalo para considerar estado quieto (ms). \end{DoxyCompactList}\item 
+\Hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a27e92aa707b76bcb4405debe04327c1d}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_a27e92aa707b76bcb4405debe04327c1d} 
+\+\#define {\bfseries APP\+\_\+\+EVENT\+\_\+\+COOLDOWN\+\_\+\+MS}~3000
+\begin{DoxyCompactList}\small\item\em Tiempo de espera entre eventos consecutivos (ms). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuración global del sistema para la aplicación basada en ESP-\/\+IDF. 
+
+Este archivo define constantes de configuración utilizadas en todo el sistema, incluyendo:\+
+\begin{DoxyItemize}
+\item Configuración del bus I2C
+\item Parámetros de calibración del sensor
+\item Configuración de tareas Free\+RTOS
+\item Colores para la interfaz gráfica
+\item Parámetros de consumo energético (CPU)
+\item Umbrales y tiempos para detección de eventos y comunicación ESP-\/\+NOW
+\end{DoxyItemize}
+
+Estas definiciones no contienen lógica ejecutable, pero afectan directamente el comportamiento del sistema en tiempo de ejecución.
+
+\begin{DoxyNote}{Note}
+Este archivo debe ser incluido por los módulos que requieran acceso a configuraciones globales.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}

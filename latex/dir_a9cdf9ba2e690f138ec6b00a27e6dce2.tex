@@ -1,0 +1,61 @@
+\doxysection{Max30100/\+\+Max30100 Directory Reference}
+\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2}{}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2}\index{Max30100/Max30100 Directory Reference@{Max30100/Max30100 Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_ff7c4862b980781ffd2abf6d5c67535d}{build}}
+\item 
+directory \doxymbox{\hyperlink{dir_28508ef90e8a2c8f3f388eba818382df}{main}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\texorpdfstring{$\vert$}{|} Supported Targets \texorpdfstring{$\vert$}{|} ESP32 \texorpdfstring{$\vert$}{|} ESP32-\/\+C2 \texorpdfstring{$\vert$}{|} ESP32-\/\+C3 \texorpdfstring{$\vert$}{|} ESP32-\/\+C5 \texorpdfstring{$\vert$}{|} ESP32-\/\+C6 \texorpdfstring{$\vert$}{|} ESP32-\/\+C61 \texorpdfstring{$\vert$}{|} ESP32-\/\+H2 \texorpdfstring{$\vert$}{|} ESP32-\/\+H21 \texorpdfstring{$\vert$}{|} ESP32-\/\+H4 \texorpdfstring{$\vert$}{|} ESP32-\/\+P4 \texorpdfstring{$\vert$}{|} ESP32-\/\+S2 \texorpdfstring{$\vert$}{|} ESP32-\/\+S3 \texorpdfstring{$\vert$}{|} Linux \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/-\/-\/-\/--- \texorpdfstring{$\vert$}{|} -\/-\/--- \texorpdfstring{$\vert$}{|}\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md5}{}\doxysubsection{\texorpdfstring{Hello World Example}{Hello World Example}}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md5}
+Starts a Free\+RTOS task to print "{}\+Hello World"{}.
+
+(See the README.\+md file in the upper level \textquotesingle{}examples\textquotesingle{} directory for more information about examples.)\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{How to use example}{How to use example}}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md6}
+Follow detailed instructions provided specifically for this example.
+
+Select the instructions depending on Espressif chip installed on your development board:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html}{\texttt{ESP32 Getting Started Guide}}
+\item \href{https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html}{\texttt{ESP32-\/\+S2 Getting Started Guide}}
+\end{DoxyItemize}\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Example folder contents}{Example folder contents}}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md7}
+The project {\bfseries{hello\+\_\+world}} contains one source file in C language \href{main/hello_world_main.c}{\texttt{hello\+\_\+world\+\_\+main.\+c}}. The file is located in folder \+[main]\+(main).
+
+ESP-\/\+IDF projects are built using CMake. The project build configuration is contained in {\ttfamily CMake\+Lists.\+txt} files that provide set of directives and instructions describing the project\textquotesingle{}s source files and targets (executable, library, or both).
+
+Below is short explanation of remaining files in the project folder.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{├──\ CMakeLists.txt}
+\DoxyCodeLine{├──\ pytest\_hello\_world.py\ \ \ \ \ \ Python\ script\ used\ for\ automated\ testing}
+\DoxyCodeLine{├──\ main}
+\DoxyCodeLine{│\ \ \ ├──\ CMakeLists.txt}
+\DoxyCodeLine{│\ \ \ └──\ hello\_world\_main.c}
+\DoxyCodeLine{└──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ is\ the\ file\ you\ are\ currently\ reading}
+
+\end{DoxyCode}
+
+
+For more information on structure and contents of ESP-\/\+IDF projects, please refer to Section \href{https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html}{\texttt{Build System}} of the ESP-\/\+IDF Programming Guide.\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Program upload failure
+\begin{DoxyItemize}
+\item Hardware connection is not correct:\+ run {\ttfamily idf.\+py -\/p PORT monitor}, and reboot your board to see if there are any output logs.
+\item The baud rate for downloading is too high:\+ lower your baud rate in the {\ttfamily menuconfig} menu, and try again.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Technical support and feedback}{Technical support and feedback}}\label{dir_a9cdf9ba2e690f138ec6b00a27e6dce2_autotoc_md9}
+Please use the following feedback channels:\+
+
+
+\begin{DoxyItemize}
+\item For technical queries, go to the \href{https://esp32.com/}{\texttt{esp32.\+com}} forum
+\item For a feature request or bug report, create a \href{https://github.com/espressif/esp-idf/issues}{\texttt{Git\+Hub issue}}
+\end{DoxyItemize}
+
+We will get back to you as soon as possible. 

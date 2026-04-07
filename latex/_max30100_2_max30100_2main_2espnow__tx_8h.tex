@@ -1,0 +1,153 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+espnow\+\_\+tx.h File Reference}
+\hypertarget{_max30100_2_max30100_2main_2espnow__tx_8h}{}\label{_max30100_2_max30100_2main_2espnow__tx_8h}\index{Max30100/Max30100/main/espnow\_tx.h@{Max30100/Max30100/main/espnow\_tx.h}}
+
+
+Interfaz para la transmisión de datos mediante ESP-\/\+NOW.  
+
+
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2espnow__tx_8h_a032441e1086220604c93a093ca925095}{espnow\+\_\+tx\+\_\+init}} (const uint8\+\_\+t receiver\+\_\+mac\+[6]\+)
+\begin{DoxyCompactList}\small\item\em Inicializa el módulo de transmisión ESP-\/\+NOW. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2espnow__tx_8h_a4c5e63fb8762ee2e0e1182d7c1fefadc}{espnow\+\_\+tx\+\_\+send\+\_\+text}} (uint8\+\_\+t node\+\_\+id, uint32\+\_\+t seq, uint32\+\_\+t timestamp\+\_\+ms, const char \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Envía un mensaje de texto mediante ESP-\/\+NOW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz para la transmisión de datos mediante ESP-\/\+NOW. 
+
+Este archivo declara las funciones necesarias para inicializar el módulo de transmisión ESP-\/\+NOW y enviar paquetes de datos tipo log entre nodos en un sistema basado en ESP32 con ESP-\/\+IDF.
+
+Permite configurar un dispositivo receptor mediante su dirección MAC y enviar información estructurada que puede incluir identificadores, secuencias, marcas de tiempo y mensajes de texto.
+
+\begin{DoxyNote}{Note}
+Las funciones aquí declaradas pueden depender de la correcta inicialización del subsistema Wi\+Fi y NVS.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8h_a032441e1086220604c93a093ca925095}\index{espnow\_tx.h@{espnow\_tx.h}!espnow\_tx\_init@{espnow\_tx\_init}}
+\index{espnow\_tx\_init@{espnow\_tx\_init}!espnow\_tx.h@{espnow\_tx.h}}
+\doxysubsubsection{\texorpdfstring{espnow\_tx\_init()}{espnow\_tx\_init()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2espnow__tx_8h_a032441e1086220604c93a093ca925095} 
+esp\+\_\+err\+\_\+t espnow\+\_\+tx\+\_\+init (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{receiver\+\_\+mac}{\+[6]\+}\end{DoxyParamCaption})}
+
+
+
+Inicializa el módulo de transmisión ESP-\/\+NOW. 
+
+Configura el entorno necesario para la comunicación mediante ESP-\/\+NOW, incluyendo la inicialización de Wi\+Fi, NVS y el registro del dispositivo receptor (peer).
+
+
+\begin{DoxyParams}{Parameters}
+{\em receiver\+\_\+mac} & Dirección MAC del dispositivo receptor (arreglo de 6 bytes).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero a la dirección MAC es NULL.
+\item Otros códigos de error en caso de fallos internos durante la inicialización.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es bloqueante durante la fase de inicialización. 
+
+No es thread-\/safe y debe ser llamada una única vez al inicio del sistema.
+\end{DoxyNote}
+Esta función configura la memoria NVS, inicializa el Wi\+Fi, arranca el protocolo ESP-\/\+NOW y registra el peer (receptor) al cual se enviarán los datos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em receiver\+\_\+mac} & Dirección MAC del dispositivo receptor (6 bytes).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero a la MAC es NULL.
+\item Otros errores internos si falla alguna etapa (detenidos por ESP\+\_\+\+ERROR\+\_\+\+CHECK).
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es bloqueante durante la inicialización. 
+
+No es thread-\/safe y debe ser llamada una sola vez al inicio del sistema. 
+\end{DoxyNote}
+\Hypertarget{_max30100_2_max30100_2main_2espnow__tx_8h_a4c5e63fb8762ee2e0e1182d7c1fefadc}\index{espnow\_tx.h@{espnow\_tx.h}!espnow\_tx\_send\_text@{espnow\_tx\_send\_text}}
+\index{espnow\_tx\_send\_text@{espnow\_tx\_send\_text}!espnow\_tx.h@{espnow\_tx.h}}
+\doxysubsubsection{\texorpdfstring{espnow\_tx\_send\_text()}{espnow\_tx\_send\_text()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2espnow__tx_8h_a4c5e63fb8762ee2e0e1182d7c1fefadc} 
+esp\+\_\+err\+\_\+t espnow\+\_\+tx\+\_\+send\+\_\+text (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{node\+\_\+id}{, }\item[{uint32\+\_\+t}]{seq}{, }\item[{uint32\+\_\+t}]{timestamp\+\_\+ms}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Envía un mensaje de texto mediante ESP-\/\+NOW. 
+
+Construye y transmite un paquete de tipo log con la información proporcionada. El envío se realiza de manera no bloqueante, y el resultado final se reporta mediante un callback interno del sistema ESP-\/\+NOW.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+id} & Identificador del nodo emisor. \\
+\hline
+{\em seq} & Número de secuencia del mensaje. \\
+\hline
+{\em timestamp\+\_\+ms} & Marca de tiempo en milisegundos. \\
+\hline
+{\em text} & Puntero a la cadena de texto a enviar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Envío iniciado correctamente.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero de texto es NULL.
+\item Otros códigos de error retornados por la función interna de envío.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es no bloqueante. 
+
+Puede requerir sincronización externa si se usa en múltiples tareas (no completamente thread-\/safe).
+\end{DoxyNote}
+Envía un mensaje de texto mediante ESP-\/\+NOW.
+
+Construye un paquete de tipo \doxylink{structespnow__log__packet__t}{espnow\+\_\+log\+\_\+packet\+\_\+t} con la información proporcionada y lo envía al receptor previamente configurado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+id} & Identificador del nodo emisor. \\
+\hline
+{\em seq} & Número de secuencia del paquete. \\
+\hline
+{\em timestamp\+\_\+ms} & Marca de tiempo en milisegundos. \\
+\hline
+{\em text} & Cadena de texto a enviar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Envío iniciado correctamente.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ El puntero de texto es NULL.
+\item Otros códigos de error retornados por esp\+\_\+now\+\_\+send().
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es no bloqueante; el resultado final del envío se obtiene a través del callback send\+\_\+cb(). 
+
+Thread-\/safe dependiendo de la implementación interna de ESP-\/\+NOW, pero se recomienda sincronización externa si se usa en múltiples tareas. 
+\end{DoxyNote}

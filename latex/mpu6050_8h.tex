@@ -1,0 +1,256 @@
+\doxysection{MPU6050/\+\+MPU6050/\+components/\+mpu6050/\+mpu6050.h File Reference}
+\hypertarget{mpu6050_8h}{}\label{mpu6050_8h}\index{MPU6050/MPU6050/components/mpu6050/mpu6050.h@{MPU6050/MPU6050/components/mpu6050/mpu6050.h}}
+
+
+Driver de interfaz para el sensor MPU6050 usando ESP-\/\+IDF (I2C).  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+i2c\+\_\+master.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\+\_\+data\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura que contiene los datos procesados del sensor MPU6050. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a788c6fc9e232a00be9feef8860fb342c}{MPU6050\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+LOW}}~0x68
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a2a4a15b76e4866008952321bca6e44ad}{MPU6050\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+HIGH}}~0x69
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a7295cab687a78a749c9304953af72bbe}{MPU6050\+\_\+\+REG\+\_\+\+SMPLRT\+\_\+\+DIV}}~0x19
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a29b84c38e3819ab3ef2194f87acc0265}{MPU6050\+\_\+\+REG\+\_\+\+CONFIG}}~0x1A
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_aa6047e49a54fa8813bd415c98a889455}{MPU6050\+\_\+\+REG\+\_\+\+GYRO\+\_\+\+CONFIG}}~0x1B
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a35e7929d2f47c186b37c0c14f7e2f748}{MPU6050\+\_\+\+REG\+\_\+\+ACCEL\+\_\+\+CONFIG}}~0x1C
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a261db4cdf256b4353a24192e98b9844e}{MPU6050\+\_\+\+REG\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+H}}~0x3B
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_aeeaa101e6be02c7e3c7b74a08c3f0ab2}{MPU6050\+\_\+\+REG\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1}}~0x6B
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8h_a1a7574ee53e6dc1754c8d7ddb64d2faf}{MPU6050\+\_\+\+REG\+\_\+\+WHO\+\_\+\+AM\+\_\+I}}~0x75
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{mpu6050_8h_a4dfbaeee0cfc99d152dc33789c85754a}{mpu6050\+\_\+init}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t bus)
+\begin{DoxyCompactList}\small\item\em Inicializa el sensor MPU6050 en el bus I2C especificado. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{mpu6050_8h_a84ca3710315d078a8b44c4ce5f9a392e}{mpu6050\+\_\+read}} (\doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Lee los datos actuales del sensor MPU6050. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{mpu6050_8h_a8f83667183c925d899896af9c34b205f}{mpu6050\+\_\+get\+\_\+i2c\+\_\+addr}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene la dirección I2C configurada para el sensor MPU6050. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver de interfaz para el sensor MPU6050 usando ESP-\/\+IDF (I2C). 
+
+Este archivo define las constantes, estructuras y funciones necesarias para inicializar y leer datos del sensor MPU6050, el cual proporciona mediciones de aceleración, velocidad angular y temperatura.
+
+El driver utiliza el bus I2C proporcionado por ESP-\/\+IDF y está diseñado para integrarse en aplicaciones basadas en Free\+RTOS.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-define-members}
+\Hypertarget{mpu6050_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mpu6050_8h_a2a4a15b76e4866008952321bca6e44ad}\index{mpu6050.h@{mpu6050.h}!MPU6050\_I2C\_ADDR\_HIGH@{MPU6050\_I2C\_ADDR\_HIGH}}
+\index{MPU6050\_I2C\_ADDR\_HIGH@{MPU6050\_I2C\_ADDR\_HIGH}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_I2C\_ADDR\_HIGH}{MPU6050\_I2C\_ADDR\_HIGH}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a2a4a15b76e4866008952321bca6e44ad} 
+\+\#define MPU6050\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+HIGH~0x69}
+
+Dirección I2C cuando AD0 está en HIGH \Hypertarget{mpu6050_8h_a788c6fc9e232a00be9feef8860fb342c}\index{mpu6050.h@{mpu6050.h}!MPU6050\_I2C\_ADDR\_LOW@{MPU6050\_I2C\_ADDR\_LOW}}
+\index{MPU6050\_I2C\_ADDR\_LOW@{MPU6050\_I2C\_ADDR\_LOW}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_I2C\_ADDR\_LOW}{MPU6050\_I2C\_ADDR\_LOW}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a788c6fc9e232a00be9feef8860fb342c} 
+\+\#define MPU6050\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+LOW~0x68}
+
+Dirección I2C cuando AD0 está en LOW \Hypertarget{mpu6050_8h_a35e7929d2f47c186b37c0c14f7e2f748}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_ACCEL\_CONFIG@{MPU6050\_REG\_ACCEL\_CONFIG}}
+\index{MPU6050\_REG\_ACCEL\_CONFIG@{MPU6050\_REG\_ACCEL\_CONFIG}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_ACCEL\_CONFIG}{MPU6050\_REG\_ACCEL\_CONFIG}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a35e7929d2f47c186b37c0c14f7e2f748} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+ACCEL\+\_\+\+CONFIG~0x1C}
+
+Registro de configuración del acelerómetro \Hypertarget{mpu6050_8h_a261db4cdf256b4353a24192e98b9844e}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_ACCEL\_XOUT\_H@{MPU6050\_REG\_ACCEL\_XOUT\_H}}
+\index{MPU6050\_REG\_ACCEL\_XOUT\_H@{MPU6050\_REG\_ACCEL\_XOUT\_H}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_ACCEL\_XOUT\_H}{MPU6050\_REG\_ACCEL\_XOUT\_H}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a261db4cdf256b4353a24192e98b9844e} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+ACCEL\+\_\+\+XOUT\+\_\+H~0x3B}
+
+Registro de salida de aceleración eje X (byte alto) \Hypertarget{mpu6050_8h_a29b84c38e3819ab3ef2194f87acc0265}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_CONFIG@{MPU6050\_REG\_CONFIG}}
+\index{MPU6050\_REG\_CONFIG@{MPU6050\_REG\_CONFIG}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_CONFIG}{MPU6050\_REG\_CONFIG}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a29b84c38e3819ab3ef2194f87acc0265} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+CONFIG~0x1A}
+
+Registro de configuración general \Hypertarget{mpu6050_8h_aa6047e49a54fa8813bd415c98a889455}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_GYRO\_CONFIG@{MPU6050\_REG\_GYRO\_CONFIG}}
+\index{MPU6050\_REG\_GYRO\_CONFIG@{MPU6050\_REG\_GYRO\_CONFIG}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_GYRO\_CONFIG}{MPU6050\_REG\_GYRO\_CONFIG}}
+{\footnotesize\ttfamily \label{mpu6050_8h_aa6047e49a54fa8813bd415c98a889455} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+GYRO\+\_\+\+CONFIG~0x1B}
+
+Registro de configuración del giroscopio \Hypertarget{mpu6050_8h_aeeaa101e6be02c7e3c7b74a08c3f0ab2}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_PWR\_MGMT\_1@{MPU6050\_REG\_PWR\_MGMT\_1}}
+\index{MPU6050\_REG\_PWR\_MGMT\_1@{MPU6050\_REG\_PWR\_MGMT\_1}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_PWR\_MGMT\_1}{MPU6050\_REG\_PWR\_MGMT\_1}}
+{\footnotesize\ttfamily \label{mpu6050_8h_aeeaa101e6be02c7e3c7b74a08c3f0ab2} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+PWR\+\_\+\+MGMT\+\_\+1~0x6B}
+
+Registro de gestión de energía \Hypertarget{mpu6050_8h_a7295cab687a78a749c9304953af72bbe}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_SMPLRT\_DIV@{MPU6050\_REG\_SMPLRT\_DIV}}
+\index{MPU6050\_REG\_SMPLRT\_DIV@{MPU6050\_REG\_SMPLRT\_DIV}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_SMPLRT\_DIV}{MPU6050\_REG\_SMPLRT\_DIV}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a7295cab687a78a749c9304953af72bbe} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+SMPLRT\+\_\+\+DIV~0x19}
+
+Registro de divisor de frecuencia de muestreo \Hypertarget{mpu6050_8h_a1a7574ee53e6dc1754c8d7ddb64d2faf}\index{mpu6050.h@{mpu6050.h}!MPU6050\_REG\_WHO\_AM\_I@{MPU6050\_REG\_WHO\_AM\_I}}
+\index{MPU6050\_REG\_WHO\_AM\_I@{MPU6050\_REG\_WHO\_AM\_I}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_REG\_WHO\_AM\_I}{MPU6050\_REG\_WHO\_AM\_I}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a1a7574ee53e6dc1754c8d7ddb64d2faf} 
+\+\#define MPU6050\+\_\+\+REG\+\_\+\+WHO\+\_\+\+AM\+\_\+I~0x75}
+
+Registro de identificación del dispositivo 
+
+\label{doc-func-members}
+\Hypertarget{mpu6050_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mpu6050_8h_a8f83667183c925d899896af9c34b205f}\index{mpu6050.h@{mpu6050.h}!mpu6050\_get\_i2c\_addr@{mpu6050\_get\_i2c\_addr}}
+\index{mpu6050\_get\_i2c\_addr@{mpu6050\_get\_i2c\_addr}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_get\_i2c\_addr()}{mpu6050\_get\_i2c\_addr()}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a8f83667183c925d899896af9c34b205f} 
+uint8\+\_\+t mpu6050\+\_\+get\+\_\+i2c\+\_\+addr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la dirección I2C configurada para el sensor MPU6050. 
+
+\begin{DoxyReturn}{Returns}
+Dirección I2C del dispositivo (0x68 o 0x69).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función no es bloqueante. 
+
+Es thread-\/safe ya que no accede a recursos compartidos.
+\end{DoxyNote}
+Obtiene la dirección I2C configurada para el sensor MPU6050.
+
+\begin{DoxyReturn}{Returns}
+Dirección I2C del dispositivo.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función no bloqueante. 
+
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{mpu6050_8h_a4dfbaeee0cfc99d152dc33789c85754a}\index{mpu6050.h@{mpu6050.h}!mpu6050\_init@{mpu6050\_init}}
+\index{mpu6050\_init@{mpu6050\_init}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_init()}{mpu6050\_init()}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a4dfbaeee0cfc99d152dc33789c85754a} 
+esp\+\_\+err\+\_\+t mpu6050\+\_\+init (\begin{DoxyParamCaption}\item[{i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t}]{bus}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el sensor MPU6050 en el bus I2C especificado. 
+
+Configura los registros internos del sensor para su funcionamiento básico, incluyendo la salida de energía y parámetros de medición.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bus} & Handle del bus I2C previamente inicializado mediante ESP-\/\+IDF.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Argumento inválido.
+\item ESP\+\_\+\+FAIL:\+ Error en la comunicación I2C o configuración del dispositivo.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es bloqueante ya que realiza transacciones I2C. 
+
+No es thread-\/safe si múltiples tareas acceden al mismo bus sin sincronización externa.
+\end{DoxyNote}
+Inicializa el sensor MPU6050 en el bus I2C especificado.
+
+Detecta automáticamente la dirección I2C del dispositivo (0x68 o 0x69), lo despierta del modo de bajo consumo y configura los parámetros básicos del acelerómetro y giroscopio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bus} & Handle del bus I2C previamente inicializado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+FAIL:\+ Error en configuración o comunicación.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante (usa v\+Task\+Delay e I2C). 
+
+No es thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{mpu6050_8h_a84ca3710315d078a8b44c4ce5f9a392e}\index{mpu6050.h@{mpu6050.h}!mpu6050\_read@{mpu6050\_read}}
+\index{mpu6050\_read@{mpu6050\_read}!mpu6050.h@{mpu6050.h}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_read()}{mpu6050\_read()}}
+{\footnotesize\ttfamily \label{mpu6050_8h_a84ca3710315d078a8b44c4ce5f9a392e} 
+esp\+\_\+err\+\_\+t mpu6050\+\_\+read (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Lee los datos actuales del sensor MPU6050. 
+
+Obtiene los valores crudos del acelerómetro, giroscopio y temperatura, y los convierte a unidades físicas (g, °/\+s, °C).
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Puntero a una estructura donde se almacenarán los datos leídos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Puntero nulo.
+\item ESP\+\_\+\+FAIL:\+ Error en la comunicación I2C.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Esta función es bloqueante debido al acceso al bus I2C. 
+
+No es thread-\/safe si se accede concurrentemente sin mecanismos de sincronización.
+\end{DoxyNote}
+Lee los datos actuales del sensor MPU6050.
+
+Realiza la lectura de los registros de aceleración, temperatura y giroscopio, y convierte los valores crudos a unidades físicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Puntero a la estructura donde se almacenarán los datos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Puntero nulo.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE:\+ Dispositivo no inicializado.
+\item ESP\+\_\+\+FAIL:\+ Error en la comunicación I2C.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe. 
+\end{DoxyNote}

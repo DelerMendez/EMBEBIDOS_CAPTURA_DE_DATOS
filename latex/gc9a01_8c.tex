@@ -1,0 +1,723 @@
+\doxysection{QMI8658/\+\+QMI8658/\+components/\+gc9a01/\+gc9a01.c File Reference}
+\hypertarget{gc9a01_8c}{}\label{gc9a01_8c}\index{QMI8658/QMI8658/components/gc9a01/gc9a01.c@{QMI8658/QMI8658/components/gc9a01/gc9a01.c}}
+
+
+Controlador de pantalla TFT circular GC9\+A01 para ESP-\/\+IDF.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+gpio.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+spi\+\_\+master.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+ledc.\+h"{}}\newline
+{\ttfamily \+\#include "{}sdkconfig.\+h"{}}\newline
+{\ttfamily \+\#include "{}gc9a01.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structlcd__init__cmd__t}{lcd\+\_\+init\+\_\+cmd\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura que representa una entrada en la tabla de inicialización del LCD. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_ac123185ce3811e95f70e46a7bd0bebc5}{Cmd\+\_\+\+SLPIN}}~0x10
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a2e8353186c3d130eb577d7d7ac8e5b21}{Cmd\+\_\+\+SLPOUT}}~0x11
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a7396e3e880ae93d98d88ab9547e5074a}{Cmd\+\_\+\+INVOFF}}~0x20
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_aab3a4f66b7089674ac2b54b9d4a32bd6}{Cmd\+\_\+\+INVON}}~0x21
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a3f76c466a26fc738363b6dd930d2f5fd}{Cmd\+\_\+\+DISPOFF}}~0x28
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a0bc6f065c9b19f512b5e0e0b475e207e}{Cmd\+\_\+\+DISPON}}~0x29
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_ad66364d9ad017ca412437a04aa486f5c}{Cmd\+\_\+\+CASET}}~0x2A
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_ab10936c2459272805b97eb75feb4d9bc}{Cmd\+\_\+\+RASET}}~0x2B
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_ab6c1e7aca7a2ac9007f496e2d60ef8ba}{Cmd\+\_\+\+RAMWR}}~0x2C
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a69b1cf55730282b5499066d1e9489b7b}{Cmd\+\_\+\+TEON}}~0x35
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_aaa7ddc72cde6d936c35176cac7e17565}{Cmd\+\_\+\+MADCTL}}~0x36
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_afc990cdf53600c52fa8fec808da05399}{Cmd\+\_\+\+COLMOD}}~0x3A
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_addae1e748907efed241159a4f97adcb7}{Cmd\+\_\+\+Display\+Function\+Control}}~0x\+B6
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a4b7bc576ccd6d7fc5f3c02ea04376038}{Cmd\+\_\+\+PWCTR1}}~0x\+C1
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_af6337c4af77e56076bb4864f203a2cd7}{Cmd\+\_\+\+PWCTR2}}~0x\+C3
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a690f99c8248f40c7e8ab90c56ca73d57}{Cmd\+\_\+\+PWCTR3}}~0x\+C4
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a13f58d1fd20d93757a6d8b9ef3d3bdd2}{Cmd\+\_\+\+PWCTR4}}~0x\+C9
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a98b511e4d69b72c898eee408853b09b0}{Cmd\+\_\+\+PWCTR7}}~0x\+A7
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a4bbceb9b46f4f707753eeef92615cdd5}{Cmd\+\_\+\+FRAMERATE}}~0x\+E8
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a83e078c57d81f67d13d9b20c996f28ea}{Cmd\+\_\+\+Inner\+Reg1\+Enable}}~0x\+FE
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a7dd1d67fde04e739c9c1f464305cb6db}{Cmd\+\_\+\+Inner\+Reg2\+Enable}}~0x\+EF
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a10f4cde0f68c1b85c0678477d5e5f541}{Cmd\+\_\+\+GAMMA1}}~0x\+F0
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a88b3a5a11e40a73a50599bb9349dcf6d}{Cmd\+\_\+\+GAMMA2}}~0x\+F1
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a830f571effd9820fdd21627001abc977}{Cmd\+\_\+\+GAMMA3}}~0x\+F2
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a394438140a36132a49f0974e47b3ec68}{Cmd\+\_\+\+GAMMA4}}~0x\+F3
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_aa32d6dce46c05265e37d85c3352772ad}{Color\+Mode\+\_\+\+RGB\+\_\+16bit}}~0x50
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a08f5415fa0c6455272bbfa6a6aa56f1d}{Color\+Mode\+\_\+\+RGB\+\_\+18bit}}~0x60
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_aa1af84c2db05689c83aa17908927e1ab}{Color\+Mode\+\_\+\+MCU\+\_\+12bit}}~0x03
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_af55ca16cb7b987f49a261ccb73c12182}{Color\+Mode\+\_\+\+MCU\+\_\+16bit}}~0x05
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a5a3d2074ae60d3833e051fba73b7ec68}{Color\+Mode\+\_\+\+MCU\+\_\+18bit}}~0x06
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_ab30e6bd24448245df1d60a3e1c4ddbdf}{MADCTL\+\_\+\+MY}}~0x80
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a6d18ed48efb3186877a07d0e81155453}{MADCTL\+\_\+\+MX}}~0x40
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_adc23a239d2b6976d53254ef4fc5d1713}{MADCTL\+\_\+\+MV}}~0x20
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a9ecee6d3131d3b4f750b94d5766b998a}{MADCTL\+\_\+\+ML}}~0x10
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a659f0d6f0c258a3d91f882a59dfa76f5}{MADCTL\+\_\+\+BGR}}~0x08
+\item 
+\+\#define \doxymbox{\hyperlink{gc9a01_8c_a6f8b9fad1b5db52b70960b389056f0dd}{MADCTL\+\_\+\+MH}}~0x04
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a3f4b3dc09ed2f56c92c02ff2995156b6}{lcd\+\_\+cmd}} (uint8\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em Envía un byte de comando al controlador LCD GC9\+A01 por SPI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a7b094a204d265c1f93789ef440c1b967}{lcd\+\_\+data}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, int len)
+\begin{DoxyCompactList}\small\item\em Envía un bloque de datos al controlador LCD GC9\+A01 por SPI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_aa37a3786047db23c300e9fed0762c018}{lcd\+\_\+send\+\_\+byte}} (uint8\+\_\+t Data)
+\begin{DoxyCompactList}\small\item\em Envía un único byte de datos al controlador LCD por SPI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}{delay\+\_\+ms}} (uint32\+\_\+t Delay\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Genera un retardo bloqueante usando Free\+RTOS. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_abc2d49bee07b0552fbfdc71910873f0e}{GC9\+A01\+\_\+\+Get\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Retorna el ancho configurado de la pantalla GC9\+A01. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_af4e922ae1adc74ebb2d16e5a0c6631c7}{GC9\+A01\+\_\+\+Get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Retorna la altura configurada de la pantalla GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a59ac37070aa225fb3da8838c1353815f}{GC9\+A01\+\_\+\+Hard\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em Realiza un reset por hardware del controlador GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a13381d8ea34e16d8bed2569dcf11da23}{GC9\+A01\+\_\+\+Sleep\+Mode}} (uint8\+\_\+t Mode)
+\begin{DoxyCompactList}\small\item\em Controla el modo sleep del controlador GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a982bbc46ae4cc19458ad9918f6c18dcf}{GC9\+A01\+\_\+\+Inversion\+Mode}} (uint8\+\_\+t Mode)
+\begin{DoxyCompactList}\small\item\em Controla la inversión de colores de la pantalla GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a17680948d150f19a553f436dad6fbdbe}{GC9\+A01\+\_\+\+Display\+Power}} (uint8\+\_\+t On)
+\begin{DoxyCompactList}\small\item\em Enciende o apaga el panel de la pantalla GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_ad13a89d2b3e72e10f164e933a0293b1e}{GC9\+A01\+\_\+\+Set\+Window}} (uint8\+\_\+t x0, uint8\+\_\+t y0, uint8\+\_\+t x1, uint8\+\_\+t y1)
+\begin{DoxyCompactList}\small\item\em Define la ventana de escritura activa en la RAM del GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a026b57b744f84adc2fa2fa94fe0c7b41}{GC9\+A01\+\_\+\+Set\+BL}} (uint8\+\_\+t Value)
+\begin{DoxyCompactList}\small\item\em Controla el nivel de retroiluminación de la pantalla. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a4fc65c3c990d7f0f5577cdc629b5abb4}{GC9\+A01\+\_\+\+Ram\+Write}} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}p\+Buff, uint16\+\_\+t Len)
+\begin{DoxyCompactList}\small\item\em Escribe un bloque de píxeles directamente en la RAM del GC9\+A01 (modo directo). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_ade5bc4d106c35283160d693cf258c2f4}{GC9\+A01\+\_\+\+Draw\+Pixel}} (int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Dibuja un píxel individual en la pantalla (modo directo). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a64f68cf80c19097d40a6c30683b9669b}{GC9\+A01\+\_\+\+Fill\+Rect}} (int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Rellena un rectángulo con un color sólido (modo directo). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_a630c7c4df945fbf0c46109cbb66f57dd}{gc9a01\+\_\+\+SPI\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa el bus SPI y registra el dispositivo GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8c_ad4890001ce815bbaf740efc0860b752b}{GC9\+A01\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa completamente el controlador de pantalla GC9\+A01. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{gc9a01_8c_a6b5d05315e7c612ec6414b41cc040b7d}\label{gc9a01_8c_a6b5d05315e7c612ec6414b41cc040b7d} 
+uint8\+\_\+t {\bfseries GC9\+A01\+\_\+\+X\+\_\+\+Start} = 0
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_a2239791f4330d05ecce8f4a3c429aa4a}{GC9\+A01\+\_\+\+Y\+\_\+\+Start}} = 0
+\item 
+spi\+\_\+device\+\_\+handle\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_af04b0de520c6e42f039c5edf47b13dc2}{spi}}
+\item 
+spi\+\_\+host\+\_\+device\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_aabd508babc2532df43ff58b5a15556a4}{LCD\+\_\+\+HOST}} =CONFIG\+\_\+\+GC9\+A01\+\_\+\+SPI\+\_\+\+HOST
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controlador de pantalla TFT circular GC9\+A01 para ESP-\/\+IDF. 
+
+Este archivo implementa el driver de bajo nivel para la pantalla LCD circular basada en el controlador GC9\+A01, utilizando el bus SPI del framework ESP-\/\+IDF. Soporta modo directo y modo buffer (con opción de PSRAM), control de retroiluminación por GPIO o PWM (LEDC), rotación de pantalla, inversión de color y operaciones de dibujo de píxeles y rectángulos.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez 
+
+Nathalia Piamba 
+
+Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-define-members}
+\Hypertarget{gc9a01_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{gc9a01_8c_ad66364d9ad017ca412437a04aa486f5c}\index{gc9a01.c@{gc9a01.c}!Cmd\_CASET@{Cmd\_CASET}}
+\index{Cmd\_CASET@{Cmd\_CASET}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_CASET}{Cmd\_CASET}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ad66364d9ad017ca412437a04aa486f5c} 
+\+\#define Cmd\+\_\+\+CASET~0x2A}
+
+Comando:\+ establecer rango de columnas \Hypertarget{gc9a01_8c_afc990cdf53600c52fa8fec808da05399}\index{gc9a01.c@{gc9a01.c}!Cmd\_COLMOD@{Cmd\_COLMOD}}
+\index{Cmd\_COLMOD@{Cmd\_COLMOD}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_COLMOD}{Cmd\_COLMOD}}
+{\footnotesize\ttfamily \label{gc9a01_8c_afc990cdf53600c52fa8fec808da05399} 
+\+\#define Cmd\+\_\+\+COLMOD~0x3A}
+
+Comando:\+ configuración del formato de píxel \Hypertarget{gc9a01_8c_addae1e748907efed241159a4f97adcb7}\index{gc9a01.c@{gc9a01.c}!Cmd\_DisplayFunctionControl@{Cmd\_DisplayFunctionControl}}
+\index{Cmd\_DisplayFunctionControl@{Cmd\_DisplayFunctionControl}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_DisplayFunctionControl}{Cmd\_DisplayFunctionControl}}
+{\footnotesize\ttfamily \label{gc9a01_8c_addae1e748907efed241159a4f97adcb7} 
+\+\#define Cmd\+\_\+\+Display\+Function\+Control~0x\+B6}
+
+Comando:\+ control de función de pantalla \Hypertarget{gc9a01_8c_a3f76c466a26fc738363b6dd930d2f5fd}\index{gc9a01.c@{gc9a01.c}!Cmd\_DISPOFF@{Cmd\_DISPOFF}}
+\index{Cmd\_DISPOFF@{Cmd\_DISPOFF}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_DISPOFF}{Cmd\_DISPOFF}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a3f76c466a26fc738363b6dd930d2f5fd} 
+\+\#define Cmd\+\_\+\+DISPOFF~0x28}
+
+Comando:\+ apagar la pantalla \Hypertarget{gc9a01_8c_a0bc6f065c9b19f512b5e0e0b475e207e}\index{gc9a01.c@{gc9a01.c}!Cmd\_DISPON@{Cmd\_DISPON}}
+\index{Cmd\_DISPON@{Cmd\_DISPON}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_DISPON}{Cmd\_DISPON}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a0bc6f065c9b19f512b5e0e0b475e207e} 
+\+\#define Cmd\+\_\+\+DISPON~0x29}
+
+Comando:\+ encender la pantalla \Hypertarget{gc9a01_8c_a4bbceb9b46f4f707753eeef92615cdd5}\index{gc9a01.c@{gc9a01.c}!Cmd\_FRAMERATE@{Cmd\_FRAMERATE}}
+\index{Cmd\_FRAMERATE@{Cmd\_FRAMERATE}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_FRAMERATE}{Cmd\_FRAMERATE}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a4bbceb9b46f4f707753eeef92615cdd5} 
+\+\#define Cmd\+\_\+\+FRAMERATE~0x\+E8}
+
+Comando:\+ configuración de frecuencia de cuadro \Hypertarget{gc9a01_8c_a10f4cde0f68c1b85c0678477d5e5f541}\index{gc9a01.c@{gc9a01.c}!Cmd\_GAMMA1@{Cmd\_GAMMA1}}
+\index{Cmd\_GAMMA1@{Cmd\_GAMMA1}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_GAMMA1}{Cmd\_GAMMA1}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a10f4cde0f68c1b85c0678477d5e5f541} 
+\+\#define Cmd\+\_\+\+GAMMA1~0x\+F0}
+
+Comando:\+ configurar curva gamma 1 \Hypertarget{gc9a01_8c_a88b3a5a11e40a73a50599bb9349dcf6d}\index{gc9a01.c@{gc9a01.c}!Cmd\_GAMMA2@{Cmd\_GAMMA2}}
+\index{Cmd\_GAMMA2@{Cmd\_GAMMA2}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_GAMMA2}{Cmd\_GAMMA2}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a88b3a5a11e40a73a50599bb9349dcf6d} 
+\+\#define Cmd\+\_\+\+GAMMA2~0x\+F1}
+
+Comando:\+ configurar curva gamma 2 \Hypertarget{gc9a01_8c_a830f571effd9820fdd21627001abc977}\index{gc9a01.c@{gc9a01.c}!Cmd\_GAMMA3@{Cmd\_GAMMA3}}
+\index{Cmd\_GAMMA3@{Cmd\_GAMMA3}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_GAMMA3}{Cmd\_GAMMA3}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a830f571effd9820fdd21627001abc977} 
+\+\#define Cmd\+\_\+\+GAMMA3~0x\+F2}
+
+Comando:\+ configurar curva gamma 3 \Hypertarget{gc9a01_8c_a394438140a36132a49f0974e47b3ec68}\index{gc9a01.c@{gc9a01.c}!Cmd\_GAMMA4@{Cmd\_GAMMA4}}
+\index{Cmd\_GAMMA4@{Cmd\_GAMMA4}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_GAMMA4}{Cmd\_GAMMA4}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a394438140a36132a49f0974e47b3ec68} 
+\+\#define Cmd\+\_\+\+GAMMA4~0x\+F3}
+
+Comando:\+ configurar curva gamma 4 \Hypertarget{gc9a01_8c_a83e078c57d81f67d13d9b20c996f28ea}\index{gc9a01.c@{gc9a01.c}!Cmd\_InnerReg1Enable@{Cmd\_InnerReg1Enable}}
+\index{Cmd\_InnerReg1Enable@{Cmd\_InnerReg1Enable}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_InnerReg1Enable}{Cmd\_InnerReg1Enable}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a83e078c57d81f67d13d9b20c996f28ea} 
+\+\#define Cmd\+\_\+\+Inner\+Reg1\+Enable~0x\+FE}
+
+Comando:\+ habilitar registro interno 1 \Hypertarget{gc9a01_8c_a7dd1d67fde04e739c9c1f464305cb6db}\index{gc9a01.c@{gc9a01.c}!Cmd\_InnerReg2Enable@{Cmd\_InnerReg2Enable}}
+\index{Cmd\_InnerReg2Enable@{Cmd\_InnerReg2Enable}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_InnerReg2Enable}{Cmd\_InnerReg2Enable}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a7dd1d67fde04e739c9c1f464305cb6db} 
+\+\#define Cmd\+\_\+\+Inner\+Reg2\+Enable~0x\+EF}
+
+Comando:\+ habilitar registro interno 2 \Hypertarget{gc9a01_8c_a7396e3e880ae93d98d88ab9547e5074a}\index{gc9a01.c@{gc9a01.c}!Cmd\_INVOFF@{Cmd\_INVOFF}}
+\index{Cmd\_INVOFF@{Cmd\_INVOFF}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_INVOFF}{Cmd\_INVOFF}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a7396e3e880ae93d98d88ab9547e5074a} 
+\+\#define Cmd\+\_\+\+INVOFF~0x20}
+
+Comando:\+ desactivar inversión de color \Hypertarget{gc9a01_8c_aab3a4f66b7089674ac2b54b9d4a32bd6}\index{gc9a01.c@{gc9a01.c}!Cmd\_INVON@{Cmd\_INVON}}
+\index{Cmd\_INVON@{Cmd\_INVON}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_INVON}{Cmd\_INVON}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aab3a4f66b7089674ac2b54b9d4a32bd6} 
+\+\#define Cmd\+\_\+\+INVON~0x21}
+
+Comando:\+ activar inversión de color \Hypertarget{gc9a01_8c_aaa7ddc72cde6d936c35176cac7e17565}\index{gc9a01.c@{gc9a01.c}!Cmd\_MADCTL@{Cmd\_MADCTL}}
+\index{Cmd\_MADCTL@{Cmd\_MADCTL}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_MADCTL}{Cmd\_MADCTL}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aaa7ddc72cde6d936c35176cac7e17565} 
+\+\#define Cmd\+\_\+\+MADCTL~0x36}
+
+Comando:\+ control de acceso a memoria de datos \Hypertarget{gc9a01_8c_a4b7bc576ccd6d7fc5f3c02ea04376038}\index{gc9a01.c@{gc9a01.c}!Cmd\_PWCTR1@{Cmd\_PWCTR1}}
+\index{Cmd\_PWCTR1@{Cmd\_PWCTR1}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_PWCTR1}{Cmd\_PWCTR1}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a4b7bc576ccd6d7fc5f3c02ea04376038} 
+\+\#define Cmd\+\_\+\+PWCTR1~0x\+C1}
+
+Comando:\+ control de potencia 1 \Hypertarget{gc9a01_8c_af6337c4af77e56076bb4864f203a2cd7}\index{gc9a01.c@{gc9a01.c}!Cmd\_PWCTR2@{Cmd\_PWCTR2}}
+\index{Cmd\_PWCTR2@{Cmd\_PWCTR2}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_PWCTR2}{Cmd\_PWCTR2}}
+{\footnotesize\ttfamily \label{gc9a01_8c_af6337c4af77e56076bb4864f203a2cd7} 
+\+\#define Cmd\+\_\+\+PWCTR2~0x\+C3}
+
+Comando:\+ control de potencia 2 \Hypertarget{gc9a01_8c_a690f99c8248f40c7e8ab90c56ca73d57}\index{gc9a01.c@{gc9a01.c}!Cmd\_PWCTR3@{Cmd\_PWCTR3}}
+\index{Cmd\_PWCTR3@{Cmd\_PWCTR3}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_PWCTR3}{Cmd\_PWCTR3}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a690f99c8248f40c7e8ab90c56ca73d57} 
+\+\#define Cmd\+\_\+\+PWCTR3~0x\+C4}
+
+Comando:\+ control de potencia 3 \Hypertarget{gc9a01_8c_a13f58d1fd20d93757a6d8b9ef3d3bdd2}\index{gc9a01.c@{gc9a01.c}!Cmd\_PWCTR4@{Cmd\_PWCTR4}}
+\index{Cmd\_PWCTR4@{Cmd\_PWCTR4}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_PWCTR4}{Cmd\_PWCTR4}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a13f58d1fd20d93757a6d8b9ef3d3bdd2} 
+\+\#define Cmd\+\_\+\+PWCTR4~0x\+C9}
+
+Comando:\+ control de potencia 4 \Hypertarget{gc9a01_8c_a98b511e4d69b72c898eee408853b09b0}\index{gc9a01.c@{gc9a01.c}!Cmd\_PWCTR7@{Cmd\_PWCTR7}}
+\index{Cmd\_PWCTR7@{Cmd\_PWCTR7}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_PWCTR7}{Cmd\_PWCTR7}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a98b511e4d69b72c898eee408853b09b0} 
+\+\#define Cmd\+\_\+\+PWCTR7~0x\+A7}
+
+Comando:\+ control de potencia 7 \Hypertarget{gc9a01_8c_ab6c1e7aca7a2ac9007f496e2d60ef8ba}\index{gc9a01.c@{gc9a01.c}!Cmd\_RAMWR@{Cmd\_RAMWR}}
+\index{Cmd\_RAMWR@{Cmd\_RAMWR}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_RAMWR}{Cmd\_RAMWR}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ab6c1e7aca7a2ac9007f496e2d60ef8ba} 
+\+\#define Cmd\+\_\+\+RAMWR~0x2C}
+
+Comando:\+ escritura en memoria RAM \Hypertarget{gc9a01_8c_ab10936c2459272805b97eb75feb4d9bc}\index{gc9a01.c@{gc9a01.c}!Cmd\_RASET@{Cmd\_RASET}}
+\index{Cmd\_RASET@{Cmd\_RASET}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_RASET}{Cmd\_RASET}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ab10936c2459272805b97eb75feb4d9bc} 
+\+\#define Cmd\+\_\+\+RASET~0x2B}
+
+Comando:\+ establecer rango de filas \Hypertarget{gc9a01_8c_ac123185ce3811e95f70e46a7bd0bebc5}\index{gc9a01.c@{gc9a01.c}!Cmd\_SLPIN@{Cmd\_SLPIN}}
+\index{Cmd\_SLPIN@{Cmd\_SLPIN}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_SLPIN}{Cmd\_SLPIN}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ac123185ce3811e95f70e46a7bd0bebc5} 
+\+\#define Cmd\+\_\+\+SLPIN~0x10}
+
+Comando:\+ entrar en modo sleep \Hypertarget{gc9a01_8c_a2e8353186c3d130eb577d7d7ac8e5b21}\index{gc9a01.c@{gc9a01.c}!Cmd\_SLPOUT@{Cmd\_SLPOUT}}
+\index{Cmd\_SLPOUT@{Cmd\_SLPOUT}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_SLPOUT}{Cmd\_SLPOUT}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a2e8353186c3d130eb577d7d7ac8e5b21} 
+\+\#define Cmd\+\_\+\+SLPOUT~0x11}
+
+Comando:\+ salir del modo sleep \Hypertarget{gc9a01_8c_a69b1cf55730282b5499066d1e9489b7b}\index{gc9a01.c@{gc9a01.c}!Cmd\_TEON@{Cmd\_TEON}}
+\index{Cmd\_TEON@{Cmd\_TEON}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{Cmd\_TEON}{Cmd\_TEON}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a69b1cf55730282b5499066d1e9489b7b} 
+\+\#define Cmd\+\_\+\+TEON~0x35}
+
+Comando:\+ activar línea de tearing effect \Hypertarget{gc9a01_8c_aa1af84c2db05689c83aa17908927e1ab}\index{gc9a01.c@{gc9a01.c}!ColorMode\_MCU\_12bit@{ColorMode\_MCU\_12bit}}
+\index{ColorMode\_MCU\_12bit@{ColorMode\_MCU\_12bit}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{ColorMode\_MCU\_12bit}{ColorMode\_MCU\_12bit}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aa1af84c2db05689c83aa17908927e1ab} 
+\+\#define Color\+Mode\+\_\+\+MCU\+\_\+12bit~0x03}
+
+Modo de color:\+ MCU 12 bits \Hypertarget{gc9a01_8c_af55ca16cb7b987f49a261ccb73c12182}\index{gc9a01.c@{gc9a01.c}!ColorMode\_MCU\_16bit@{ColorMode\_MCU\_16bit}}
+\index{ColorMode\_MCU\_16bit@{ColorMode\_MCU\_16bit}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{ColorMode\_MCU\_16bit}{ColorMode\_MCU\_16bit}}
+{\footnotesize\ttfamily \label{gc9a01_8c_af55ca16cb7b987f49a261ccb73c12182} 
+\+\#define Color\+Mode\+\_\+\+MCU\+\_\+16bit~0x05}
+
+Modo de color:\+ MCU 16 bits \Hypertarget{gc9a01_8c_a5a3d2074ae60d3833e051fba73b7ec68}\index{gc9a01.c@{gc9a01.c}!ColorMode\_MCU\_18bit@{ColorMode\_MCU\_18bit}}
+\index{ColorMode\_MCU\_18bit@{ColorMode\_MCU\_18bit}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{ColorMode\_MCU\_18bit}{ColorMode\_MCU\_18bit}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a5a3d2074ae60d3833e051fba73b7ec68} 
+\+\#define Color\+Mode\+\_\+\+MCU\+\_\+18bit~0x06}
+
+Modo de color:\+ MCU 18 bits \Hypertarget{gc9a01_8c_aa32d6dce46c05265e37d85c3352772ad}\index{gc9a01.c@{gc9a01.c}!ColorMode\_RGB\_16bit@{ColorMode\_RGB\_16bit}}
+\index{ColorMode\_RGB\_16bit@{ColorMode\_RGB\_16bit}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{ColorMode\_RGB\_16bit}{ColorMode\_RGB\_16bit}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aa32d6dce46c05265e37d85c3352772ad} 
+\+\#define Color\+Mode\+\_\+\+RGB\+\_\+16bit~0x50}
+
+Modo de color:\+ RGB 16 bits (interfaz RGB) \Hypertarget{gc9a01_8c_a08f5415fa0c6455272bbfa6a6aa56f1d}\index{gc9a01.c@{gc9a01.c}!ColorMode\_RGB\_18bit@{ColorMode\_RGB\_18bit}}
+\index{ColorMode\_RGB\_18bit@{ColorMode\_RGB\_18bit}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{ColorMode\_RGB\_18bit}{ColorMode\_RGB\_18bit}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a08f5415fa0c6455272bbfa6a6aa56f1d} 
+\+\#define Color\+Mode\+\_\+\+RGB\+\_\+18bit~0x60}
+
+Modo de color:\+ RGB 18 bits (interfaz RGB) \Hypertarget{gc9a01_8c_a659f0d6f0c258a3d91f882a59dfa76f5}\index{gc9a01.c@{gc9a01.c}!MADCTL\_BGR@{MADCTL\_BGR}}
+\index{MADCTL\_BGR@{MADCTL\_BGR}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_BGR}{MADCTL\_BGR}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a659f0d6f0c258a3d91f882a59dfa76f5} 
+\+\#define MADCTL\+\_\+\+BGR~0x08}
+
+MADCTL:\+ orden de color BGR en lugar de RGB \Hypertarget{gc9a01_8c_a6f8b9fad1b5db52b70960b389056f0dd}\index{gc9a01.c@{gc9a01.c}!MADCTL\_MH@{MADCTL\_MH}}
+\index{MADCTL\_MH@{MADCTL\_MH}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_MH}{MADCTL\_MH}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a6f8b9fad1b5db52b70960b389056f0dd} 
+\+\#define MADCTL\+\_\+\+MH~0x04}
+
+MADCTL:\+ orden de refresco horizontal \Hypertarget{gc9a01_8c_a9ecee6d3131d3b4f750b94d5766b998a}\index{gc9a01.c@{gc9a01.c}!MADCTL\_ML@{MADCTL\_ML}}
+\index{MADCTL\_ML@{MADCTL\_ML}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_ML}{MADCTL\_ML}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a9ecee6d3131d3b4f750b94d5766b998a} 
+\+\#define MADCTL\+\_\+\+ML~0x10}
+
+MADCTL:\+ orden de refresco vertical \Hypertarget{gc9a01_8c_adc23a239d2b6976d53254ef4fc5d1713}\index{gc9a01.c@{gc9a01.c}!MADCTL\_MV@{MADCTL\_MV}}
+\index{MADCTL\_MV@{MADCTL\_MV}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_MV}{MADCTL\_MV}}
+{\footnotesize\ttfamily \label{gc9a01_8c_adc23a239d2b6976d53254ef4fc5d1713} 
+\+\#define MADCTL\+\_\+\+MV~0x20}
+
+MADCTL:\+ intercambio fila/\+columna (transposición) \Hypertarget{gc9a01_8c_a6d18ed48efb3186877a07d0e81155453}\index{gc9a01.c@{gc9a01.c}!MADCTL\_MX@{MADCTL\_MX}}
+\index{MADCTL\_MX@{MADCTL\_MX}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_MX}{MADCTL\_MX}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a6d18ed48efb3186877a07d0e81155453} 
+\+\#define MADCTL\+\_\+\+MX~0x40}
+
+MADCTL:\+ espejo horizontal (columna) \Hypertarget{gc9a01_8c_ab30e6bd24448245df1d60a3e1c4ddbdf}\index{gc9a01.c@{gc9a01.c}!MADCTL\_MY@{MADCTL\_MY}}
+\index{MADCTL\_MY@{MADCTL\_MY}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{MADCTL\_MY}{MADCTL\_MY}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ab30e6bd24448245df1d60a3e1c4ddbdf} 
+\+\#define MADCTL\+\_\+\+MY~0x80}
+
+MADCTL:\+ espejo vertical (fila) 
+
+\label{doc-func-members}
+\Hypertarget{gc9a01_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}\index{gc9a01.c@{gc9a01.c}!delay\_ms@{delay\_ms}}
+\index{delay\_ms@{delay\_ms}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{delay\_ms()}{delay\_ms()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf} 
+void delay\+\_\+ms (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{Delay\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Genera un retardo bloqueante usando Free\+RTOS. 
+
+Suspende la tarea actual durante el tiempo especificado, cediendo el procesador al scheduler de Free\+RTOS. No debe invocarse desde una ISR.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Delay\+\_\+ms} & Tiempo de espera en milisegundos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a17680948d150f19a553f436dad6fbdbe}\index{gc9a01.c@{gc9a01.c}!GC9A01\_DisplayPower@{GC9A01\_DisplayPower}}
+\index{GC9A01\_DisplayPower@{GC9A01\_DisplayPower}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_DisplayPower()}{GC9A01\_DisplayPower()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a17680948d150f19a553f436dad6fbdbe} 
+void GC9\+A01\+\_\+\+Display\+Power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{On}{}\end{DoxyParamCaption})}
+
+
+
+Enciende o apaga el panel de la pantalla GC9\+A01. 
+
+Controla la alimentación del display.
+
+Controla el estado de encendido del panel LCD sin afectar el contenido de la memoria de video ni la retroiluminación.
+
+
+\begin{DoxyParams}{Parameters}
+{\em On} & 1 para encender la pantalla (DISPON), 0 para apagarla (DISPOFF). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_ade5bc4d106c35283160d693cf258c2f4}\index{gc9a01.c@{gc9a01.c}!GC9A01\_DrawPixel@{GC9A01\_DrawPixel}}
+\index{GC9A01\_DrawPixel@{GC9A01\_DrawPixel}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_DrawPixel()}{GC9A01\_DrawPixel()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ade5bc4d106c35283160d693cf258c2f4} 
+void GC9\+A01\+\_\+\+Draw\+Pixel (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Dibuja un píxel individual en la pantalla (modo directo). 
+
+Dibuja un píxel en una posición específica.
+
+Configura una ventana de 1x1 píxel y envía el color por SPI. Si las coordenadas están fuera de los límites de la pantalla, la función retorna sin acción. Esta función es bloqueante. Solo disponible cuando {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE} está desactivado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X del píxel (0 a GC9\+A01\+\_\+\+Width -\/ 1). \\
+\hline
+{\em y} & Coordenada Y del píxel (0 a GC9\+A01\+\_\+\+Height -\/ 1). \\
+\hline
+{\em color} & Color del píxel en formato RGB565. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a64f68cf80c19097d40a6c30683b9669b}\index{gc9a01.c@{gc9a01.c}!GC9A01\_FillRect@{GC9A01\_FillRect}}
+\index{GC9A01\_FillRect@{GC9A01\_FillRect}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_FillRect()}{GC9A01\_FillRect()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a64f68cf80c19097d40a6c30683b9669b} 
+void GC9\+A01\+\_\+\+Fill\+Rect (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{int16\+\_\+t}]{w}{, }\item[{int16\+\_\+t}]{h}{, }\item[{uint16\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Rellena un rectángulo con un color sólido (modo directo). 
+
+Rellena un rectángulo con un color específico.
+
+Recorta el rectángulo a los límites de la pantalla si es necesario, configura la ventana de escritura y envía el color píxel a píxel por SPI. Esta función es bloqueante. Solo disponible cuando {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE} está desactivado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X de la esquina superior izquierda. \\
+\hline
+{\em y} & Coordenada Y de la esquina superior izquierda. \\
+\hline
+{\em w} & Ancho del rectángulo en píxeles. \\
+\hline
+{\em h} & Alto del rectángulo en píxeles. \\
+\hline
+{\em color} & Color de relleno en formato RGB565. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_af4e922ae1adc74ebb2d16e5a0c6631c7}\index{gc9a01.c@{gc9a01.c}!GC9A01\_GetHeight@{GC9A01\_GetHeight}}
+\index{GC9A01\_GetHeight@{GC9A01\_GetHeight}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_GetHeight()}{GC9A01\_GetHeight()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_af4e922ae1adc74ebb2d16e5a0c6631c7} 
+uint16\+\_\+t GC9\+A01\+\_\+\+Get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna la altura configurada de la pantalla GC9\+A01. 
+
+Obtiene el alto actual del display.
+
+\begin{DoxyReturn}{Returns}
+Altura de la pantalla en píxeles (valor de {\ttfamily GC9\+A01\+\_\+\+Height}). 
+\end{DoxyReturn}
+\Hypertarget{gc9a01_8c_abc2d49bee07b0552fbfdc71910873f0e}\index{gc9a01.c@{gc9a01.c}!GC9A01\_GetWidth@{GC9A01\_GetWidth}}
+\index{GC9A01\_GetWidth@{GC9A01\_GetWidth}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_GetWidth()}{GC9A01\_GetWidth()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_abc2d49bee07b0552fbfdc71910873f0e} 
+uint16\+\_\+t GC9\+A01\+\_\+\+Get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna el ancho configurado de la pantalla GC9\+A01. 
+
+Obtiene el ancho actual del display.
+
+\begin{DoxyReturn}{Returns}
+Ancho de la pantalla en píxeles (valor de {\ttfamily GC9\+A01\+\_\+\+Width}). 
+\end{DoxyReturn}
+\Hypertarget{gc9a01_8c_a59ac37070aa225fb3da8838c1353815f}\index{gc9a01.c@{gc9a01.c}!GC9A01\_HardReset@{GC9A01\_HardReset}}
+\index{GC9A01\_HardReset@{GC9A01\_HardReset}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_HardReset()}{GC9A01\_HardReset()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a59ac37070aa225fb3da8838c1353815f} 
+void GC9\+A01\+\_\+\+Hard\+Reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Realiza un reset por hardware del controlador GC9\+A01. 
+
+Pulsa el pin RST a nivel bajo durante 10 ms y luego lo lleva a nivel alto, esperando 150 ms para que el controlador complete su secuencia de reset. Solo tiene efecto si {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+RESET\+\_\+\+USED} está habilitado en la configuración de menuconfig. Esta función es bloqueante. \Hypertarget{gc9a01_8c_ad4890001ce815bbaf740efc0860b752b}\index{gc9a01.c@{gc9a01.c}!GC9A01\_Init@{GC9A01\_Init}}
+\index{GC9A01\_Init@{GC9A01\_Init}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Init()}{GC9A01\_Init()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ad4890001ce815bbaf740efc0860b752b} 
+void GC9\+A01\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa completamente el controlador de pantalla GC9\+A01. 
+
+Inicializa el display GC9\+A01.
+
+Realiza la secuencia completa de inicialización del driver:\+
+\begin{DoxyEnumerate}
+\item Asigna el buffer en PSRAM si corresponde ({\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE\+\_\+\+PSRAM}).
+\item Inicializa los GPIOs mediante {\ttfamily gc9a01\+\_\+\+GPIO\+\_\+init}.
+\item Inicializa el bus SPI mediante {\ttfamily gc9a01\+\_\+\+SPI\+\_\+init}.
+\item Configura LEDC para PWM de retroiluminación si está habilitado.
+\item Realiza reset por hardware si está habilitado.
+\item Envía la tabla completa de comandos de inicialización {\ttfamily lcd\+\_\+init\+\_\+cmds}.
+\item Configura orientación, modo de color, inversión y salida del modo sleep.
+\item Enciende la pantalla y, en modo buffer, realiza un primer volcado limpio.
+\item Establece la retroiluminación al 100\% si el control está habilitado.
+\end{DoxyEnumerate}
+
+Esta función es bloqueante e incluye múltiples retardos requeridos por la hoja de datos del GC9\+A01. Debe llamarse una única vez desde la tarea de inicialización de la aplicación. \Hypertarget{gc9a01_8c_a982bbc46ae4cc19458ad9918f6c18dcf}\index{gc9a01.c@{gc9a01.c}!GC9A01\_InversionMode@{GC9A01\_InversionMode}}
+\index{GC9A01\_InversionMode@{GC9A01\_InversionMode}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_InversionMode()}{GC9A01\_InversionMode()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a982bbc46ae4cc19458ad9918f6c18dcf} 
+void GC9\+A01\+\_\+\+Inversion\+Mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Mode}{}\end{DoxyParamCaption})}
+
+
+
+Controla la inversión de colores de la pantalla GC9\+A01. 
+
+Activa o desactiva la inversión de todos los colores mostrados en pantalla.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & 1 para activar la inversión de color, 0 para desactivarla. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a4fc65c3c990d7f0f5577cdc629b5abb4}\index{gc9a01.c@{gc9a01.c}!GC9A01\_RamWrite@{GC9A01\_RamWrite}}
+\index{GC9A01\_RamWrite@{GC9A01\_RamWrite}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_RamWrite()}{GC9A01\_RamWrite()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a4fc65c3c990d7f0f5577cdc629b5abb4} 
+void GC9\+A01\+\_\+\+Ram\+Write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Buff}{, }\item[{uint16\+\_\+t}]{Len}{}\end{DoxyParamCaption})}
+
+
+
+Escribe un bloque de píxeles directamente en la RAM del GC9\+A01 (modo directo). 
+
+Envía {\ttfamily Len} píxeles en formato RGB565 big-\/endian directamente al controlador por SPI. Debe invocarse después de {\ttfamily GC9\+A01\+\_\+\+Set\+Window}. Esta función es bloqueante. Solo disponible cuando {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE} está desactivado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buff} & Puntero al buffer de píxeles en formato RGB565. \\
+\hline
+{\em Len} & Número de píxeles a escribir. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a026b57b744f84adc2fa2fa94fe0c7b41}\index{gc9a01.c@{gc9a01.c}!GC9A01\_SetBL@{GC9A01\_SetBL}}
+\index{GC9A01\_SetBL@{GC9A01\_SetBL}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_SetBL()}{GC9A01\_SetBL()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a026b57b744f84adc2fa2fa94fe0c7b41} 
+void GC9\+A01\+\_\+\+Set\+BL (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Value}{}\end{DoxyParamCaption})}
+
+
+
+Controla el nivel de retroiluminación de la pantalla. 
+
+Ajusta el nivel de brillo de la retroiluminación (Backlight).
+
+Si el modo PWM está habilitado ({\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+CONTROL\+\_\+\+BACK\+\_\+\+LIGHT\+\_\+\+MODE}), ajusta el ciclo de trabajo del canal LEDC. En caso contrario, conmuta el pin de retroiluminación de forma digital (encendido/\+apagado). Si el control de retroiluminación no está habilitado en menuconfig, la función no tiene efecto.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Nivel de brillo deseado, de 0 (apagado) a 100 (máximo brillo). Valores superiores a 100 se recortan a 100. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_ad13a89d2b3e72e10f164e933a0293b1e}\index{gc9a01.c@{gc9a01.c}!GC9A01\_SetWindow@{GC9A01\_SetWindow}}
+\index{GC9A01\_SetWindow@{GC9A01\_SetWindow}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_SetWindow()}{GC9A01\_SetWindow()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_ad13a89d2b3e72e10f164e933a0293b1e} 
+void GC9\+A01\+\_\+\+Set\+Window (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x0}{, }\item[{uint8\+\_\+t}]{y0}{, }\item[{uint8\+\_\+t}]{x1}{, }\item[{uint8\+\_\+t}]{y1}{}\end{DoxyParamCaption})}
+
+
+
+Define la ventana de escritura activa en la RAM del GC9\+A01. 
+
+Configura el área rectangular de destino mediante los comandos CASET y RASET, luego envía RAMWR para habilitar la escritura de datos de píxel. Las llamadas a {\ttfamily GC9\+A01\+\_\+\+Ram\+Write} o {\ttfamily lcd\+\_\+data} posteriores depositarán datos dentro de esta ventana.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x0} & Coordenada X de la esquina superior izquierda. \\
+\hline
+{\em y0} & Coordenada Y de la esquina superior izquierda. \\
+\hline
+{\em x1} & Coordenada X de la esquina inferior derecha (inclusiva). \\
+\hline
+{\em y1} & Coordenada Y de la esquina inferior derecha (inclusiva). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a13381d8ea34e16d8bed2569dcf11da23}\index{gc9a01.c@{gc9a01.c}!GC9A01\_SleepMode@{GC9A01\_SleepMode}}
+\index{GC9A01\_SleepMode@{GC9A01\_SleepMode}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_SleepMode()}{GC9A01\_SleepMode()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a13381d8ea34e16d8bed2569dcf11da23} 
+void GC9\+A01\+\_\+\+Sleep\+Mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Mode}{}\end{DoxyParamCaption})}
+
+
+
+Controla el modo sleep del controlador GC9\+A01. 
+
+Activa o desactiva el modo de suspensión del display.
+
+Envía el comando de entrada o salida de modo sleep según el parámetro. Después del comando se espera 500 ms como lo requiere la hoja de datos del GC9\+A01. Esta función es bloqueante.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & 1 para entrar en modo sleep (pantalla apagada, bajo consumo), 0 para salir del modo sleep (pantalla operativa). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a630c7c4df945fbf0c46109cbb66f57dd}\index{gc9a01.c@{gc9a01.c}!gc9a01\_SPI\_init@{gc9a01\_SPI\_init}}
+\index{gc9a01\_SPI\_init@{gc9a01\_SPI\_init}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{gc9a01\_SPI\_init()}{gc9a01\_SPI\_init()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a630c7c4df945fbf0c46109cbb66f57dd} 
+void gc9a01\+\_\+\+SPI\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el bus SPI y registra el dispositivo GC9\+A01. 
+
+Configura el bus SPI con los pines MOSI, SCK y CS definidos en menuconfig, activa la gestión automática de canales DMA y registra el dispositivo con la frecuencia de reloj y el callback de pre-\/transferencia. Utiliza {\ttfamily ESP\+\_\+\+ERROR\+\_\+\+CHECK} para abortar en caso de error. Esta función es bloqueante y no es thread-\/safe respecto a otros accesos al mismo bus SPI. \Hypertarget{gc9a01_8c_a3f4b3dc09ed2f56c92c02ff2995156b6}\index{gc9a01.c@{gc9a01.c}!lcd\_cmd@{lcd\_cmd}}
+\index{lcd\_cmd@{lcd\_cmd}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_cmd()}{lcd\_cmd()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a3f4b3dc09ed2f56c92c02ff2995156b6} 
+void lcd\+\_\+cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cmd}{}\end{DoxyParamCaption})}
+
+
+
+Envía un byte de comando al controlador LCD GC9\+A01 por SPI. 
+
+Configura el pin D/\+C en nivel bajo (modo comando) y transmite el byte usando {\ttfamily spi\+\_\+device\+\_\+polling\+\_\+transmit}, que bloquea hasta completar la transferencia. Esta función es bloqueante y no debe usarse desde una ISR.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Byte de comando a enviar al controlador GC9\+A01. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_a7b094a204d265c1f93789ef440c1b967}\index{gc9a01.c@{gc9a01.c}!lcd\_data@{lcd\_data}}
+\index{lcd\_data@{lcd\_data}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_data()}{lcd\_data()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a7b094a204d265c1f93789ef440c1b967} 
+void lcd\+\_\+data (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{int}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Envía un bloque de datos al controlador LCD GC9\+A01 por SPI. 
+
+Configura el pin D/\+C en nivel alto (modo datos) y transmite el buffer usando {\ttfamily spi\+\_\+device\+\_\+polling\+\_\+transmit}. Si el tamaño del buffer supera el límite DMA ({\ttfamily SPI\+\_\+\+MAX\+\_\+\+DMA\+\_\+\+LEN}), la transmisión se fragmenta automáticamente en múltiples transferencias consecutivas. Esta función es bloqueante y no debe usarse desde una ISR.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Puntero al buffer de datos a transmitir. \\
+\hline
+{\em len} & Número de bytes a enviar. Si es 0, la función retorna sin acción. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8c_aa37a3786047db23c300e9fed0762c018}\index{gc9a01.c@{gc9a01.c}!lcd\_send\_byte@{lcd\_send\_byte}}
+\index{lcd\_send\_byte@{lcd\_send\_byte}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_send\_byte()}{lcd\_send\_byte()}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aa37a3786047db23c300e9fed0762c018} 
+void lcd\+\_\+send\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Data}{}\end{DoxyParamCaption})}
+
+
+
+Envía un único byte de datos al controlador LCD por SPI. 
+
+Función auxiliar que invoca {\ttfamily lcd\+\_\+data} con un buffer de un solo byte. Útil para enviar parámetros individuales de comandos de configuración. Esta función es bloqueante.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Data} & Byte de datos a enviar al controlador GC9\+A01. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-var-members}
+\Hypertarget{gc9a01_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{gc9a01_8c_a2239791f4330d05ecce8f4a3c429aa4a}\index{gc9a01.c@{gc9a01.c}!GC9A01\_Y\_Start@{GC9A01\_Y\_Start}}
+\index{GC9A01\_Y\_Start@{GC9A01\_Y\_Start}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Y\_Start}{GC9A01\_Y\_Start}}
+{\footnotesize\ttfamily \label{gc9a01_8c_a2239791f4330d05ecce8f4a3c429aa4a} 
+uint8\+\_\+t GC9\+A01\+\_\+\+Y\+\_\+\+Start = 0}
+
+Desplazamiento de origen en X e Y para el área activa de la pantalla \Hypertarget{gc9a01_8c_aabd508babc2532df43ff58b5a15556a4}\index{gc9a01.c@{gc9a01.c}!LCD\_HOST@{LCD\_HOST}}
+\index{LCD\_HOST@{LCD\_HOST}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_HOST}{LCD\_HOST}}
+{\footnotesize\ttfamily \label{gc9a01_8c_aabd508babc2532df43ff58b5a15556a4} 
+spi\+\_\+host\+\_\+device\+\_\+t LCD\+\_\+\+HOST =CONFIG\+\_\+\+GC9\+A01\+\_\+\+SPI\+\_\+\+HOST}
+
+Host SPI configurado para la pantalla LCD \Hypertarget{gc9a01_8c_af04b0de520c6e42f039c5edf47b13dc2}\index{gc9a01.c@{gc9a01.c}!spi@{spi}}
+\index{spi@{spi}!gc9a01.c@{gc9a01.c}}
+\doxysubsubsection{\texorpdfstring{spi}{spi}}
+{\footnotesize\ttfamily \label{gc9a01_8c_af04b0de520c6e42f039c5edf47b13dc2} 
+spi\+\_\+device\+\_\+handle\+\_\+t spi}
+
+Handle del dispositivo SPI utilizado para comunicar con el GC9\+A01 

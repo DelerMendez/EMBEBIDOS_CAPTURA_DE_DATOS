@@ -1,0 +1,20 @@
+\doxysection{data\+\_\+model.\+h}
+\hypertarget{_e_s_p_c_a_m_2_e_s_p_c_a_m_2main_2data__model_8h_source}{}\label{_e_s_p_c_a_m_2_e_s_p_c_a_m_2main_2data__model_8h_source}\index{ESPCAM/ESPCAM/main/data\_model.h@{ESPCAM/ESPCAM/main/data\_model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ LOG\_TEXT\_MAX\ 128}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_attribute\_\_((packed))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ uint8\_t\ node\_id;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ uint32\_t\ seq;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ uint32\_t\ timestamp\_ms;\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{char}\ text[LOG\_TEXT\_MAX];\ }
+\DoxyCodeLine{00047\ \}\ \doxymbox{\hyperlink{structespnow__log__packet__t}{espnow\_log\_packet\_t}};}
+
+\end{DoxyCode}

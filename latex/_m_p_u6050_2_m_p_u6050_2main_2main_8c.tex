@@ -1,0 +1,143 @@
+\doxysection{MPU6050/\+\+MPU6050/\+main/\+main.c File Reference}
+\hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c}{}\label{_m_p_u6050_2_m_p_u6050_2main_2main_8c}\index{MPU6050/MPU6050/main/main.c@{MPU6050/MPU6050/main/main.c}}
+
+
+Aplicación principal para adquisición de datos del MPU6050 y envío vía ESP-\/\+NOW.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+i2c\+\_\+master.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+now.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+wifi.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+event.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+netif.\+h"{}}\newline
+{\ttfamily \+\#include "{}nvs\+\_\+flash.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \+\#include "{}mpu6050.\+h"{}}\newline
+{\ttfamily \+\#include "{}data\+\_\+model.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ae19bfd2ea75b7ddfc0c9e520240ab733}{NODE\+\_\+\+ID}}~1
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{ESPNOW\+\_\+\+CHANNEL}}~1
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a526d580d324bce60a3e964066fae77e3}{SDA\+\_\+\+PIN}}~GPIO\+\_\+\+NUM\+\_\+21
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a06c967e78bcedcee909a70764f879433}{SCL\+\_\+\+PIN}}~GPIO\+\_\+\+NUM\+\_\+22
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ad9ecf80e1eac083d16ec47f9d3aeb39f}{I2\+C\+\_\+\+PORT}}~I2\+C\+\_\+\+NUM\+\_\+0
+\item 
+\+\#define \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a1af8dc163d0fdb951af0c941318d5ddc}{READ\+\_\+\+PERIOD\+\_\+\+MS}}~500
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Función principal de la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Aplicación principal para adquisición de datos del MPU6050 y envío vía ESP-\/\+NOW. 
+
+Este archivo implementa un nodo emisor basado en ESP32 que:\+
+\begin{DoxyItemize}
+\item Inicializa el sensor MPU6050 mediante I2C.
+\item Lee periódicamente datos de aceleración, giroscopio y temperatura.
+\item Empaqueta los datos en una estructura de log.
+\item Envía la información a otro dispositivo mediante ESP-\/\+NOW.
+\end{DoxyItemize}
+
+El sistema está diseñado para ejecutarse sobre Free\+RTOS, utilizando un bucle principal bloqueante con retardos periódicos.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-define-members}
+\Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}\index{main.c@{main.c}!ESPNOW\_CHANNEL@{ESPNOW\_CHANNEL}}
+\index{ESPNOW\_CHANNEL@{ESPNOW\_CHANNEL}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{ESPNOW\_CHANNEL}{ESPNOW\_CHANNEL}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a} 
+\+\#define ESPNOW\+\_\+\+CHANNEL~1}
+
+Canal Wi-\/\+Fi usado para ESP-\/\+NOW \Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ad9ecf80e1eac083d16ec47f9d3aeb39f}\index{main.c@{main.c}!I2C\_PORT@{I2C\_PORT}}
+\index{I2C\_PORT@{I2C\_PORT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_PORT}{I2C\_PORT}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ad9ecf80e1eac083d16ec47f9d3aeb39f} 
+\+\#define I2\+C\+\_\+\+PORT~I2\+C\+\_\+\+NUM\+\_\+0}
+
+Puerto I2C utilizado \Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ae19bfd2ea75b7ddfc0c9e520240ab733}\index{main.c@{main.c}!NODE\_ID@{NODE\_ID}}
+\index{NODE\_ID@{NODE\_ID}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{NODE\_ID}{NODE\_ID}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_ae19bfd2ea75b7ddfc0c9e520240ab733} 
+\+\#define NODE\+\_\+\+ID~1}
+
+Identificador del nodo emisor \Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a1af8dc163d0fdb951af0c941318d5ddc}\index{main.c@{main.c}!READ\_PERIOD\_MS@{READ\_PERIOD\_MS}}
+\index{READ\_PERIOD\_MS@{READ\_PERIOD\_MS}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{READ\_PERIOD\_MS}{READ\_PERIOD\_MS}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a1af8dc163d0fdb951af0c941318d5ddc} 
+\+\#define READ\+\_\+\+PERIOD\+\_\+\+MS~500}
+
+Periodo de lectura del sensor en milisegundos \Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a06c967e78bcedcee909a70764f879433}\index{main.c@{main.c}!SCL\_PIN@{SCL\_PIN}}
+\index{SCL\_PIN@{SCL\_PIN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SCL\_PIN}{SCL\_PIN}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a06c967e78bcedcee909a70764f879433} 
+\+\#define SCL\+\_\+\+PIN~GPIO\+\_\+\+NUM\+\_\+22}
+
+Pin SCL para comunicación I2C \Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a526d580d324bce60a3e964066fae77e3}\index{main.c@{main.c}!SDA\_PIN@{SDA\_PIN}}
+\index{SDA\_PIN@{SDA\_PIN}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SDA\_PIN}{SDA\_PIN}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a526d580d324bce60a3e964066fae77e3} 
+\+\#define SDA\+\_\+\+PIN~GPIO\+\_\+\+NUM\+\_\+21}
+
+Pin SDA para comunicación I2C 
+
+\label{doc-func-members}
+\Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{main.c@{main.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{_m_p_u6050_2_m_p_u6050_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal de la aplicación. 
+
+Realiza:\+
+\begin{DoxyItemize}
+\item Inicialización de NVS.
+\item Configuración del bus I2C.
+\item Inicialización del sensor MPU6050.
+\item Configuración de Wi-\/\+Fi y ESP-\/\+NOW.
+\item Envío periódico de datos del sensor.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Función ejecutada como tarea principal de Free\+RTOS. 
+
+Contiene un bucle infinito bloqueante con v\+Task\+Delay. 
+\end{DoxyNote}
+Configuración del bus I2C maestro.
+
+\texorpdfstring{$<$}{<} Handle del bus I2C
+
+Obtención de la MAC local del dispositivo.
+
+Configuración del peer ESP-\/\+NOW (dispositivo receptor).
+
+Estructura para almacenar datos del sensor.
+
+Paquete de datos a enviar vía ESP-\/\+NOW.

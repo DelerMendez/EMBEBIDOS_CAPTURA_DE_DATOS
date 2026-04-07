@@ -1,0 +1,57 @@
+\doxysection{app\+\_\+config.\+h}
+\hypertarget{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_source}{}\label{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h_source}\index{QMI8658/QMI8658/main/app\_config.h@{QMI8658/QMI8658/main/app\_config.h}}
+\doxymbox{\hyperlink{_q_m_i8658_2_q_m_i8658_2main_2app__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*\ I2C\ */}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ APP\_I2C\_PORT\ \ \ \ \ \ \ \ \ \ \ \ I2C\_NUM\_0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ APP\_I2C\_SDA\_PIN\ \ \ \ \ \ \ \ \ GPIO\_NUM\_6}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ APP\_I2C\_SCL\_PIN\ \ \ \ \ \ \ \ \ GPIO\_NUM\_7}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ APP\_I2C\_FREQ\_HZ\ \ \ \ \ \ \ \ \ 400000}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*\ tiempos\ */}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ APP\_GYRO\_CAL\_SAMPLES\ \ \ \ 200}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ APP\_GYRO\_CAL\_DELAY\_MS\ \ \ 10}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ FreeRTOS\ */}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ APP\_IMU\_QUEUE\_LEN\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ APP\_SENSOR\_TASK\_STACK\ \ \ 4096}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ APP\_DISPLAY\_TASK\_STACK\ \ 4096}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ APP\_SENSOR\_TASK\_PRIO\ \ \ \ 5}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ APP\_DISPLAY\_TASK\_PRIO\ \ \ 4}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{/*\ colores\ UI\ */}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ APP\_COLOR\_RED\ \ \ \ \ \ \ \ \ \ \ 0xF800}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ APP\_COLOR\_GREEN\ \ \ \ \ \ \ \ \ 0x07E0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ APP\_COLOR\_WHITE\ \ \ \ \ \ \ \ \ 0xFFFF}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/*\ Power\ */}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ APP\_CPU\_FREQ\_MAX\_MHZ\ \ \ \ 240}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ APP\_CPU\_FREQ\_MIN\_MHZ\ \ \ \ 40}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/*\ ESP-\/NOW\ */}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ APP\_IDLE\_SAMPLE\_PERIOD\_MS\ \ \ \ \ \ 200\ \ \ }\textcolor{comment}{//\ vigilancia\ lenta}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ APP\_BURST\_SAMPLE\_PERIOD\_MS\ \ \ \ \ 20\ \ \ \ }\textcolor{comment}{//\ ráfaga\ rápida}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ APP\_BURST\_DURATION\_MS\ \ \ \ \ \ \ \ \ \ 1000\ \ }\textcolor{comment}{//\ 1\ segundo\ tras\ evento\ brusco}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ APP\_SAMPLE\_PERIOD\_MS\ \ \ \ \ \ \ \ \ \ \ 50}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ APP\_ABRUPT\_ACC\_THRESHOLD\ \ \ \ \ \ \ 6.0f}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ APP\_ABRUPT\_GYR\_THRESHOLD\ \ \ \ \ \ \ 150.0f}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ APP\_ESPNOW\_THRESHOLD\ \ \ \ \ \ \ \ \ \ \ 2.0f}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ APP\_EVENT\_THRESHOLD\ \ \ \ \ \ \ \ \ \ \ 70.0f}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ APP\_STILL\_ACC\_THRESHOLD\ \ \ \ \ \ \ 0.15f}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ APP\_STILL\_GYR\_THRESHOLD\ \ \ \ \ \ \ 2.0f}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ APP\_STILL\_INTERVAL\_MS\ \ \ \ \ \ \ \ \ (5\ *\ 60\ *\ 1000)}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{/*\ evita\ múltiples\ eventos\ seguidos\ del\ mismo\ movimiento\ */}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ APP\_EVENT\_COOLDOWN\_MS\ \ \ \ \ \ \ \ \ \ 3000}}
+
+\end{DoxyCode}

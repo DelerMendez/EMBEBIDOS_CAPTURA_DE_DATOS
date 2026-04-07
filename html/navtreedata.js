@@ -24,12 +24,31 @@
 */
 var NAVTREE =
 [
-  [ "Captura_de_datos", "index.html", ]
+  [ "Captura_de_datos", "index.html", [
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
+    ] ]
+  ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"_e_s_p_c_a_m_2_e_s_p_c_a_m_2build_2bootloader_2config_2sdkconfig_8h_source.html",
+"gc9a01_8h.html#a13381d8ea34e16d8bed2569dcf11da23"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

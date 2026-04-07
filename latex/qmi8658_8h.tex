@@ -1,0 +1,340 @@
+\doxysection{QMI8658/\+\+QMI8658/\+components/\+qmi8658/\+qmi8658.h File Reference}
+\hypertarget{qmi8658_8h}{}\label{qmi8658_8h}\index{QMI8658/QMI8658/components/qmi8658/qmi8658.h@{QMI8658/QMI8658/components/qmi8658/qmi8658.h}}
+
+
+Definiciones y API del driver para el sensor QMI8658 (IMU) usando ESP-\/\+IDF.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \+\#include "{}driver/\+i2c\+\_\+master.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura que almacena los datos del sensor QMI8658. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{qmi8658_8h_a6fd6c98e08b1a319e7414c7223b4916f}\label{qmi8658_8h_a6fd6c98e08b1a319e7414c7223b4916f} 
+\+\#define {\bfseries QMI8658\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+HIGH}~0x6B
+\begin{DoxyCompactList}\small\item\em Dirección I2C alta del sensor. \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_affb102228fbea63b3666e052bc6ca67b}\label{qmi8658_8h_affb102228fbea63b3666e052bc6ca67b} 
+\+\#define {\bfseries QMI8658\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+LOW}~0x6A
+\begin{DoxyCompactList}\small\item\em Dirección I2C baja del sensor. \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_a4119b7c65028afe1a69bde2b53868819}\label{qmi8658_8h_a4119b7c65028afe1a69bde2b53868819} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+WHO\+\_\+\+AM\+\_\+I}~0x00
+\begin{DoxyCompactList}\small\item\em Registro WHO\+\_\+\+AM\+\_\+I. \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_ae6dec3d48c1f548aca0411fb8b140eb2}\label{qmi8658_8h_ae6dec3d48c1f548aca0411fb8b140eb2} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+REVISION}~0x01
+\begin{DoxyCompactList}\small\item\em Registro de revisión del dispositivo. \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_ae017ecafbe62fbfe5d7a7c36461713a0}\label{qmi8658_8h_ae017ecafbe62fbfe5d7a7c36461713a0} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+CTRL1}~0x02
+\begin{DoxyCompactList}\small\item\em Registro de control 1. \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_abed7b4a31523ed782335649dc0640a6f}\label{qmi8658_8h_abed7b4a31523ed782335649dc0640a6f} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+CTRL2}~0x03
+\begin{DoxyCompactList}\small\item\em Registro de control 2 (configuración acelerómetro). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_adea61a0af50fd8cf722d455a164adf0b}\label{qmi8658_8h_adea61a0af50fd8cf722d455a164adf0b} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+CTRL3}~0x04
+\begin{DoxyCompactList}\small\item\em Registro de control 3 (configuración giroscopio). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_a9be06b2959ad5a06e790423da9292321}\label{qmi8658_8h_a9be06b2959ad5a06e790423da9292321} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+CTRL7}~0x08
+\begin{DoxyCompactList}\small\item\em Registro de control 7 (habilitación sensores). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_a3e47d4afa1fed6ec7507b111486da5f9}\label{qmi8658_8h_a3e47d4afa1fed6ec7507b111486da5f9} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+TEMP\+\_\+L}~0x33
+\begin{DoxyCompactList}\small\item\em Registro de temperatura (byte bajo). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_a11b4f10ab9239e560c37eea4c8bd3992}\label{qmi8658_8h_a11b4f10ab9239e560c37eea4c8bd3992} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+AX\+\_\+L}~0x35
+\begin{DoxyCompactList}\small\item\em Registro de aceleración eje X (byte bajo). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_a8a3eb8e3c69ce950d141260e1b4bd3ba}\label{qmi8658_8h_a8a3eb8e3c69ce950d141260e1b4bd3ba} 
+\+\#define {\bfseries QMI8658\+\_\+\+REG\+\_\+\+GX\+\_\+L}~0x3B
+\begin{DoxyCompactList}\small\item\em Registro de giroscopio eje X (byte bajo). \end{DoxyCompactList}\item 
+\Hypertarget{qmi8658_8h_ada0305f4110d00b11dfee5b86428e25f}\label{qmi8658_8h_ada0305f4110d00b11dfee5b86428e25f} 
+\+\#define {\bfseries QMI8658\+\_\+\+WHO\+\_\+\+AM\+\_\+\+I\+\_\+\+VAL}~0x05
+\begin{DoxyCompactList}\small\item\em Valor esperado del registro WHO\+\_\+\+AM\+\_\+I. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_a7961277f24fdb2a8f8e04381e84e21a7}{qmi8658\+\_\+init}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t bus)
+\begin{DoxyCompactList}\small\item\em Inicializa el sensor QMI8658 en el bus I2C. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_a899cd8e92d535c217256ecb0f83b47b3}{qmi8658\+\_\+read}} (\doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Lee los datos actuales del sensor. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_a1d4088d4edf6e59c151c32b26417c5a6}{qmi8658\+\_\+calibrate\+\_\+gyro}} (uint16\+\_\+t samples, uint32\+\_\+t \doxymbox{\hyperlink{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}{delay\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Realiza la calibración del giroscopio. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_aac5bd14f5bacc9c0792e74f5fb2026a6}{qmi8658\+\_\+get\+\_\+i2c\+\_\+addr}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene la dirección I2C detectada del sensor. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_a4284d95972b7af76eff7f3a7971c6821}{qmi8658\+\_\+enable\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Habilita la interrupción de datos listos (Data Ready). \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{qmi8658_8h_a66872062e400ebddcd26e831722e8369}{qmi8658\+\_\+data\+\_\+ready}} (bool \texorpdfstring{$\ast$}{*}ready)
+\begin{DoxyCompactList}\small\item\em Verifica si hay nuevos datos disponibles en el sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definiciones y API del driver para el sensor QMI8658 (IMU) usando ESP-\/\+IDF. 
+
+Este archivo contiene las constantes, estructuras y prototipos de funciones necesarios para interactuar con el sensor QMI8658 mediante el bus I2C.
+
+El sensor QMI8658 proporciona datos de:\+
+\begin{DoxyItemize}
+\item Aceleración (3 ejes)
+\item Velocidad angular (giroscopio, 3 ejes)
+\item Temperatura
+\end{DoxyItemize}
+
+Las funciones que acceden al hardware I2C son bloqueantes y no son thread-\/safe, por lo que deben ser utilizadas desde una única tarea o protegidas mediante mecanismos de sincronización.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{qmi8658_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{qmi8658_8h_a1d4088d4edf6e59c151c32b26417c5a6}\index{qmi8658.h@{qmi8658.h}!qmi8658\_calibrate\_gyro@{qmi8658\_calibrate\_gyro}}
+\index{qmi8658\_calibrate\_gyro@{qmi8658\_calibrate\_gyro}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_calibrate\_gyro()}{qmi8658\_calibrate\_gyro()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_a1d4088d4edf6e59c151c32b26417c5a6} 
+esp\+\_\+err\+\_\+t qmi8658\+\_\+calibrate\+\_\+gyro (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{samples}{, }\item[{uint32\+\_\+t}]{delay\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Realiza la calibración del giroscopio. 
+
+Calcula los offsets promedio del giroscopio tomando múltiples muestras con el sensor en reposo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em samples} & Número de muestras a tomar. \\
+\hline
+{\em \doxylink{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}{delay\+\_\+ms}} & Retardo entre muestras en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la calibración fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si samples es 0. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el sensor no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+Mantener el sensor inmóvil durante la calibración.
+\end{DoxyNote}
+Realiza la calibración del giroscopio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em samples} & Número de muestras a tomar. \\
+\hline
+{\em \doxylink{gc9a01_8c_a71b7dc2257d3af757c7d97210624cbaf}{delay\+\_\+ms}} & Tiempo de espera entre muestras en milisegundos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la calibración fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si samples es 0. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el dispositivo no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante (usa delays). 
+
+Mantener el sensor inmóvil durante la calibración. 
+\end{DoxyNote}
+\Hypertarget{qmi8658_8h_a66872062e400ebddcd26e831722e8369}\index{qmi8658.h@{qmi8658.h}!qmi8658\_data\_ready@{qmi8658\_data\_ready}}
+\index{qmi8658\_data\_ready@{qmi8658\_data\_ready}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_data\_ready()}{qmi8658\_data\_ready()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_a66872062e400ebddcd26e831722e8369} 
+esp\+\_\+err\+\_\+t qmi8658\+\_\+data\+\_\+ready (\begin{DoxyParamCaption}\item[{bool \texorpdfstring{$\ast$}{*}}]{ready}{}\end{DoxyParamCaption})}
+
+
+
+Verifica si hay nuevos datos disponibles en el sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ready} & Puntero donde se almacenará el estado (true si hay datos listos). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la operación fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si ready es NULL. 
+
+ESP\+\_\+\+FAIL si ocurre un error de comunicación.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em ready} & Puntero donde se almacenará el estado (true si hay datos). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la operación fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si ready es NULL. 
+
+ESP\+\_\+\+FAIL si ocurre un error en la lectura.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+\end{DoxyNote}
+\Hypertarget{qmi8658_8h_a4284d95972b7af76eff7f3a7971c6821}\index{qmi8658.h@{qmi8658.h}!qmi8658\_enable\_interrupt@{qmi8658\_enable\_interrupt}}
+\index{qmi8658\_enable\_interrupt@{qmi8658\_enable\_interrupt}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_enable\_interrupt()}{qmi8658\_enable\_interrupt()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_a4284d95972b7af76eff7f3a7971c6821} 
+esp\+\_\+err\+\_\+t qmi8658\+\_\+enable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Habilita la interrupción de datos listos (Data Ready). 
+
+Configura el sensor para generar una interrupción cuando hay nuevos datos.
+
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la configuración fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el sensor no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante.
+\end{DoxyNote}
+Habilita la interrupción de datos listos (Data Ready).
+
+Configura el pin INT1 para indicar cuando hay nuevos datos disponibles.
+
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la configuración fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el dispositivo no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+\end{DoxyNote}
+\Hypertarget{qmi8658_8h_aac5bd14f5bacc9c0792e74f5fb2026a6}\index{qmi8658.h@{qmi8658.h}!qmi8658\_get\_i2c\_addr@{qmi8658\_get\_i2c\_addr}}
+\index{qmi8658\_get\_i2c\_addr@{qmi8658\_get\_i2c\_addr}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_get\_i2c\_addr()}{qmi8658\_get\_i2c\_addr()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_aac5bd14f5bacc9c0792e74f5fb2026a6} 
+uint8\+\_\+t qmi8658\+\_\+get\+\_\+i2c\+\_\+addr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la dirección I2C detectada del sensor. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Dirección I2C actual.
+\end{DoxyReturn}
+Obtiene la dirección I2C detectada del sensor.
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Dirección I2C actual del dispositivo. 
+\end{DoxyReturn}
+\Hypertarget{qmi8658_8h_a7961277f24fdb2a8f8e04381e84e21a7}\index{qmi8658.h@{qmi8658.h}!qmi8658\_init@{qmi8658\_init}}
+\index{qmi8658\_init@{qmi8658\_init}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_init()}{qmi8658\_init()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_a7961277f24fdb2a8f8e04381e84e21a7} 
+esp\+\_\+err\+\_\+t qmi8658\+\_\+init (\begin{DoxyParamCaption}\item[{i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t}]{bus}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el sensor QMI8658 en el bus I2C. 
+
+Detecta automáticamente la dirección del sensor, verifica su identidad y configura los registros necesarios para habilitar acelerómetro y giroscopio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bus} & Handle del bus I2C. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la inicialización fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+NOT\+\_\+\+FOUND si el sensor no es detectado. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+RESPONSE si WHO\+\_\+\+AM\+\_\+I es incorrecto.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe.
+\end{DoxyNote}
+Inicializa el sensor QMI8658 en el bus I2C.
+
+Detecta automáticamente la dirección I2C, verifica el registro WHO\+\_\+\+AM\+\_\+I y configura el acelerómetro y giroscopio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bus} & Handle del bus I2C. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la inicialización fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+NOT\+\_\+\+FOUND si el sensor no es detectado. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+RESPONSE si WHO\+\_\+\+AM\+\_\+I es incorrecto. 
+
+Otros códigos en caso de error I2C.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{qmi8658_8h_a899cd8e92d535c217256ecb0f83b47b3}\index{qmi8658.h@{qmi8658.h}!qmi8658\_read@{qmi8658\_read}}
+\index{qmi8658\_read@{qmi8658\_read}!qmi8658.h@{qmi8658.h}}
+\doxysubsubsection{\texorpdfstring{qmi8658\_read()}{qmi8658\_read()}}
+{\footnotesize\ttfamily \label{qmi8658_8h_a899cd8e92d535c217256ecb0f83b47b3} 
+esp\+\_\+err\+\_\+t qmi8658\+\_\+read (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Lee los datos actuales del sensor. 
+
+Obtiene aceleración, giroscopio y temperatura en unidades físicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Puntero a estructura donde se almacenarán los datos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la lectura fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si el puntero es NULL. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el sensor no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe.
+\end{DoxyNote}
+Lee los datos actuales del sensor.
+
+Obtiene valores de aceleración, giroscopio y temperatura, y los convierte a unidades físicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Puntero a estructura donde se almacenarán los datos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+esp\+\_\+err\+\_\+t ESP\+\_\+\+OK si la lectura fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG si el puntero es NULL. 
+
+ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE si el dispositivo no está inicializado.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe. 
+\end{DoxyNote}

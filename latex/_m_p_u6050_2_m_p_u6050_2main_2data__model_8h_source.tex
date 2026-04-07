@@ -1,0 +1,19 @@
+\doxysection{data\+\_\+model.\+h}
+\hypertarget{_m_p_u6050_2_m_p_u6050_2main_2data__model_8h_source}{}\label{_m_p_u6050_2_m_p_u6050_2main_2data__model_8h_source}\index{MPU6050/MPU6050/main/data\_model.h@{MPU6050/MPU6050/main/data\_model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ LOG\_TEXT\_MAX\ 128\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_attribute\_\_((packed))\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ node\_id;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ uint32\_t\ seq;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ uint32\_t\ timestamp\_ms;\ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{char}\ text[LOG\_TEXT\_MAX];}
+\DoxyCodeLine{00033\ \}\ \doxymbox{\hyperlink{structespnow__log__packet__t}{espnow\_log\_packet\_t}};}
+
+\end{DoxyCode}

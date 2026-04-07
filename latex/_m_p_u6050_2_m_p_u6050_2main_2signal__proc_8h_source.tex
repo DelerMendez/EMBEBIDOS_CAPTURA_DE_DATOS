@@ -1,0 +1,28 @@
+\doxysection{signal\+\_\+proc.\+h}
+\hypertarget{_m_p_u6050_2_m_p_u6050_2main_2signal__proc_8h_source}{}\label{_m_p_u6050_2_m_p_u6050_2main_2signal__proc_8h_source}\index{MPU6050/MPU6050/main/signal\_proc.h@{MPU6050/MPU6050/main/signal\_proc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ bpm;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ spo2;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ finger\_present;}
+\DoxyCodeLine{00014\ \}\ \doxymbox{\hyperlink{structsignal__result__t}{signal\_result\_t}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_ae3ab0ea086e2c54ed11b091ee500601a}{signal\_proc\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_adb155b087f65d7cc6473adcce9a41332}{signal\_proc\_update}}(uint16\_t\ red,\ uint16\_t\ ir);}
+\DoxyCodeLine{00018\ \doxymbox{\hyperlink{structsignal__result__t}{signal\_result\_t}}\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2signal__proc_8h_a9b806fd25e798b8544721207168b125c}{signal\_proc\_get\_result}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,228 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+sensor.h File Reference}
+\hypertarget{app__sensor_8h}{}\label{app__sensor_8h}\index{QMI8658/QMI8658/main/app\_sensor.h@{QMI8658/QMI8658/main/app\_sensor.h}}
+
+
+Interfaz del módulo de manejo del sensor IMU QMI8658 mediante I2C.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \+\#include "{}qmi8658.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__sensor_8h_a562da0ccdc412167ed216b2dd7da8c2a}{app\+\_\+sensor\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa el bus I2C y el sensor QMI8658. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__sensor_8h_a349c627d38f69cef5a62399e3fea4b1c}{app\+\_\+sensor\+\_\+calibrate}} (void)
+\begin{DoxyCompactList}\small\item\em Calibra el giroscopio del sensor QMI8658. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__sensor_8h_abefbd1dbb9519b0f26b924732229a868}{app\+\_\+sensor\+\_\+read}} (\doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}imu)
+\begin{DoxyCompactList}\small\item\em Lee los datos actuales del sensor IMU. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{app__sensor_8h_a623bef2123a0522cb7c913709b59d074}{app\+\_\+sensor\+\_\+get\+\_\+addr}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene la dirección I2C del sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz del módulo de manejo del sensor IMU QMI8658 mediante I2C. 
+
+Este archivo define las funciones públicas para:\+
+\begin{DoxyItemize}
+\item Inicializar el bus I2C y el sensor QMI8658.
+\item Calibrar el giroscopio del sensor.
+\item Leer datos del sensor IMU.
+\item Obtener la dirección I2C del dispositivo.
+\end{DoxyItemize}
+
+El módulo está diseñado para trabajar sobre ESP-\/\+IDF y puede ser utilizado dentro de tareas Free\+RTOS para adquisición periódica de datos.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Algunas funciones pueden ser bloqueantes (especialmente la calibración).
+\item No es thread-\/safe si múltiples tareas acceden sin sincronización externa.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__sensor_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__sensor_8h_a349c627d38f69cef5a62399e3fea4b1c}\index{app\_sensor.h@{app\_sensor.h}!app\_sensor\_calibrate@{app\_sensor\_calibrate}}
+\index{app\_sensor\_calibrate@{app\_sensor\_calibrate}!app\_sensor.h@{app\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{app\_sensor\_calibrate()}{app\_sensor\_calibrate()}}
+{\footnotesize\ttfamily \label{app__sensor_8h_a349c627d38f69cef5a62399e3fea4b1c} 
+esp\+\_\+err\+\_\+t app\+\_\+sensor\+\_\+calibrate (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Calibra el giroscopio del sensor QMI8658. 
+
+Realiza múltiples lecturas para calcular el offset del giroscopio, mejorando la precisión de las mediciones posteriores.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función bloqueante.
+\item El sensor debe permanecer inmóvil durante el proceso.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Calibración exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error durante la calibración.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Ejecuta un proceso de calibración del giroscopio tomando múltiples muestras para calcular el offset y mejorar la precisión de las mediciones.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función bloqueante, ya que incluye retardos entre muestras.
+\item El sensor debe permanecer inmóvil durante la calibración.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Calibración exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error durante el proceso de calibración. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\Hypertarget{app__sensor_8h_a623bef2123a0522cb7c913709b59d074}\index{app\_sensor.h@{app\_sensor.h}!app\_sensor\_get\_addr@{app\_sensor\_get\_addr}}
+\index{app\_sensor\_get\_addr@{app\_sensor\_get\_addr}!app\_sensor.h@{app\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{app\_sensor\_get\_addr()}{app\_sensor\_get\_addr()}}
+{\footnotesize\ttfamily \label{app__sensor_8h_a623bef2123a0522cb7c913709b59d074} 
+uint8\+\_\+t app\+\_\+sensor\+\_\+get\+\_\+addr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la dirección I2C del sensor. 
+
+Devuelve la dirección I2C configurada o detectada del dispositivo QMI8658.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función no bloqueante.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Dirección I2C del sensor (uint8\+\_\+t). 
+\end{DoxyReturn}
+\Hypertarget{app__sensor_8h_a562da0ccdc412167ed216b2dd7da8c2a}\index{app\_sensor.h@{app\_sensor.h}!app\_sensor\_init@{app\_sensor\_init}}
+\index{app\_sensor\_init@{app\_sensor\_init}!app\_sensor.h@{app\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{app\_sensor\_init()}{app\_sensor\_init()}}
+{\footnotesize\ttfamily \label{app__sensor_8h_a562da0ccdc412167ed216b2dd7da8c2a} 
+esp\+\_\+err\+\_\+t app\+\_\+sensor\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el bus I2C y el sensor QMI8658. 
+
+Configura el bus I2C maestro y realiza la inicialización del sensor. Debe ser llamada antes de cualquier otra operación sobre el sensor.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser bloqueante durante la inicialización del hardware.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error en la configuración o inicialización.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Esta función:\+
+\begin{DoxyItemize}
+\item Configura el bus I2C en modo maestro usando los parámetros definidos en app\+\_\+config.\+h.
+\item Habilita resistencias pull-\/up internas.
+\item Inicializa el sensor QMI8658 sobre el bus I2C.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser bloqueante durante la inicialización del hardware.
+\item Debe ser llamada antes de cualquier lectura o calibración del sensor.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error en la creación del bus o inicialización del sensor. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+Configuración del bus I2C maestro.
+
+\texorpdfstring{$<$}{<} Puerto I2C
+
+\texorpdfstring{$<$}{<} Pin SDA
+
+\texorpdfstring{$<$}{<} Pin SCL
+
+\texorpdfstring{$<$}{<} Fuente de reloj
+
+\texorpdfstring{$<$}{<} Filtro de glitches
+
+\texorpdfstring{$<$}{<} Pull-\/ups internos habilitados\Hypertarget{app__sensor_8h_abefbd1dbb9519b0f26b924732229a868}\index{app\_sensor.h@{app\_sensor.h}!app\_sensor\_read@{app\_sensor\_read}}
+\index{app\_sensor\_read@{app\_sensor\_read}!app\_sensor.h@{app\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{app\_sensor\_read()}{app\_sensor\_read()}}
+{\footnotesize\ttfamily \label{app__sensor_8h_abefbd1dbb9519b0f26b924732229a868} 
+esp\+\_\+err\+\_\+t app\+\_\+sensor\+\_\+read (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{imu}{}\end{DoxyParamCaption})}
+
+
+
+Lee los datos actuales del sensor IMU. 
+
+Obtiene los valores de aceleración, giroscopio y temperatura desde el sensor QMI8658 y los almacena en la estructura proporcionada.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser bloqueante dependiendo de la comunicación I2C.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura donde se almacenarán los datos leídos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error en la lectura del sensor.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Obtiene las mediciones actuales de aceleración, giroscopio y temperatura desde el sensor QMI8658 y las almacena en la estructura proporcionada.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Puede ser bloqueante dependiendo del acceso I2C.
+\item No es thread-\/safe si se llama desde múltiples tareas sin protección.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura donde se almacenarán los datos leídos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item Otros códigos esp\+\_\+err\+\_\+t:\+ Error en la comunicación con el sensor. 
+\end{DoxyItemize}
+\end{DoxyReturn}

@@ -1,0 +1,78 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+app\+\_\+tasks.c File Reference}
+\hypertarget{_max30100_2_max30100_2main_2app__tasks_8c}{}\label{_max30100_2_max30100_2main_2app__tasks_8c}\index{Max30100/Max30100/main/app\_tasks.c@{Max30100/Max30100/main/app\_tasks.c}}
+
+
+Implementación de tareas principales del sistema para lectura de sensor, procesamiento de señales y envío de datos mediante ESP-\/\+NOW.  
+
+
+{\ttfamily \+\#include "{}app\+\_\+tasks.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+queue.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \+\#include "{}app\+\_\+config.\+h"{}}\newline
+{\ttfamily \+\#include "{}max30100.\+h"{}}\newline
+{\ttfamily \+\#include "{}signal\+\_\+proc.\+h"{}}\newline
+{\ttfamily \+\#include "{}espnow\+\_\+tx.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{structsample__msg__t}{sample\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura de mensaje de muestra del sensor. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{structavg__window__t}{avg\+\_\+window\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Estructura para acumulación de datos en ventana de promediado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2app__tasks_8c_adaf2d0d735993165acedd8f410d879d0}{app\+\_\+tasks\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa y arranca las tareas del sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación de tareas principales del sistema para lectura de sensor, procesamiento de señales y envío de datos mediante ESP-\/\+NOW. 
+
+Este archivo define dos tareas principales:\+
+\begin{DoxyItemize}
+\item Lectura continua del sensor MAX30100 (frecuencia cardíaca y Sp\+O2).
+\item Procesamiento de señales y envío periódico de datos promediados.
+\end{DoxyItemize}
+
+Utiliza Free\+RTOS para la gestión de tareas y colas, permitiendo desacoplar la adquisición de datos del procesamiento y transmisión.
+
+Se implementa una ventana de promediado de datos para mejorar la estabilidad de los valores enviados (BPM, Sp\+O2, señales IR y RED).
+
+\begin{DoxyAuthor}{Authors}
+
+\begin{DoxyItemize}
+\item Deler Mendez
+\item Nathalia Piamba
+\item Danny Ramirez 
+\end{DoxyItemize}
+\end{DoxyAuthor}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2app__tasks_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2app__tasks_8c_adaf2d0d735993165acedd8f410d879d0}\index{app\_tasks.c@{app\_tasks.c}!app\_tasks\_start@{app\_tasks\_start}}
+\index{app\_tasks\_start@{app\_tasks\_start}!app\_tasks.c@{app\_tasks.c}}
+\doxysubsubsection{\texorpdfstring{app\_tasks\_start()}{app\_tasks\_start()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2app__tasks_8c_adaf2d0d735993165acedd8f410d879d0} 
+esp\+\_\+err\+\_\+t app\+\_\+tasks\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa y arranca las tareas del sistema. 
+
+Inicializa y arranca las tareas principales de la aplicación.
+
+\begin{DoxyReturn}{Returns}
+ESP\+\_\+\+OK si todo se inicializa correctamente. 
+
+ESP\+\_\+\+ERR\+\_\+\+NO\+\_\+\+MEM si falla la creación de la cola. 
+
+ESP\+\_\+\+FAIL si falla la creación de tareas. 
+\end{DoxyReturn}

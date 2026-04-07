@@ -1,0 +1,26 @@
+\doxysection{data\+\_\+model.\+h}
+\hypertarget{_max30100_2_max30100_2main_2data__model_8h_source}{}\label{_max30100_2_max30100_2main_2data__model_8h_source}\index{Max30100/Max30100/main/data\_model.h@{Max30100/Max30100/main/data\_model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifndef\ LOG\_TEXT\_MAX}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LOG\_TEXT\_MAX\ 128}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_\_attribute\_\_((packed))\ \{}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ uint8\_t\ node\_id;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ uint32\_t\ seq;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ uint32\_t\ timestamp\_ms;\ \ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{char}\ text[LOG\_TEXT\_MAX];}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \}\ \doxymbox{\hyperlink{structespnow__log__packet__t}{espnow\_log\_packet\_t}};}
+
+\end{DoxyCode}

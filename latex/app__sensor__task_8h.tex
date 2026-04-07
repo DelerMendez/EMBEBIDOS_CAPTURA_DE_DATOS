@@ -1,0 +1,129 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+sensor\+\_\+task.h File Reference}
+\hypertarget{app__sensor__task_8h}{}\label{app__sensor__task_8h}\index{QMI8658/QMI8658/main/app\_sensor\_task.h@{QMI8658/QMI8658/main/app\_sensor\_task.h}}
+
+
+Declaración de la tarea de adquisición y procesamiento del sensor IMU.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{app__sensor__task_8h_abac2e9949e6582ccaefe4404ee3ed1de}{app\+\_\+sensor\+\_\+task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Tarea de Free\+RTOS para adquisición y procesamiento del sensor IMU. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de la tarea de adquisición y procesamiento del sensor IMU. 
+
+Este archivo define la interfaz de la tarea encargada de leer los datos del sensor IMU, procesarlos, detectar eventos relevantes y gestionar la comunicación con otros módulos del sistema.
+
+La tarea está diseñada para ejecutarse bajo Free\+RTOS y utiliza un Queue\+Handle\+\_\+t (pasado como parámetro) para compartir datos con otras tareas.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item La función es bloqueante (contiene un bucle infinito).
+\item Debe ser creada mediante x\+Task\+Create o equivalente.
+\item El parámetro pv\+Parameters debe ser un puntero válido a una cola.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__sensor__task_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__sensor__task_8h_abac2e9949e6582ccaefe4404ee3ed1de}\index{app\_sensor\_task.h@{app\_sensor\_task.h}!app\_sensor\_task@{app\_sensor\_task}}
+\index{app\_sensor\_task@{app\_sensor\_task}!app\_sensor\_task.h@{app\_sensor\_task.h}}
+\doxysubsubsection{\texorpdfstring{app\_sensor\_task()}{app\_sensor\_task()}}
+{\footnotesize\ttfamily \label{app__sensor__task_8h_abac2e9949e6582ccaefe4404ee3ed1de} 
+void app\+\_\+sensor\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Tarea de Free\+RTOS para adquisición y procesamiento del sensor IMU. 
+
+Esta tarea:\+
+\begin{DoxyItemize}
+\item Lee periódicamente datos del sensor.
+\item Detecta cambios abruptos y eventos significativos.
+\item Publica los datos en una cola.
+\item Envía información mediante ESP-\/\+NOW.
+\item Gestiona alarmas en función del comportamiento detectado.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función bloqueante (bucle infinito).
+\item Diseñada para ejecutarse como tarea de Free\+RTOS.
+\item El parámetro pv\+Parameters debe ser un Queue\+Handle\+\_\+t válido.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Puntero genérico que debe contener un Queue\+Handle\+\_\+t para comunicación entre tareas.\\
+\hline
+\end{DoxyParams}
+Tarea de Free\+RTOS para adquisición y procesamiento del sensor IMU.
+
+Esta tarea realiza las siguientes funciones en bucle infinito:\+
+\begin{DoxyItemize}
+\item Lectura periódica del sensor IMU.
+\item Cálculo de diferencias entre muestras consecutivas.
+\item Detección de eventos abruptos o cambios significativos.
+\item Publicación de datos en una cola Free\+RTOS.
+\item Envío de datos mediante ESP-\/\+NOW.
+\item Monitoreo de estado de reposo tras eventos fuertes.
+\item Activación de alarmas si se detecta inactividad prolongada.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Función bloqueante (bucle infinito con v\+Task\+Delay).
+\item Diseñada para ejecutarse como tarea de Free\+RTOS.
+\item Usa x\+Queue\+Overwrite, por lo que la cola debe ser de longitud 1.
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Puntero a un Queue\+Handle\+\_\+t utilizado para enviar datos IMU a otras tareas. \\
+\hline
+\end{DoxyParams}
+Cola para compartir datos del IMU entre tareas.
+
+Estructura para almacenar la lectura actual del sensor.
+
+Estructura para almacenar la lectura previa del sensor.
+
+Indica si es la primera muestra adquirida
+
+Indica si se está monitoreando después de un evento abrupto
+
+Indica si ya se envió la alarma por estado inmóvil
+
+Tick en el que comenzó el estado de reposo
+
+Tick del último evento detectado
+
+Diferencias absolutas en aceleración
+
+Diferencias absolutas en giroscopio
+
+Magnitud total del cambio detectado
+
+Indica si ocurrió un cambio abrupto en alguna componente
+
+Indica si ocurrió un evento significativo global
+
+Indica si el sistema está en estado de reposo
+
+Tiempo actual en ticks del sistema
+
+Verifica si se cumple el tiempo de enfriamiento entre eventos

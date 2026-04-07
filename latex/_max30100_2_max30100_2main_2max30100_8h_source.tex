@@ -1,0 +1,47 @@
+\doxysection{max30100.\+h}
+\hypertarget{_max30100_2_max30100_2main_2max30100_8h_source}{}\label{_max30100_2_max30100_2main_2max30100_8h_source}\index{Max30100/Max30100/main/max30100.h@{Max30100/Max30100/main/max30100.h}}
+\doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ i2c\_port\_num\_t\ \doxymbox{\hyperlink{structmax30100__config__t_a52e5ff767473b7969dcc4b896078f682}{i2c\_port}};\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structmax30100__config__t_ab620535bae36151d637657a7f1424e26}{sda\_gpio}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{structmax30100__config__t_a516131263b6506b8fc4490a168e98e1d}{scl\_gpio}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{structmax30100__config__t_a5ac2d0de486ef43f3360dfa1b02d2ed7}{i2c\_freq\_hz}};\ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{structmax30100__config__t_ae8648a54066cd9f59c0a26eebbf4c1f7}{device\_addr}};\ \ \ \ \ }
+\DoxyCodeLine{00047\ \}\ \doxymbox{\hyperlink{structmax30100__config__t}{max30100\_config\_t}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{structmax30100__sample__t_a4a2dc2ef154599e8653e8262a5f73428}{red}};\ }
+\DoxyCodeLine{00057\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{structmax30100__sample__t_a56d84d8cad31f3815dbb6aaf294fa823}{ir}};\ \ }
+\DoxyCodeLine{00058\ \}\ \doxymbox{\hyperlink{structmax30100__sample__t}{max30100\_sample\_t}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00075\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad806b4596feccbc7a3d13a3390cde339}{max30100\_init}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structmax30100__config__t}{max30100\_config\_t}}\ *cfg);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00088\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_a1e3318eb3513a9bd61d355d7faf6acf1}{max30100\_configure\_default}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00101\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ac8aee1a3032c7b100e632d754873d7c5}{max30100\_reconfigure\_if\_needed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00113\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad178f38f195dc6bb870bb580e16c343c}{max30100\_read\_part\_id}}(uint8\_t\ *part\_id);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00127\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad3b196e4029ce5ee95065f3023b1171d}{max30100\_read\_sample}}(\doxymbox{\hyperlink{structmax30100__sample__t}{max30100\_sample\_t}}\ *sample);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00140\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_af40c71580c810dc13ac52ca8b7d6c978}{max30100\_fifo\_status}}(uint8\_t\ *wr,\ uint8\_t\ *rd,\ uint8\_t\ *ovf);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00151\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ada85191beb66c3a7e0e2884093b0f8bc}{max30100\_reset\_fifo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

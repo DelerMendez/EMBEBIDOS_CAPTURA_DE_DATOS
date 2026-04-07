@@ -1,0 +1,122 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+display.h File Reference}
+\hypertarget{app__display_8h}{}\label{app__display_8h}\index{QMI8658/QMI8658/main/app\_display.h@{QMI8658/QMI8658/main/app\_display.h}}
+
+
+Interfaz del módulo de control del display.  
+
+
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \+\#include "{}qmi8658.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{app__display_8h_a8e70e887c9d27176abb9e2c105884980}{app\+\_\+display\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa el display y la interfaz gráfica. \end{DoxyCompactList}\item 
+\Hypertarget{app__display_8h_acda10fef84231d32b2e0b8082c789552}\label{app__display_8h_acda10fef84231d32b2e0b8082c789552} 
+void {\bfseries app\+\_\+display\+\_\+show\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Muestra el estado de inicialización en el display. \end{DoxyCompactList}\item 
+\Hypertarget{app__display_8h_af5f7089bb2a82b82c79baa3ff7e65a12}\label{app__display_8h_af5f7089bb2a82b82c79baa3ff7e65a12} 
+void {\bfseries app\+\_\+display\+\_\+show\+\_\+calibrating} (void)
+\begin{DoxyCompactList}\small\item\em Muestra el estado de calibración en el display. \end{DoxyCompactList}\item 
+\Hypertarget{app__display_8h_aaa509eefb07947058ab8487fafccc534}\label{app__display_8h_aaa509eefb07947058ab8487fafccc534} 
+void {\bfseries app\+\_\+display\+\_\+show\+\_\+running} (void)
+\begin{DoxyCompactList}\small\item\em Muestra el estado de ejecución normal en el display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{app__display_8h_a8c36c645ed9938221956d83d20961099}{app\+\_\+display\+\_\+show\+\_\+error}} (const char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Muestra un mensaje de error en el display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{app__display_8h_a2dac9a1be905c6bc4c5efc3f02ac02e5}{app\+\_\+display\+\_\+update}} (const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}imu)
+\begin{DoxyCompactList}\small\item\em Actualiza el display con datos del IMU. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz del módulo de control del display. 
+
+Este archivo define las funciones públicas para la gestión del display, incluyendo inicialización, visualización de estados del sistema y actualización de datos provenientes del sensor IMU.
+
+El módulo garantiza acceso seguro al display mediante mecanismos internos de sincronización (mutex), permitiendo su uso desde múltiples tareas.
+
+\begin{DoxyNote}{Note}
+La implementación se encuentra en \doxylink{app__display_8c}{app\+\_\+display.\+c}.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__display_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__display_8h_a8e70e887c9d27176abb9e2c105884980}\index{app\_display.h@{app\_display.h}!app\_display\_init@{app\_display\_init}}
+\index{app\_display\_init@{app\_display\_init}!app\_display.h@{app\_display.h}}
+\doxysubsubsection{\texorpdfstring{app\_display\_init()}{app\_display\_init()}}
+{\footnotesize\ttfamily \label{app__display_8h_a8e70e887c9d27176abb9e2c105884980} 
+esp\+\_\+err\+\_\+t app\+\_\+display\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el display y la interfaz gráfica. 
+
+Configura el driver del display, inicializa la UI y prepara los recursos necesarios para su uso.
+
+\begin{DoxyReturn}{Returns}
+ESP\+\_\+\+OK si la inicialización fue exitosa. 
+
+Código de error en caso contrario.
+\end{DoxyReturn}
+Realiza:\+
+\begin{DoxyItemize}
+\item Creación del mutex
+\item Inicialización del driver GC9\+A01
+\item Inicialización de la UI
+\item Muestra mensaje inicial
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ESP\+\_\+\+OK si la inicialización fue exitosa. 
+
+ESP\+\_\+\+ERR\+\_\+\+NO\+\_\+\+MEM si falla la creación del mutex. 
+
+ESP\+\_\+\+ERR\+\_\+\+TIMEOUT si no se puede adquirir el mutex. 
+\end{DoxyReturn}
+\Hypertarget{app__display_8h_a8c36c645ed9938221956d83d20961099}\index{app\_display.h@{app\_display.h}!app\_display\_show\_error@{app\_display\_show\_error}}
+\index{app\_display\_show\_error@{app\_display\_show\_error}!app\_display.h@{app\_display.h}}
+\doxysubsubsection{\texorpdfstring{app\_display\_show\_error()}{app\_display\_show\_error()}}
+{\footnotesize\ttfamily \label{app__display_8h_a8c36c645ed9938221956d83d20961099} 
+void app\+\_\+display\+\_\+show\+\_\+error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Muestra un mensaje de error en el display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Cadena de texto con el mensaje de error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{app__display_8h_a2dac9a1be905c6bc4c5efc3f02ac02e5}\index{app\_display.h@{app\_display.h}!app\_display\_update@{app\_display\_update}}
+\index{app\_display\_update@{app\_display\_update}!app\_display.h@{app\_display.h}}
+\doxysubsubsection{\texorpdfstring{app\_display\_update()}{app\_display\_update()}}
+{\footnotesize\ttfamily \label{app__display_8h_a2dac9a1be905c6bc4c5efc3f02ac02e5} 
+void app\+\_\+display\+\_\+update (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{imu}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el display con datos del IMU. 
+
+Envía los datos del sensor a la capa de UI para su representación gráfica.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura con datos del IMU.\\
+\hline
+\end{DoxyParams}
+Esta función envía los datos del sensor a la capa de UI para su representación gráfica.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura con datos del IMU. \\
+\hline
+\end{DoxyParams}

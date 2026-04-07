@@ -1,0 +1,74 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+core.h File Reference}
+\hypertarget{app__core_8h}{}\label{app__core_8h}\index{QMI8658/QMI8658/main/app\_core.h@{QMI8658/QMI8658/main/app\_core.h}}
+
+
+Declaración de la función principal de arranque del sistema.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{app__core_8h_a2b17dc26f35cf116376c22ff7ece33e7}{app\+\_\+core\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Inicia la ejecución de la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de la función principal de arranque del sistema. 
+
+Este archivo define la interfaz del módulo central de la aplicación, encargado de inicializar todos los subsistemas y lanzar las tareas principales en un entorno basado en ESP-\/\+IDF.
+
+\begin{DoxyNote}{Note}
+La implementación se encuentra en \doxylink{app__core_8c}{app\+\_\+core.\+c}.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__core_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__core_8h_a2b17dc26f35cf116376c22ff7ece33e7}\index{app\_core.h@{app\_core.h}!app\_core\_start@{app\_core\_start}}
+\index{app\_core\_start@{app\_core\_start}!app\_core.h@{app\_core.h}}
+\doxysubsubsection{\texorpdfstring{app\_core\_start()}{app\_core\_start()}}
+{\footnotesize\ttfamily \label{app__core_8h_a2b17dc26f35cf116376c22ff7ece33e7} 
+void app\+\_\+core\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicia la ejecución de la aplicación. 
+
+Esta función se encarga de inicializar todos los componentes del sistema, incluyendo:\+
+\begin{DoxyItemize}
+\item Gestión de energía
+\item Comunicación (ESP-\/\+NOW)
+\item Display
+\item Creación de tareas Free\+RTOS
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Función bloqueante durante la inicialización. 
+
+Debe ser llamada desde el contexto principal (por ejemplo, app\+\_\+main).
+\end{DoxyNote}
+Inicia la ejecución de la aplicación.
+
+Esta función realiza:\+
+\begin{DoxyItemize}
+\item Inicialización de power management
+\item Inicialización de comunicación (ESP-\/\+NOW)
+\item Inicialización del display
+\item Creación de la cola de datos del IMU
+\item Creación de tareas Free\+RTOS (sensor y display)
+\end{DoxyItemize}
+
+En caso de error crítico, el sistema entra en un bucle infinito mostrando el error en pantalla.
+
+\begin{DoxyNote}{Note}
+Función bloqueante durante la inicialización. 
+
+No es thread-\/safe y debe llamarse desde el contexto principal (app\+\_\+main). 
+\end{DoxyNote}

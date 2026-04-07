@@ -1,0 +1,400 @@
+\doxysection{QMI8658/\+\+QMI8658/\+components/\+gc9a01/\+gc9a01.h File Reference}
+\hypertarget{gc9a01_8h}{}\label{gc9a01_8h}\index{QMI8658/QMI8658/components/gc9a01/gc9a01.h@{QMI8658/QMI8658/components/gc9a01/gc9a01.h}}
+
+
+Interfaz de control para el display LCD basado en el controlador GC9\+A01 utilizando ESP-\/\+IDF.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{gc9a01_8h_a17a647a68b56e4e82c64fb1357e3dcdd}\label{gc9a01_8h_a17a647a68b56e4e82c64fb1357e3dcdd} 
+\+\#define {\bfseries GC9\+A01\+\_\+\+Width}~CONFIG\+\_\+\+GC9\+A01\+\_\+\+Width
+\begin{DoxyCompactList}\small\item\em Ancho del display definido por configuración en ESP-\/\+IDF. \end{DoxyCompactList}\item 
+\Hypertarget{gc9a01_8h_ac83de67fc676bbdeb1a89a0dda86ed88}\label{gc9a01_8h_ac83de67fc676bbdeb1a89a0dda86ed88} 
+\+\#define {\bfseries GC9\+A01\+\_\+\+Height}~CONFIG\+\_\+\+GC9\+A01\+\_\+\+Height
+\begin{DoxyCompactList}\small\item\em Alto del display definido por configuración en ESP-\/\+IDF. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{gc9a01_8h_abc2d49bee07b0552fbfdc71910873f0e}{GC9\+A01\+\_\+\+Get\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el ancho actual del display. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{gc9a01_8h_af4e922ae1adc74ebb2d16e5a0c6631c7}{GC9\+A01\+\_\+\+Get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el alto actual del display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_ad4890001ce815bbaf740efc0860b752b}{GC9\+A01\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa el display GC9\+A01. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a13381d8ea34e16d8bed2569dcf11da23}{GC9\+A01\+\_\+\+Sleep\+Mode}} (uint8\+\_\+t Mode)
+\begin{DoxyCompactList}\small\item\em Activa o desactiva el modo de suspensión del display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a17680948d150f19a553f436dad6fbdbe}{GC9\+A01\+\_\+\+Display\+Power}} (uint8\+\_\+t On)
+\begin{DoxyCompactList}\small\item\em Controla la alimentación del display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_ade5bc4d106c35283160d693cf258c2f4}{GC9\+A01\+\_\+\+Draw\+Pixel}} (int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Dibuja un píxel en una posición específica. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a64f68cf80c19097d40a6c30683b9669b}{GC9\+A01\+\_\+\+Fill\+Rect}} (int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Rellena un rectángulo con un color específico. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a8380587e7a59219f1a5fd00c29957c5d}{GC9\+A01\+\_\+\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el contenido del display. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a026b57b744f84adc2fa2fa94fe0c7b41}{GC9\+A01\+\_\+\+Set\+BL}} (uint8\+\_\+t Value)
+\begin{DoxyCompactList}\small\item\em Ajusta el nivel de brillo de la retroiluminación (Backlight). \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{gc9a01_8h_a58afc5532575cf40f07f82759b86d8f2}{GC9\+A01\+\_\+\+Get\+Pixel}} (int16\+\_\+t x, int16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Obtiene el color de un píxel en una posición específica. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a2368ad46ebbd641f86f58a2f6a02b693}{GC9\+A01\+\_\+\+Screen\+\_\+\+Shot}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint16\+\_\+t \texorpdfstring{$\ast$}{*}Buffer)
+\begin{DoxyCompactList}\small\item\em Captura una región del display en un buffer. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{gc9a01_8h_a2d185ef6a1c0e2dafd8aea76164daf6f}{GC9\+A01\+\_\+\+Screen\+\_\+\+Load}} (uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint16\+\_\+t \texorpdfstring{$\ast$}{*}Buffer)
+\begin{DoxyCompactList}\small\item\em Carga una imagen desde un buffer hacia el display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz de control para el display LCD basado en el controlador GC9\+A01 utilizando ESP-\/\+IDF. 
+
+Este archivo define las funciones necesarias para inicializar, controlar y dibujar en un display GC9\+A01. Incluye operaciones básicas como dibujo de píxeles, llenado de regiones, control de energía, y manejo de buffers (incluyendo soporte opcional para PSRAM).
+
+Las funciones están diseñadas para ser utilizadas en sistemas embebidos con ESP-\/\+IDF. Dependiendo de la implementación en el archivo fuente, algunas funciones pueden ser bloqueantes debido al uso de comunicación SPI y no son inherentemente thread-\/safe si se accede al bus desde múltiples tareas.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez 
+
+Nathalia Piamba 
+
+Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{gc9a01_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gc9a01_8h_a17680948d150f19a553f436dad6fbdbe}\index{gc9a01.h@{gc9a01.h}!GC9A01\_DisplayPower@{GC9A01\_DisplayPower}}
+\index{GC9A01\_DisplayPower@{GC9A01\_DisplayPower}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_DisplayPower()}{GC9A01\_DisplayPower()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a17680948d150f19a553f436dad6fbdbe} 
+void GC9\+A01\+\_\+\+Display\+Power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{On}{}\end{DoxyParamCaption})}
+
+
+
+Controla la alimentación del display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em On} & Valor de control:\+
+\begin{DoxyItemize}
+\item 0:\+ Apagar display
+\item 1:\+ Encender display
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Esta función puede afectar el consumo energético del sistema.
+\end{DoxyNote}
+Controla la alimentación del display.
+
+Controla el estado de encendido del panel LCD sin afectar el contenido de la memoria de video ni la retroiluminación.
+
+
+\begin{DoxyParams}{Parameters}
+{\em On} & 1 para encender la pantalla (DISPON), 0 para apagarla (DISPOFF). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8h_ade5bc4d106c35283160d693cf258c2f4}\index{gc9a01.h@{gc9a01.h}!GC9A01\_DrawPixel@{GC9A01\_DrawPixel}}
+\index{GC9A01\_DrawPixel@{GC9A01\_DrawPixel}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_DrawPixel()}{GC9A01\_DrawPixel()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_ade5bc4d106c35283160d693cf258c2f4} 
+void GC9\+A01\+\_\+\+Draw\+Pixel (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Dibuja un píxel en una posición específica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada horizontal (posición en X). \\
+\hline
+{\em y} & Coordenada vertical (posición en Y). \\
+\hline
+{\em color} & Color del píxel en formato RGB565.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Función bloqueante debido al acceso al bus de comunicación. 
+
+No es thread-\/safe si múltiples tareas dibujan simultáneamente.
+\end{DoxyNote}
+Dibuja un píxel en una posición específica.
+
+Configura una ventana de 1x1 píxel y envía el color por SPI. Si las coordenadas están fuera de los límites de la pantalla, la función retorna sin acción. Esta función es bloqueante. Solo disponible cuando {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE} está desactivado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X del píxel (0 a GC9\+A01\+\_\+\+Width -\/ 1). \\
+\hline
+{\em y} & Coordenada Y del píxel (0 a GC9\+A01\+\_\+\+Height -\/ 1). \\
+\hline
+{\em color} & Color del píxel en formato RGB565. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8h_a64f68cf80c19097d40a6c30683b9669b}\index{gc9a01.h@{gc9a01.h}!GC9A01\_FillRect@{GC9A01\_FillRect}}
+\index{GC9A01\_FillRect@{GC9A01\_FillRect}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_FillRect()}{GC9A01\_FillRect()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a64f68cf80c19097d40a6c30683b9669b} 
+void GC9\+A01\+\_\+\+Fill\+Rect (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{int16\+\_\+t}]{w}{, }\item[{int16\+\_\+t}]{h}{, }\item[{uint16\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Rellena un rectángulo con un color específico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X de la esquina superior izquierda. \\
+\hline
+{\em y} & Coordenada Y de la esquina superior izquierda. \\
+\hline
+{\em w} & Ancho del rectángulo. \\
+\hline
+{\em h} & Alto del rectángulo. \\
+\hline
+{\em color} & Color de relleno en formato RGB565.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Operación potencialmente costosa y bloqueante.
+\end{DoxyNote}
+Rellena un rectángulo con un color específico.
+
+Recorta el rectángulo a los límites de la pantalla si es necesario, configura la ventana de escritura y envía el color píxel a píxel por SPI. Esta función es bloqueante. Solo disponible cuando {\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE} está desactivado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X de la esquina superior izquierda. \\
+\hline
+{\em y} & Coordenada Y de la esquina superior izquierda. \\
+\hline
+{\em w} & Ancho del rectángulo en píxeles. \\
+\hline
+{\em h} & Alto del rectángulo en píxeles. \\
+\hline
+{\em color} & Color de relleno en formato RGB565. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8h_af4e922ae1adc74ebb2d16e5a0c6631c7}\index{gc9a01.h@{gc9a01.h}!GC9A01\_GetHeight@{GC9A01\_GetHeight}}
+\index{GC9A01\_GetHeight@{GC9A01\_GetHeight}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_GetHeight()}{GC9A01\_GetHeight()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_af4e922ae1adc74ebb2d16e5a0c6631c7} 
+uint16\+\_\+t GC9\+A01\+\_\+\+Get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el alto actual del display. 
+
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t Alto del display en píxeles.
+\end{DoxyReturn}
+Obtiene el alto actual del display.
+
+\begin{DoxyReturn}{Returns}
+Altura de la pantalla en píxeles (valor de {\ttfamily GC9\+A01\+\_\+\+Height}). 
+\end{DoxyReturn}
+\Hypertarget{gc9a01_8h_a58afc5532575cf40f07f82759b86d8f2}\index{gc9a01.h@{gc9a01.h}!GC9A01\_GetPixel@{GC9A01\_GetPixel}}
+\index{GC9A01\_GetPixel@{GC9A01\_GetPixel}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_GetPixel()}{GC9A01\_GetPixel()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a58afc5532575cf40f07f82759b86d8f2} 
+uint16\+\_\+t GC9\+A01\+\_\+\+Get\+Pixel (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el color de un píxel en una posición específica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada horizontal (posición en X). \\
+\hline
+{\em y} & Coordenada vertical (posición en Y).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t Color del píxel en formato RGB565.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Puede requerir acceso al buffer interno o lectura del display. 
+\end{DoxyNote}
+\Hypertarget{gc9a01_8h_abc2d49bee07b0552fbfdc71910873f0e}\index{gc9a01.h@{gc9a01.h}!GC9A01\_GetWidth@{GC9A01\_GetWidth}}
+\index{GC9A01\_GetWidth@{GC9A01\_GetWidth}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_GetWidth()}{GC9A01\_GetWidth()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_abc2d49bee07b0552fbfdc71910873f0e} 
+uint16\+\_\+t GC9\+A01\+\_\+\+Get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene el ancho actual del display. 
+
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t Ancho del display en píxeles.
+\end{DoxyReturn}
+Obtiene el ancho actual del display.
+
+\begin{DoxyReturn}{Returns}
+Ancho de la pantalla en píxeles (valor de {\ttfamily GC9\+A01\+\_\+\+Width}). 
+\end{DoxyReturn}
+\Hypertarget{gc9a01_8h_ad4890001ce815bbaf740efc0860b752b}\index{gc9a01.h@{gc9a01.h}!GC9A01\_Init@{GC9A01\_Init}}
+\index{GC9A01\_Init@{GC9A01\_Init}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Init()}{GC9A01\_Init()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_ad4890001ce815bbaf740efc0860b752b} 
+void GC9\+A01\+\_\+\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el display GC9\+A01. 
+
+Configura la interfaz de comunicación (usualmente SPI), inicializa registros internos del controlador y prepara el display para su uso.
+
+\begin{DoxyNote}{Note}
+Esta función es bloqueante y debe ejecutarse antes de cualquier operación gráfica. 
+
+No es thread-\/safe si múltiples tareas acceden al bus SPI simultáneamente.
+\end{DoxyNote}
+Inicializa el display GC9\+A01.
+
+Realiza la secuencia completa de inicialización del driver:\+
+\begin{DoxyEnumerate}
+\item Asigna el buffer en PSRAM si corresponde ({\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+BUFFER\+\_\+\+MODE\+\_\+\+PSRAM}).
+\item Inicializa los GPIOs mediante {\ttfamily gc9a01\+\_\+\+GPIO\+\_\+init}.
+\item Inicializa el bus SPI mediante {\ttfamily gc9a01\+\_\+\+SPI\+\_\+init}.
+\item Configura LEDC para PWM de retroiluminación si está habilitado.
+\item Realiza reset por hardware si está habilitado.
+\item Envía la tabla completa de comandos de inicialización {\ttfamily lcd\+\_\+init\+\_\+cmds}.
+\item Configura orientación, modo de color, inversión y salida del modo sleep.
+\item Enciende la pantalla y, en modo buffer, realiza un primer volcado limpio.
+\item Establece la retroiluminación al 100\% si el control está habilitado.
+\end{DoxyEnumerate}
+
+Esta función es bloqueante e incluye múltiples retardos requeridos por la hoja de datos del GC9\+A01. Debe llamarse una única vez desde la tarea de inicialización de la aplicación. \Hypertarget{gc9a01_8h_a2d185ef6a1c0e2dafd8aea76164daf6f}\index{gc9a01.h@{gc9a01.h}!GC9A01\_Screen\_Load@{GC9A01\_Screen\_Load}}
+\index{GC9A01\_Screen\_Load@{GC9A01\_Screen\_Load}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Screen\_Load()}{GC9A01\_Screen\_Load()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a2d185ef6a1c0e2dafd8aea76164daf6f} 
+void GC9\+A01\+\_\+\+Screen\+\_\+\+Load (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x}{, }\item[{uint16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{width}{, }\item[{uint16\+\_\+t}]{height}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{Buffer}{}\end{DoxyParamCaption})}
+
+
+
+Carga una imagen desde un buffer hacia el display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X inicial. \\
+\hline
+{\em y} & Coordenada Y inicial. \\
+\hline
+{\em width} & Ancho de la imagen. \\
+\hline
+{\em height} & Alto de la imagen. \\
+\hline
+{\em Buffer} & Puntero al buffer que contiene los datos de la imagen.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El buffer debe contener datos en formato RGB565. 
+
+Operación bloqueante debido a la transferencia de datos. 
+\end{DoxyNote}
+\Hypertarget{gc9a01_8h_a2368ad46ebbd641f86f58a2f6a02b693}\index{gc9a01.h@{gc9a01.h}!GC9A01\_Screen\_Shot@{GC9A01\_Screen\_Shot}}
+\index{GC9A01\_Screen\_Shot@{GC9A01\_Screen\_Shot}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Screen\_Shot()}{GC9A01\_Screen\_Shot()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a2368ad46ebbd641f86f58a2f6a02b693} 
+void GC9\+A01\+\_\+\+Screen\+\_\+\+Shot (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x}{, }\item[{uint16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{width}{, }\item[{uint16\+\_\+t}]{height}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{Buffer}{}\end{DoxyParamCaption})}
+
+
+
+Captura una región del display en un buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordenada X inicial. \\
+\hline
+{\em y} & Coordenada Y inicial. \\
+\hline
+{\em width} & Ancho de la región a capturar. \\
+\hline
+{\em height} & Alto de la región a capturar. \\
+\hline
+{\em Buffer} & Puntero al buffer donde se almacenarán los datos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+El buffer debe tener suficiente memoria para almacenar width \texorpdfstring{$\ast$}{*} height píxeles. 
+
+Operación bloqueante. 
+\end{DoxyNote}
+\Hypertarget{gc9a01_8h_a026b57b744f84adc2fa2fa94fe0c7b41}\index{gc9a01.h@{gc9a01.h}!GC9A01\_SetBL@{GC9A01\_SetBL}}
+\index{GC9A01\_SetBL@{GC9A01\_SetBL}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_SetBL()}{GC9A01\_SetBL()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a026b57b744f84adc2fa2fa94fe0c7b41} 
+void GC9\+A01\+\_\+\+Set\+BL (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Value}{}\end{DoxyParamCaption})}
+
+
+
+Ajusta el nivel de brillo de la retroiluminación (Backlight). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Valor del brillo (dependiente del hardware, típicamente 0–255).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Puede utilizar PWM dependiendo de la implementación.
+\end{DoxyNote}
+Ajusta el nivel de brillo de la retroiluminación (Backlight).
+
+Si el modo PWM está habilitado ({\ttfamily CONFIG\+\_\+\+GC9\+A01\+\_\+\+CONTROL\+\_\+\+BACK\+\_\+\+LIGHT\+\_\+\+MODE}), ajusta el ciclo de trabajo del canal LEDC. En caso contrario, conmuta el pin de retroiluminación de forma digital (encendido/\+apagado). Si el control de retroiluminación no está habilitado en menuconfig, la función no tiene efecto.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Nivel de brillo deseado, de 0 (apagado) a 100 (máximo brillo). Valores superiores a 100 se recortan a 100. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8h_a13381d8ea34e16d8bed2569dcf11da23}\index{gc9a01.h@{gc9a01.h}!GC9A01\_SleepMode@{GC9A01\_SleepMode}}
+\index{GC9A01\_SleepMode@{GC9A01\_SleepMode}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_SleepMode()}{GC9A01\_SleepMode()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a13381d8ea34e16d8bed2569dcf11da23} 
+void GC9\+A01\+\_\+\+Sleep\+Mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Mode}{}\end{DoxyParamCaption})}
+
+
+
+Activa o desactiva el modo de suspensión del display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & Valor que indica el estado:\+
+\begin{DoxyItemize}
+\item 0:\+ Desactivar modo sleep (display activo)
+\item 1:\+ Activar modo sleep (bajo consumo)
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Puede implicar retardos internos del hardware (función potencialmente bloqueante).
+\end{DoxyNote}
+Activa o desactiva el modo de suspensión del display.
+
+Envía el comando de entrada o salida de modo sleep según el parámetro. Después del comando se espera 500 ms como lo requiere la hoja de datos del GC9\+A01. Esta función es bloqueante.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & 1 para entrar en modo sleep (pantalla apagada, bajo consumo), 0 para salir del modo sleep (pantalla operativa). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{gc9a01_8h_a8380587e7a59219f1a5fd00c29957c5d}\index{gc9a01.h@{gc9a01.h}!GC9A01\_Update@{GC9A01\_Update}}
+\index{GC9A01\_Update@{GC9A01\_Update}!gc9a01.h@{gc9a01.h}}
+\doxysubsubsection{\texorpdfstring{GC9A01\_Update()}{GC9A01\_Update()}}
+{\footnotesize\ttfamily \label{gc9a01_8h_a8380587e7a59219f1a5fd00c29957c5d} 
+void GC9\+A01\+\_\+\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza el contenido del display. 
+
+Envía el buffer interno (si se usa) al display físico.
+
+\begin{DoxyNote}{Note}
+Función bloqueante que transmite datos por SPI. 
+
+Debe llamarse después de modificar el buffer en modo bufferizado. 
+\end{DoxyNote}

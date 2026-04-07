@@ -1,0 +1,40 @@
+\doxysection{max30100.\+h}
+\hypertarget{_m_p_u6050_2_m_p_u6050_2main_2max30100_8h_source}{}\label{_m_p_u6050_2_m_p_u6050_2main_2max30100_8h_source}\index{MPU6050/MPU6050/main/max30100.h@{MPU6050/MPU6050/main/max30100.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ i2c\_port\_num\_t\ i2c\_port;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ sda\_gpio;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ scl\_gpio;}
+\DoxyCodeLine{00015\ \ \ \ \ uint32\_t\ i2c\_freq\_hz;}
+\DoxyCodeLine{00016\ \ \ \ \ uint8\_t\ device\_addr;}
+\DoxyCodeLine{00017\ \}\ \doxymbox{\hyperlink{structmax30100__config__t}{max30100\_config\_t}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ uint16\_t\ red;}
+\DoxyCodeLine{00021\ \ \ \ \ uint16\_t\ ir;}
+\DoxyCodeLine{00022\ \}\ \doxymbox{\hyperlink{structmax30100__sample__t}{max30100\_sample\_t}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad806b4596feccbc7a3d13a3390cde339}{max30100\_init}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structmax30100__config__t}{max30100\_config\_t}}\ *cfg);}
+\DoxyCodeLine{00025\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_a1e3318eb3513a9bd61d355d7faf6acf1}{max30100\_configure\_default}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00026\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ac8aee1a3032c7b100e632d754873d7c5}{max30100\_reconfigure\_if\_needed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00027\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad178f38f195dc6bb870bb580e16c343c}{max30100\_read\_part\_id}}(uint8\_t\ *part\_id);}
+\DoxyCodeLine{00028\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ad3b196e4029ce5ee95065f3023b1171d}{max30100\_read\_sample}}(\doxymbox{\hyperlink{structmax30100__sample__t}{max30100\_sample\_t}}\ *sample);}
+\DoxyCodeLine{00029\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_af40c71580c810dc13ac52ca8b7d6c978}{max30100\_fifo\_status}}(uint8\_t\ *wr,\ uint8\_t\ *rd,\ uint8\_t\ *ovf);}
+\DoxyCodeLine{00030\ esp\_err\_t\ \doxymbox{\hyperlink{_max30100_2_max30100_2main_2max30100_8h_ada85191beb66c3a7e0e2884093b0f8bc}{max30100\_reset\_fifo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

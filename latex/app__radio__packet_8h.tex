@@ -1,0 +1,29 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+radio\+\_\+packet.h File Reference}
+\hypertarget{app__radio__packet_8h}{}\label{app__radio__packet_8h}\index{QMI8658/QMI8658/main/app\_radio\_packet.h@{QMI8658/QMI8658/main/app\_radio\_packet.h}}
+
+
+Definición de la estructura de paquete utilizada para transmisión vía ESP-\/\+NOW.  
+
+
+
+
+\doxysubsection{Detailed Description}
+Definición de la estructura de paquete utilizada para transmisión vía ESP-\/\+NOW. 
+
+Este archivo define el formato de los datos enviados entre nodos mediante el protocolo ESP-\/\+NOW. El paquete contiene información básica de identificación, control de secuencia, marca de tiempo y un campo de texto para datos del sensor u otros mensajes.
+
+La estructura está empaquetada para asegurar que no haya padding entre sus campos, garantizando así una transmisión eficiente y consistente entre dispositivos.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item El tamaño del paquete debe mantenerse dentro de los límites de ESP-\/\+NOW (\texorpdfstring{$\sim$}{\string~}250 bytes).
+\item El uso de {\bfseries{attribute}}((packed)) evita rellenos de memoria.
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}

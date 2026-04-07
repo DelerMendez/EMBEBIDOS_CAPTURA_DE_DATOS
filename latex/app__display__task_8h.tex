@@ -1,0 +1,77 @@
+\doxysection{QMI8658/\+\+QMI8658/\+main/\+app\+\_\+display\+\_\+task.h File Reference}
+\hypertarget{app__display__task_8h}{}\label{app__display__task_8h}\index{QMI8658/QMI8658/main/app\_display\_task.h@{QMI8658/QMI8658/main/app\_display\_task.h}}
+
+
+Declaración de la tarea encargada de la actualización del display.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{app__display__task_8h_a709161108a6b0233e4f714272f8ce642}{app\+\_\+display\+\_\+task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Tarea de actualización del display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de la tarea encargada de la actualización del display. 
+
+Este archivo define la interfaz de la tarea Free\+RTOS responsable de:\+
+\begin{DoxyItemize}
+\item Recibir datos del sensor IMU mediante una cola
+\item Actualizar la interfaz gráfica del display
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+La implementación se encuentra en \doxylink{app__display__task_8c}{app\+\_\+display\+\_\+task.\+c}.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{app__display__task_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{app__display__task_8h_a709161108a6b0233e4f714272f8ce642}\index{app\_display\_task.h@{app\_display\_task.h}!app\_display\_task@{app\_display\_task}}
+\index{app\_display\_task@{app\_display\_task}!app\_display\_task.h@{app\_display\_task.h}}
+\doxysubsubsection{\texorpdfstring{app\_display\_task()}{app\_display\_task()}}
+{\footnotesize\ttfamily \label{app__display__task_8h_a709161108a6b0233e4f714272f8ce642} 
+void app\+\_\+display\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Tarea de actualización del display. 
+
+Esta tarea recibe datos del sensor IMU desde una cola de Free\+RTOS y actualiza el display con dicha información.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Puntero a la cola (Queue\+Handle\+\_\+t) que contiene estructuras \doxylink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t} con los datos del IMU.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Esta función está diseñada para ser utilizada con x\+Task\+Create(). 
+
+No retorna (bucle infinito).
+\end{DoxyNote}
+Esta función:\+
+\begin{DoxyItemize}
+\item Recibe una cola de tipo Queue\+Handle\+\_\+t como parámetro
+\item Espera datos del sensor IMU (\doxylink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t})
+\item Actualiza el display cuando hay nuevos datos disponibles
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Puntero a la cola de Free\+RTOS que contiene los datos del IMU\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+La función nunca retorna (bucle infinito). 
+\end{DoxyNote}
+Cola de recepción de datos del IMU
+
+Estructura donde se almacenan los datos recibidos del IMU

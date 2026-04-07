@@ -1,0 +1,82 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+main.c File Reference}
+\hypertarget{_max30100_2_max30100_2main_2main_8c}{}\label{_max30100_2_max30100_2main_2main_8c}\index{Max30100/Max30100/main/main.c@{Max30100/Max30100/main/main.c}}
+
+
+Punto de entrada principal del sistema embebido basado en ESP32.  
+
+
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}app\+\_\+config.\+h"{}}\newline
+{\ttfamily \+\#include "{}max30100.\+h"{}}\newline
+{\ttfamily \+\#include "{}app\+\_\+tasks.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_max30100_2_max30100_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Función principal de la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Punto de entrada principal del sistema embebido basado en ESP32. 
+
+Este archivo contiene la función principal {\ttfamily \doxylink{_max30100_2_max30100_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}}, la cual se encarga de inicializar el sistema, configurar el sensor MAX30100 y arrancar las tareas de la aplicación.
+
+El flujo principal incluye:\+
+\begin{DoxyItemize}
+\item Inicialización del sensor mediante I2C
+\item Configuración por defecto del MAX30100
+\item Inicio de tareas del sistema (posiblemente bajo Free\+RTOS)
+\end{DoxyItemize}
+
+Este módulo actúa como orquestador del arranque del sistema.
+
+\begin{DoxyNote}{Note}
+La función {\ttfamily \doxylink{_max30100_2_max30100_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} es el equivalente a {\ttfamily main()} en ESP-\/\+IDF y se ejecuta como una tarea de Free\+RTOS.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{main.c@{main.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal de la aplicación. 
+
+Esta función es el punto de entrada del sistema en ESP-\/\+IDF. Se encarga de:\+
+\begin{DoxyItemize}
+\item Inicializar el sensor MAX30100 mediante configuración I2C
+\item Aplicar una configuración por defecto al sensor
+\item Iniciar las tareas principales del sistema
+\end{DoxyItemize}
+
+En caso de error en cualquiera de las etapas, se registra el fallo y se detiene la ejecución.
+
+\begin{DoxyNote}{Note}
+Esta función se ejecuta como una tarea de Free\+RTOS. 
+
+Puede considerarse bloqueante durante la inicialización.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Configuración del sensor MAX30100.
+
+Se inicializa la estructura con los parámetros necesarios para la comunicación I2C con el sensor.
+
+Inicialización del sensor MAX30100.
+
+Configuración por defecto del sensor MAX30100.
+
+Inicio de las tareas principales del sistema.

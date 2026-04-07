@@ -1,0 +1,76 @@
+\doxysection{Max30100/\+\+Max30100/\+main/\+app\+\_\+tasks.h File Reference}
+\hypertarget{_max30100_2_max30100_2main_2app__tasks_8h}{}\label{_max30100_2_max30100_2main_2app__tasks_8h}\index{Max30100/Max30100/main/app\_tasks.h@{Max30100/Max30100/main/app\_tasks.h}}
+
+
+Declaración de la inicialización de tareas del sistema para el sensor en ESP-\/\+IDF.  
+
+
+{\ttfamily \+\#include "{}esp\+\_\+err.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{_max30100_2_max30100_2main_2app__tasks_8h_adaf2d0d735993165acedd8f410d879d0}{app\+\_\+tasks\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa y arranca las tareas principales de la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de la inicialización de tareas del sistema para el sensor en ESP-\/\+IDF. 
+
+Este archivo contiene la declaración de la función encargada de iniciar las tareas principales del sistema, las cuales pueden incluir la adquisición de datos de sensores, procesamiento y comunicación. Estas tareas suelen ejecutarse bajo el entorno de Free\+RTOS provisto por ESP-\/\+IDF.
+
+La función definida aquí puede implicar la creación de tareas, colas o temporizadores, por lo que su comportamiento puede ser bloqueante durante la fase de inicialización, pero posteriormente las tareas corren de manera concurrente.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{_max30100_2_max30100_2main_2app__tasks_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_max30100_2_max30100_2main_2app__tasks_8h_adaf2d0d735993165acedd8f410d879d0}\index{app\_tasks.h@{app\_tasks.h}!app\_tasks\_start@{app\_tasks\_start}}
+\index{app\_tasks\_start@{app\_tasks\_start}!app\_tasks.h@{app\_tasks.h}}
+\doxysubsubsection{\texorpdfstring{app\_tasks\_start()}{app\_tasks\_start()}}
+{\footnotesize\ttfamily \label{_max30100_2_max30100_2main_2app__tasks_8h_adaf2d0d735993165acedd8f410d879d0} 
+esp\+\_\+err\+\_\+t app\+\_\+tasks\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa y arranca las tareas principales de la aplicación. 
+
+Esta función se encarga de crear e iniciar las tareas necesarias para el funcionamiento del sistema embebido, típicamente usando Free\+RTOS.
+
+Dependiendo de la implementación, puede incluir:\+
+\begin{DoxyItemize}
+\item Creación de tareas con x\+Task\+Create()
+\item Inicialización de colas o semáforos
+\item Configuración de periféricos como I2C o SPI
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Esta función puede ser bloqueante durante la inicialización. 
+
+Debe ser llamada una sola vez durante el arranque del sistema. 
+
+El comportamiento thread-\/safe depende de la implementación interna, pero normalmente no está diseñada para ser llamada desde múltiples tareas.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Las tareas se inicializaron correctamente.
+\item ESP\+\_\+\+FAIL:\+ Error general durante la inicialización.
+\item Otros códigos de error específicos según la implementación interna.
+\end{DoxyItemize}
+\end{DoxyReturn}
+Inicializa y arranca las tareas principales de la aplicación.
+
+\begin{DoxyReturn}{Returns}
+ESP\+\_\+\+OK si todo se inicializa correctamente. 
+
+ESP\+\_\+\+ERR\+\_\+\+NO\+\_\+\+MEM si falla la creación de la cola. 
+
+ESP\+\_\+\+FAIL si falla la creación de tareas. 
+\end{DoxyReturn}

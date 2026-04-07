@@ -1,0 +1,140 @@
+\doxysection{MPU6050/\+\+MPU6050/\+components/\+mpu6050/\+mpu6050.c File Reference}
+\hypertarget{mpu6050_8c}{}\label{mpu6050_8c}\index{MPU6050/MPU6050/components/mpu6050/mpu6050.c@{MPU6050/MPU6050/components/mpu6050/mpu6050.c}}
+
+
+Implementación del driver para el sensor MPU6050 usando ESP-\/\+IDF (I2C).  
+
+
+{\ttfamily \+\#include "{}mpu6050.\+h"{}}\newline
+{\ttfamily \+\#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{mpu6050_8c_a7481fe73a2beca89ea25ee38cb00b905}{MPU6050\+\_\+\+TIMEOUT\+\_\+\+MS}}~200
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{mpu6050_8c_a4dfbaeee0cfc99d152dc33789c85754a}{mpu6050\+\_\+init}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t bus)
+\begin{DoxyCompactList}\small\item\em Inicializa el sensor MPU6050. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \doxymbox{\hyperlink{mpu6050_8c_a84ca3710315d078a8b44c4ce5f9a392e}{mpu6050\+\_\+read}} (\doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Lee los datos del sensor MPU6050. \end{DoxyCompactList}\item 
+uint8\+\_\+t \doxymbox{\hyperlink{mpu6050_8c_a8f83667183c925d899896af9c34b205f}{mpu6050\+\_\+get\+\_\+i2c\+\_\+addr}} (void)
+\begin{DoxyCompactList}\small\item\em Obtiene la dirección I2C del MPU6050 detectada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del driver para el sensor MPU6050 usando ESP-\/\+IDF (I2C). 
+
+Este archivo contiene la implementación de las funciones necesarias para inicializar, configurar y leer datos del sensor MPU6050 mediante el bus I2C. Se incluyen rutinas internas para manejo de registros, detección de dirección del dispositivo y conversión de datos crudos a unidades físicas.
+
+El driver está diseñado para ejecutarse en entornos con Free\+RTOS y utiliza retardos bloqueantes para garantizar la correcta inicialización del sensor.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez, Nathalia Piamba, Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-define-members}
+\Hypertarget{mpu6050_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mpu6050_8c_a7481fe73a2beca89ea25ee38cb00b905}\index{mpu6050.c@{mpu6050.c}!MPU6050\_TIMEOUT\_MS@{MPU6050\_TIMEOUT\_MS}}
+\index{MPU6050\_TIMEOUT\_MS@{MPU6050\_TIMEOUT\_MS}!mpu6050.c@{mpu6050.c}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_TIMEOUT\_MS}{MPU6050\_TIMEOUT\_MS}}
+{\footnotesize\ttfamily \label{mpu6050_8c_a7481fe73a2beca89ea25ee38cb00b905} 
+\+\#define MPU6050\+\_\+\+TIMEOUT\+\_\+\+MS~200}
+
+Tiempo máximo de espera para operaciones I2C en ms 
+
+\label{doc-func-members}
+\Hypertarget{mpu6050_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mpu6050_8c_a8f83667183c925d899896af9c34b205f}\index{mpu6050.c@{mpu6050.c}!mpu6050\_get\_i2c\_addr@{mpu6050\_get\_i2c\_addr}}
+\index{mpu6050\_get\_i2c\_addr@{mpu6050\_get\_i2c\_addr}!mpu6050.c@{mpu6050.c}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_get\_i2c\_addr()}{mpu6050\_get\_i2c\_addr()}}
+{\footnotesize\ttfamily \label{mpu6050_8c_a8f83667183c925d899896af9c34b205f} 
+uint8\+\_\+t mpu6050\+\_\+get\+\_\+i2c\+\_\+addr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la dirección I2C del MPU6050 detectada. 
+
+Obtiene la dirección I2C configurada para el sensor MPU6050.
+
+\begin{DoxyReturn}{Returns}
+Dirección I2C del dispositivo.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función no bloqueante. 
+
+Thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{mpu6050_8c_a4dfbaeee0cfc99d152dc33789c85754a}\index{mpu6050.c@{mpu6050.c}!mpu6050\_init@{mpu6050\_init}}
+\index{mpu6050\_init@{mpu6050\_init}!mpu6050.c@{mpu6050.c}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_init()}{mpu6050\_init()}}
+{\footnotesize\ttfamily \label{mpu6050_8c_a4dfbaeee0cfc99d152dc33789c85754a} 
+esp\+\_\+err\+\_\+t mpu6050\+\_\+init (\begin{DoxyParamCaption}\item[{i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t}]{bus}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa el sensor MPU6050. 
+
+Inicializa el sensor MPU6050 en el bus I2C especificado.
+
+Detecta automáticamente la dirección I2C del dispositivo (0x68 o 0x69), lo despierta del modo de bajo consumo y configura los parámetros básicos del acelerómetro y giroscopio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bus} & Handle del bus I2C previamente inicializado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Inicialización exitosa.
+\item ESP\+\_\+\+FAIL:\+ Error en configuración o comunicación.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante (usa v\+Task\+Delay e I2C). 
+
+No es thread-\/safe. 
+\end{DoxyNote}
+\Hypertarget{mpu6050_8c_a84ca3710315d078a8b44c4ce5f9a392e}\index{mpu6050.c@{mpu6050.c}!mpu6050\_read@{mpu6050\_read}}
+\index{mpu6050\_read@{mpu6050\_read}!mpu6050.c@{mpu6050.c}}
+\doxysubsubsection{\texorpdfstring{mpu6050\_read()}{mpu6050\_read()}}
+{\footnotesize\ttfamily \label{mpu6050_8c_a84ca3710315d078a8b44c4ce5f9a392e} 
+esp\+\_\+err\+\_\+t mpu6050\+\_\+read (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{structmpu6050__data__t}{mpu6050\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Lee los datos del sensor MPU6050. 
+
+Lee los datos actuales del sensor MPU6050.
+
+Realiza la lectura de los registros de aceleración, temperatura y giroscopio, y convierte los valores crudos a unidades físicas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Puntero a la estructura donde se almacenarán los datos.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ESP\+\_\+\+OK:\+ Lectura exitosa.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+ARG:\+ Puntero nulo.
+\item ESP\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+STATE:\+ Dispositivo no inicializado.
+\item ESP\+\_\+\+FAIL:\+ Error en la comunicación I2C.
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Función bloqueante. 
+
+No es thread-\/safe. 
+\end{DoxyNote}

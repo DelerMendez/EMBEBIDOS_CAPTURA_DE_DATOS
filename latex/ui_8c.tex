@@ -1,0 +1,121 @@
+\doxysection{QMI8658/\+\+QMI8658/\+components/\+ui/\+ui.c File Reference}
+\hypertarget{ui_8c}{}\label{ui_8c}\index{QMI8658/QMI8658/components/ui/ui.c@{QMI8658/QMI8658/components/ui/ui.c}}
+
+
+Implementación de la interfaz gráfica (UI) para visualización de datos del sensor en pantalla GC9\+A01.  
+
+
+{\ttfamily \+\#include "{}ui.\+h"{}}\newline
+{\ttfamily \+\#include "{}gc9a01.\+h"{}}\newline
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{ui_8c_aba2a7fe77a7501e5844370eec0185207}\label{ui_8c_aba2a7fe77a7501e5844370eec0185207} 
+\+\#define {\bfseries COLOR\+\_\+\+BLACK}~0x0000
+\begin{DoxyCompactList}\small\item\em Color negro (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_a9b44987ffdc2af19b635206b94334b69}\label{ui_8c_a9b44987ffdc2af19b635206b94334b69} 
+\+\#define {\bfseries COLOR\+\_\+\+WHITE}~0x\+FFFF
+\begin{DoxyCompactList}\small\item\em Color blanco (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_ad86358bf19927183dd7b4ae215a29731}\label{ui_8c_ad86358bf19927183dd7b4ae215a29731} 
+\+\#define {\bfseries COLOR\+\_\+\+RED}~0x\+F800
+\begin{DoxyCompactList}\small\item\em Color rojo (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_afc9149f5de51bd9ac4f5ebbfa153f018}\label{ui_8c_afc9149f5de51bd9ac4f5ebbfa153f018} 
+\+\#define {\bfseries COLOR\+\_\+\+GREEN}~0x07\+E0
+\begin{DoxyCompactList}\small\item\em Color verde (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_a82573859711fce56f1aa0a76b18a9b18}\label{ui_8c_a82573859711fce56f1aa0a76b18a9b18} 
+\+\#define {\bfseries COLOR\+\_\+\+CYAN}~0x07\+FF
+\begin{DoxyCompactList}\small\item\em Color cian (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_a4534b577b74a58b0f4b7be027af664e0}\label{ui_8c_a4534b577b74a58b0f4b7be027af664e0} 
+\+\#define {\bfseries COLOR\+\_\+\+YELLOW}~0x\+FFE0
+\begin{DoxyCompactList}\small\item\em Color amarillo (RGB565). \end{DoxyCompactList}\item 
+\Hypertarget{ui_8c_a3aaf3b0287d26dfb6ecb3b1c46e950c8}\label{ui_8c_a3aaf3b0287d26dfb6ecb3b1c46e950c8} 
+\+\#define {\bfseries COLOR\+\_\+\+GRAY}~0x8410
+\begin{DoxyCompactList}\small\item\em Color gris (RGB565). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{ui_8c_a42bb09ef137aaeb1733173f3a88ccc85}{ui\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Inicializa la interfaz gráfica. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{ui_8c_a64352c63d8a5ea2d68448b7ae5f108b6}{ui\+\_\+show\+\_\+status}} (const char \texorpdfstring{$\ast$}{*}msg, uint16\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Muestra un mensaje de estado en pantalla. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{ui_8c_a4ae69cba94fb8f544bd592bafe80f143}{ui\+\_\+update}} (const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}imu)
+\begin{DoxyCompactList}\small\item\em Actualiza la UI con nuevos datos del IMU. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación de la interfaz gráfica (UI) para visualización de datos del sensor en pantalla GC9\+A01. 
+
+Este archivo implementa una interfaz gráfica simple para mostrar datos de un sensor IMU (como aceleración, giroscopio y temperatura) utilizando un display GC9\+A01.
+
+Incluye una fuente personalizada 5x7, funciones para renderizar caracteres y texto, y utilidades para actualizar dinámicamente la información en pantalla.
+
+Las funciones que dibujan en pantalla utilizan internamente el driver GC9\+A01, por lo que son bloqueantes debido al uso de SPI y no son thread-\/safe si se accede desde múltiples tareas simultáneamente.
+
+\begin{DoxyAuthor}{Author}
+Deler Mendez 
+
+Nathalia Piamba 
+
+Danny Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-func-members}
+\Hypertarget{ui_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ui_8c_a42bb09ef137aaeb1733173f3a88ccc85}\index{ui.c@{ui.c}!ui\_init@{ui\_init}}
+\index{ui\_init@{ui\_init}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{ui\_init()}{ui\_init()}}
+{\footnotesize\ttfamily \label{ui_8c_a42bb09ef137aaeb1733173f3a88ccc85} 
+void ui\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa la interfaz gráfica. 
+
+Inicializa la interfaz de usuario en la pantalla.
+
+Limpia la pantalla y dibuja las etiquetas principales. \Hypertarget{ui_8c_a64352c63d8a5ea2d68448b7ae5f108b6}\index{ui.c@{ui.c}!ui\_show\_status@{ui\_show\_status}}
+\index{ui\_show\_status@{ui\_show\_status}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{ui\_show\_status()}{ui\_show\_status()}}
+{\footnotesize\ttfamily \label{ui_8c_a64352c63d8a5ea2d68448b7ae5f108b6} 
+void ui\+\_\+show\+\_\+status (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{uint16\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Muestra un mensaje de estado en pantalla. 
+
+Muestra un mensaje de estado en la interfaz.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Cadena de texto \\
+\hline
+{\em color} & Color del texto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8c_a4ae69cba94fb8f544bd592bafe80f143}\index{ui.c@{ui.c}!ui\_update@{ui\_update}}
+\index{ui\_update@{ui\_update}!ui.c@{ui.c}}
+\doxysubsubsection{\texorpdfstring{ui\_update()}{ui\_update()}}
+{\footnotesize\ttfamily \label{ui_8c_a4ae69cba94fb8f544bd592bafe80f143} 
+void ui\+\_\+update (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{imu}{}\end{DoxyParamCaption})}
+
+
+
+Actualiza la UI con nuevos datos del IMU. 
+
+Actualiza los valores mostrados en la interfaz con datos del sensor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imu} & Puntero a la estructura de datos del sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+La estructura \doxylink{structqmi8658__data__t}{qmi8658\+\_\+data\+\_\+t} debe contener:\+ acc\+\_\+x, acc\+\_\+y, acc\+\_\+z, gyr\+\_\+x, gyr\+\_\+y, gyr\+\_\+z, temperature. 
+\end{DoxyNote}
