@@ -1,0 +1,18 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "max30100.c"
+        "signal_proc.c"
+        "espnow_tx.c"
+        "app_tasks.c"
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        freertos
+        esp_wifi
+        esp_event
+        esp_netif
+        nvs_flash
+        esp_timer
+        esp_driver_i2c
+)

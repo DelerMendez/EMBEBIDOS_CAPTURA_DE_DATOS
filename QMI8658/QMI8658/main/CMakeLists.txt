@@ -1,0 +1,28 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "app_core.c"
+        "app_sensor.c"
+        "app_display.c"
+        "app_radio.c"
+        "app_sensor_task.c"
+        "app_display_task.c"
+    INCLUDE_DIRS "."
+    REQUIRES
+        qmi8658
+        gc9a01
+        esp_driver_gpio
+        esp_driver_i2c
+        esp_driver_spi
+        esp_driver_ledc
+        freertos
+        log
+        esp_pm
+        esp_event
+        esp_netif
+        nvs_flash
+        esp_timer
+    PRIV_REQUIRES
+        ui
+        esp_wifi
+)
